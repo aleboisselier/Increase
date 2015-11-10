@@ -1,0 +1,105 @@
+@CHARSET "UTF-8";
+body{
+	font-weight: 400;
+    background-color: #F7F7F7;
+    color: #262626;
+}
+.alert {
+    transition: 1s linear all;
+     opacity: 1;
+}
+.alert.ng-hide {
+     opacity: 0;
+}
+
+.alert.ng-show {
+     opacity: 1;
+}
+
+.bs-docs-header {
+    box-sizing: border-box;
+    color: rgb(129, 181, 221);
+    height: 165px;
+    position: relative;
+    text-align: left;
+    text-shadow: rgba(0, 0, 0, 0.0980392) 0px 1px 0px;
+    perspective-origin: 950.5px 128px;
+    transform-origin: 950.5px 128px;
+    background-color: #444444;
+    border: 0px none rgb(205, 191, 227);
+    font: normal normal normal normal 24px/34.2857170104981px 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    margin: 0px 0px 6px;
+    outline: rgb(205, 191, 227) none 0px;
+    padding: 0px 15px;
+}
+.second-header {
+    box-sizing: border-box;
+    height: 8px;
+    position: relative;
+    perspective-origin: 950.5px 128px;
+    transform-origin: 950.5px 128px;
+    background-color: #7DB383;
+    border: 0px none rgb(205, 191, 227);
+    margin: 0px 0px 1px;
+    outline: rgb(205, 191, 227) none 0px;
+    padding: 0px 10px;
+}
+.bs-docs-header .header{
+    background: url(../img/Increase.png) no-repeat left;
+    box-sizing: border-box;
+    margin-left:0px;
+    height: 121px;
+}
+.bs-docs-header h1 {
+    color: #E4E4E4;
+    height: 45px;
+    text-align: left;
+	text-shadow: 1px 1px 1px rgba(25, 152, 91, 0.64);
+    border: 0px none rgb(255, 255, 255);
+    font-size: normal normal 500 normal 60px/60px 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-variant: small-caps;
+    outline: rgb(255, 255, 255) none 0px;
+    padding-left :140px;
+    padding-top: 25px;
+}
+
+.bs-docs-header p{
+	color: #7DB383;
+	font-weight: 200;
+	font-size: 18px;
+	font-stretch: ultra-expanded;
+	text-shadow: 1px 1px 1px rgba(150, 150, 150, 0.24);
+	font-variant: small-caps;
+    padding-left :140px;
+}
+.content{
+	padding: 30px;
+	border: 1px solid #ddd;
+	background: #fff;
+}
+.content p a{
+	font-weight:bold;
+}
+#footer{
+	clear: both;
+	width: 100%;
+	float: left;
+	margin-left: 0;
+	margin-right: 0;
+	margin-top: 10px;
+	padding: 40px 0;
+	font-size: 13px;
+	background: #000;
+	color: #888;
+}
+#footer span{
+	color: #555;
+	font-weight: bold;
+}
+.breadcrumb{
+	margin-bottom: 6px;
+	background-color: #444444;
+}
+.breadcrumb a{
+	color: #fff;
+}
