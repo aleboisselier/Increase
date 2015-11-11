@@ -1,0 +1,5 @@
+{
+    "require": {
+        "jcheron/phalcon-jquery": "dev-master"
+    }
+}

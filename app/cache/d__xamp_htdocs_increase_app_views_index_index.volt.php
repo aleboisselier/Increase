@@ -8,3 +8,13 @@
 <a class="btn btn-info">Info</a>&nbsp;
 <a class="btn btn-warning">Warning</a>&nbsp;
 <a class="btn btn-danger">Danger</a>
+<br><br>
+
+<?php echo $q['bt-1']; ?><?php echo $q['splitBtn']; ?>
+
+<?php echo $q['panelClient']; ?>
+
+
+<?php echo $script_foot; ?>
+
+

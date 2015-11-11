@@ -8,3 +8,13 @@
 <a class="btn btn-info">Info</a>&nbsp;
 <a class="btn btn-warning">Warning</a>&nbsp;
 <a class="btn btn-danger">Danger</a>
+<br><br>
+
+{{ q['bt-1'] }}{{ q['splitBtn'] }}
+
+{{ q['panelClient'] }}
+
+
+{{ script_foot }}
+
+
