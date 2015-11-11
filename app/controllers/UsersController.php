@@ -27,6 +27,8 @@ class UsersController extends ControllerBase
     	
     	
     	$this->jquery->getOnClick(".delUser", "Users/delete", ".content");
+    	$this->jquery->getOnClick(".cancelUser", "Users/edit", ".content");
+    	$this->jquery->postFormOnClick("updateUser", "Users/update", "#userForm");
     	 
     	$this->jquery->bootstrap()->htmlAlert("info", "TSET", CssRef::CSS_INFO);
     	$this->jquery->compile($this->view);

@@ -1,4 +1,4 @@
-<form>
+<form id="userForm" method="post" action="Users/update" name="userForm" onsubmit="return:false;">
   <div class="form-group">
     <input type="hidden" class="form-control" name="id" value="{{ user.getId() }}"/>
   </div>
@@ -17,11 +17,11 @@
  
 <div class="btn-toolbar pull-right">
 	<div class="btn-group" role="group">
-	    <button type="submit" class="btn btn-success" id="{{ user.getId() }}"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>&nbsp;Valider</button>
-	    <button type="submit" class="btn btn-warning" id="{{ user.getId() }}">Annuler&nbsp;<span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span></button>
+	    <button type="submit" class="btn btn-success updateUser" id="{{ user.getId() }}"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>&nbsp;Valider</button>
+	    <button class="btn btn-warning cancelUser" id="{{ user.getId() }}">Annuler&nbsp;<span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span></button>
 	</div>
 	<div class="btn-group" role="group">
-	    <button type="submit" class="btn btn-danger delUser" id="{{ user.getId() }}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;Supprimer l'utilisateur</button>
+	    <button class="btn btn-danger delUser" id="{{ user.getId() }}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;Supprimer l'utilisateur</button>
 	</div>
 </div>
 <div class="clearfix"></div>
