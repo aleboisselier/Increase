@@ -190,7 +190,11 @@ class User extends \Phalcon\Mvc\Model
         return parent::findFirst($parameters);
     }
     public function __toString(){
-        return $this->identite. " (".$this->role.")";
+    	$r = "";
+    	if ($this->role != ""){
+    		$r = " (".$this->role.")";
+    	}
+        return $this->identite.$r;
     }
 
 }
