@@ -91,6 +91,10 @@ body{
 	font-size: 13px;
 	background: #000;
 	color: #888;
+
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 #footer span{
 	color: #555;

@@ -17,8 +17,8 @@
  
 <div class="btn-toolbar pull-right">
 	<div class="btn-group" role="group">
-	    <button type="submit" class="btn btn-success" id="{{ user.getId() }}><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>&nbsp;Valider</button>
-	    <button type="submit" class="btn btn-warning" id="{{ user.getId() }}><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>&nbsp;Annuler</button>
+	    <button type="submit" class="btn btn-success" id="{{ user.getId() }}"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>&nbsp;Valider</button>
+	    <button type="submit" class="btn btn-warning" id="{{ user.getId() }}">Annuler&nbsp;<span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span></button>
 	</div>
 	<div class="btn-group" role="group">
 	    <button type="submit" class="btn btn-danger delUser" id="{{ user.getId() }}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;Supprimer l'utilisateur</button>
