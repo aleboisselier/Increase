@@ -20,8 +20,8 @@
 	</div>
 	<div class="container">
 		<ol class="breadcrumb">
-				<li><a href="Index"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Home</a></li>
-				{% if ControllerName is defined %}<li {% if ObjectName is defined %}class="active"{% endif %}><a href="{{ ControllerName }}">{{ title }}</a></li>{% endif %}
+				<li><a href="{{ url }}Index"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Home</a></li>
+				{% if ControllerName is defined %}<li {% if ObjectName is defined %}class="active"{% endif %}><a href="{{ url }}{{ ControllerName }}"><span class="glyphicon glyphicon-{{ controllerIcon }}" aria-hidden="true"></span>&nbsp;{{ title }}</a></li>{% endif %}
 				<li class="active objectBreadcrumb">{% if ObjectName is defined %}{{ ObjectName }}{% endif %}</li>
 			</ol>
 		<div class="content">

@@ -45,3 +45,4 @@ Temporary Items
 vendor
 app/cache
 *.volt.php
+composer.lock
