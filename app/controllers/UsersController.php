@@ -24,6 +24,7 @@ class UsersController extends ControllerBase
     	$this->view->setVar("user", $user);
     	
     	$this->setBreadObject($user);
+    	$this->url->getBaseUri();
     	
     	
     	$this->jquery->getOnClick(".delUser", "Users/delete", ".content");
