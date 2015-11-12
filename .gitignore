@@ -44,3 +44,4 @@ Temporary Items
 
 vendor
 app/cache
+*.volt.php
