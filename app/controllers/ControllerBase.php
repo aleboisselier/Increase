@@ -73,6 +73,7 @@ class ControllerBase extends Controller
     protected function findFirstObject($args = ""){
     	return call_user_func($this->model.'::findFirst', $args);
     }
+    
     public function afterExecuteRoute($dispatcher){
     	$this->view->setVar("url", $this->url->getBaseUri());
     	$this->view->setVar("controllerIcon", $this->icon);

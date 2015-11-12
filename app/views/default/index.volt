@@ -2,7 +2,7 @@
 	{{ q['alertResult'] }}
 {% endif %}
 <table class='table table-striped'>
-	<thead><tr><th colspan="2">{{title}}</th></tr></thead>
+	<thead><tr><th colspan="2"><span class="glyphicon glyphicon-{{ controllerIcon }}" aria-hidden="true"></span>&nbsp;{{title}}</th></tr></thead>
 	<tbody>
 		{% for  object in objects %}	
 			<tr>

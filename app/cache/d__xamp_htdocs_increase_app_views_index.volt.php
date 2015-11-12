@@ -6,6 +6,7 @@
 		<?php echo $this->tag->stylesheetLink('css/styles.css'); ?>
 		<?php echo $this->tag->javascriptInclude('js/jquery.min.js'); ?>
 		<?php echo $this->tag->javascriptInclude('js/bootstrap.min.js'); ?>
+		<link rel="icon" href="public/img/increase.png" >
 	</head>
 	<meta charset="UTF-8">
 	<body>
@@ -20,7 +21,9 @@
 	</div>
 	<div class="container">
 		<ol class="breadcrumb">
-				<li><a href="index"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Home</a></li>
+				<li><a href="<?php echo $url; ?>Index"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Home</a></li>
+				<?php if (isset($ControllerName)) { ?><li <?php if (isset($ObjectName)) { ?>class="active"<?php } ?>><a href="<?php echo $url; ?><?php echo $ControllerName; ?>"><span class="glyphicon glyphicon-<?php echo $controllerIcon; ?>" aria-hidden="true"></span>&nbsp;<?php echo $title; ?></a></li><?php } ?>
+				<li class="active objectBreadcrumb"><?php if (isset($ObjectName)) { ?><?php echo $ObjectName; ?><?php } ?></li>
 			</ol>
 		<div class="content">
 			<?php echo $this->getContent(); ?>
