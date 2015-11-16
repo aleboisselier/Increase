@@ -15,13 +15,13 @@
 		<div class="container">
 			<div class="header">
 				<h1>Increase</h1>
-				<p>Manage the progress of your projects, improve communication with customers.</p>
+				<p>Gérez la <b>progression</b> de vos projets, améliorez la <b>communication</b> avec vos clients.</p>
 			</div>
 		</div>
 	</div>
 	<div class="container">
 		<ol class="breadcrumb">
-				<li><a href="{{ url }}Index"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Home</a></li>
+				<li><a href="{{ url }}Index"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Accueil</a></li>
 				{% if ControllerName is defined %}<li {% if ObjectName is defined %}class="active"{% endif %}><a href="{{ url }}{{ ControllerName }}"><span class="glyphicon glyphicon-{{ controllerIcon }}" aria-hidden="true"></span>&nbsp;{{ title }}</a></li>{% endif %}
 				<li class="active objectBreadcrumb">{% if ObjectName is defined %}{{ ObjectName }}{% endif %}</li>
 			</ol>
@@ -33,7 +33,7 @@
 		<div class="container">
 			<div class="col-md-4">
 			<p>Mentions légales</p>
-			<p><span>Created with Phalcon</span></p>
+			<p><span>Créé avec Phalcon</span></p>
 			</div>
 			<div class="col-md-4">
 				<div class="input-group">

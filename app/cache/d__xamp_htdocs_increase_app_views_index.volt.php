@@ -15,13 +15,13 @@
 		<div class="container">
 			<div class="header">
 				<h1>Increase</h1>
-				<p>Manage the progress of your projects, improve communication with customers.</p>
+				<p>Gérez la <b>progression</b> de vos projets, améliorez la <b>communication</b> avec vos clients.</p>
 			</div>
 		</div>
 	</div>
 	<div class="container">
 		<ol class="breadcrumb">
-				<li><a href="<?php echo $url; ?>Index"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Home</a></li>
+				<li><a href="<?php echo $url; ?>Index"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Accueil</a></li>
 				<?php if (isset($ControllerName)) { ?><li <?php if (isset($ObjectName)) { ?>class="active"<?php } ?>><a href="<?php echo $url; ?><?php echo $ControllerName; ?>"><span class="glyphicon glyphicon-<?php echo $controllerIcon; ?>" aria-hidden="true"></span>&nbsp;<?php echo $title; ?></a></li><?php } ?>
 				<li class="active objectBreadcrumb"><?php if (isset($ObjectName)) { ?><?php echo $ObjectName; ?><?php } ?></li>
 			</ol>
@@ -33,7 +33,7 @@
 		<div class="container">
 			<div class="col-md-4">
 			<p>Mentions légales</p>
-			<p><span>Created with Phalcon</span></p>
+			<p><span>Créé avec Phalcon</span></p>
 			</div>
 			<div class="col-md-4">
 				<div class="input-group">

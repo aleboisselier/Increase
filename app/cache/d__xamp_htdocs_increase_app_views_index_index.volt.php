@@ -10,11 +10,6 @@
 <a class="btn btn-danger">Danger</a>
 <br><br>
 
-<?php echo $q['bt-1']; ?><?php echo $q['splitBtn']; ?>
-
-<?php echo $q['panelClient']; ?>
-
-
-<?php echo $script_foot; ?>
+<a class="btn btn-default" href="<?php echo $url; ?>Users">Utilisateurs</a>
 
 
