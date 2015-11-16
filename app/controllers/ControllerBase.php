@@ -2,14 +2,17 @@
 
 use Phalcon\Mvc\Controller;
 use Phalcon\Mvc\View;
+use AuthController as Auth;
 
 class ControllerBase extends Controller
 {
-	 public function beforeExecuteRoute(){
-	 	$this->view->setVar("siteUrl", $this->url->getBaseUri());
-	 }
-	 
 	 public function afterExecuteRoute(){
+	 	$this->view->setVar("siteUrl", $this->url->getBaseUri());
+	 	
+	 	if(!Auth::isAuth()){
+	 		$this->dispatcher->forward(array("controller" => "Auth", "action" => "signin"));
+	 	}
+	 	
 	 	$this->jquery->get("Index/breadCrumbs", ".bread");
 	 	$this->jquery->compile($this->view);
 	 }

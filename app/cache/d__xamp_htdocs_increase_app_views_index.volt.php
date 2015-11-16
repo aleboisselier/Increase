@@ -21,11 +21,7 @@
 	</div>
 	<div class="container">
 		<div class="bread">
-			<ol class="breadcrumb">
-				<li><a href="<?php echo $siteUrl; ?>Index"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Accueil</a></li>
-				<?php if (isset($ControllerName)) { ?><li <?php if (isset($ObjectName)) { ?>class="active"<?php } ?>><a href="<?php echo $siteUrl; ?><?php echo $ControllerName; ?>"><span class="glyphicon glyphicon-<?php echo $controllerIcon; ?>" aria-hidden="true"></span>&nbsp;<?php echo $title; ?></a></li><?php } ?>
-				<li class="active objectBreadcrumb"><?php if (isset($ObjectName)) { ?><?php echo $ObjectName; ?><?php } ?></li>
-			</ol>
+			
 		</div>
 		<div class="content">
 			<div id="message"></div>
