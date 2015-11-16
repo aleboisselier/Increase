@@ -16,13 +16,13 @@ class ControllerBase extends Controller
 	 
 	 public function breadCrumbsAction(){
 	 	$controller = $this->dispatcher->getControllerName();
-	 	$object = $this->session->get("object");
-	 	
-	 	$this->view->setVar("ObjectName", $object);
-		$this->view->setVar("ControllerName", $controller);
+	 	$bread = $this->session->get("bread");
+	 	if(isset($bread['object']))
+	 		$this->view->setVar("ObjectName", $bread['object']);
+		$this->view->setVar("ControllerName", $bread['controllerName']);
 		$this->view->setVar("siteUrl", $this->url->getBaseUri());
-		$this->view->setVar("controllerIcon", $this->icon);
-		$this->view->setVar("title", $this->title);
+		$this->view->setVar("controllerIcon", $bread['controllerIcon']);
+		$this->view->setVar("title", $bread['controllerTitle']);
 		$this->view->pick("main/breadcrumbs");
 		$this->view->setRenderLevel(View::LEVEL_ACTION_VIEW);
 	 }

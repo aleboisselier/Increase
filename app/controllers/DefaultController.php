@@ -1,6 +1,7 @@
 <?php
 
 use Phalcon\Mvc\View;
+
 class DefaultController extends ControllerBase{
 	protected $model;
 	protected $messageTimerInterval=3000;
@@ -11,6 +12,12 @@ class DefaultController extends ControllerBase{
 		if($this->request->isAjax()){
 			$this->view->setRenderLevel(View::LEVEL_ACTION_VIEW);
 		}
+		
+		$this->session->set("bread", array(
+				"controllerName"=>$this->dispatcher->getControllerName(),
+				"controllerIcon"=>$this->icon,
+				"controllerTitle"=>$this->title,
+		));
 	}
     public function indexAction($message=NULL){
     	$msg="";

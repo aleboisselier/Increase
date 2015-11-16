@@ -3,10 +3,10 @@
 use Ajax\bootstrap\html\html5\HtmlSelect;
 class UsersController extends DefaultController{
 	public function initialize(){
-		parent::initialize();
 		$this->model="User";
 		$this->icon = "user";
 		$this->title = "Utilisateurs";
+		parent::initialize();
 	}
 
 	public function frmAction($id=NULL){
@@ -16,6 +16,9 @@ class UsersController extends DefaultController{
 		$select->setValue($user->getRole());
 		$select->compile($this->jquery,$this->view);
 		$this->view->setVars(array("user"=>$user,"siteUrl"=>$this->url->getBaseUri(),"baseHref"=>$this->dispatcher->getControllerName()));
+		$this->view->pick("users/edit");
+		$_SESSION['bread']['object'] = $user;
+		
 		parent::frmAction($id);
 	}
 }

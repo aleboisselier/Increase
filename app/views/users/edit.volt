@@ -1,4 +1,4 @@
-<form id="userForm" method="post" action="{{ url }}Users/update" name="userForm">
+<form id="userForm" method="post" action="{{ siteUrl }}Users/update" name="userForm">
   <div class="form-group">
     <input type="hidden" class="form-control" name="id" value="{{ user.getId() }}"/>
   </div>
