@@ -10,11 +10,6 @@
 <a class="btn btn-danger">Danger</a>
 <br><br>
 
-{{ q['bt-1'] }}{{ q['splitBtn'] }}
-
-{{ q['panelClient'] }}
-
-
-{{ script_foot }}
+<a class="btn btn-default" href="{{ url }}Users">Utilisateurs</a>
 
 
