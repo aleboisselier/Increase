@@ -20,13 +20,18 @@
 		</div>
 	</div>
 	<div class="container">
-		<ol class="breadcrumb">
-				<li><a href="{{ url }}Index"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Accueil</a></li>
-				{% if ControllerName is defined %}<li {% if ObjectName is defined %}class="active"{% endif %}><a href="{{ url }}{{ ControllerName }}"><span class="glyphicon glyphicon-{{ controllerIcon }}" aria-hidden="true"></span>&nbsp;{{ title }}</a></li>{% endif %}
+		<div class="bread">
+			<ol class="breadcrumb">
+				<li><a href="{{ siteUrl }}Index"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Accueil</a></li>
+				{% if ControllerName is defined %}<li {% if ObjectName is defined %}class="active"{% endif %}><a href="{{ siteUrl }}{{ ControllerName }}"><span class="glyphicon glyphicon-{{ controllerIcon }}" aria-hidden="true"></span>&nbsp;{{ title }}</a></li>{% endif %}
 				<li class="active objectBreadcrumb">{% if ObjectName is defined %}{{ ObjectName }}{% endif %}</li>
 			</ol>
+		</div>
 		<div class="content">
-			{{ content() }}
+			<div id="message"></div>
+			<div id="content">
+				{{ content() }}
+			</div>
 		</div>
 	</div>
 	<div id="footer">

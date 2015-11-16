@@ -1,39 +1,22 @@
 <?php
-use Phalcon\Mvc\View;
-use Ajax\bootstrap\html\base\CssRef;
 
-class UsersController extends ControllerBase
-{
-
+use Ajax\bootstrap\html\html5\HtmlSelect;
+class UsersController extends DefaultController{
 	public function initialize(){
-		$this->model = "User";
-		$this->title = 'Utilisateurs';
+		parent::initialize();
+		$this->model="User";
 		$this->icon = "user";
+		$this->title = "Utilisateurs";
 	}
-    
-    public function editAction($id=0, $message = null){
-    	if ($id == 0){
-    		$user = new User();
-    		$user->setIdentite("Nouvel Utilisateur");
-    	}else{
-    		$user = User::findFirst("id=".$id);
-    	}
-    	
-    	$this->view->setVar("user", $user);
-    	
-    	$this->setBreadObject($user);
-    	$this->url->getBaseUri();
-    	
-    	
-    	$this->jquery->getOnClick(".delUser", "delete", ".content");
-    	$this->jquery->getOnClick(".cancelUser", "edit", ".content");
-    	//$this->jquery->postFormOnClick("updateUser", "update", "#userForm");
-    	 
-    	$this->jquery->bootstrap()->htmlAlert("info", "TSET", CssRef::CSS_INFO);
-    	$this->jquery->compile($this->view);
-    	$this->view->setRenderLevel(Phalcon\Mvc\View::LEVEL_ACTION_VIEW);
-    	 
-    }
 
+	public function frmAction($id=NULL){
+		$user=$this->getInstance($id);
+		$select=new HtmlSelect("role","Rôle","Sélectionnez un rôle...");
+		$select->fromArray(array("admin","user","author"));
+		$select->setValue($user->getRole());
+		$select->compile($this->jquery,$this->view);
+		$this->view->setVars(array("user"=>$user,"siteUrl"=>$this->url->getBaseUri(),"baseHref"=>$this->dispatcher->getControllerName()));
+		parent::frmAction($id);
+	}
 }
 
