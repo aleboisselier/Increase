@@ -61,6 +61,7 @@
 		                	<span  class=" glyphicon glyphicon-menu-hamburger"></span>
 		                	Menu
 	                	</div>
+	                	<br>
 						<p>
 							<span class="title">Increase :</span>
 							 Gérez la <b>progression</b> de vos projets, améliorez la <b>communication</b> 
