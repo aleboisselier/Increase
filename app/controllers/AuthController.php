@@ -54,6 +54,14 @@ class AuthController extends Controller
 			$this->dispatcher->forward(array("controller"=>"Index","action"=>"index","params"=>array($msg)));
 		}
 	}
+	
+	public function resetPassAction(){
+		$users = User::find();
+		foreach ($users as $user){
+			$user->setPassword(password_hash("test", PASSWORD_BCRYPT));
+			$user->save();
+		}
+	}
 
 }
 
