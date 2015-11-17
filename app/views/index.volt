@@ -16,15 +16,15 @@
 	        <div id="sidebar-wrapper">
 	            <ul class="sidebar-nav">
 	            	<div class="display-user">
-						<img src="img/user.png" class="img-responsive" alt="Responsive image">
+						<img src="{{ siteUrl }}img/user.png" class="img-responsive" alt="Responsive image">
 					</div>
 					<div class="bs-docs-header">
-						<img src="img/phalcon.png" class="img-responsive" alt="Responsive image">
+						<img src="{{ siteUrl }}img/phalcon.png" class="img-responsive" alt="Responsive image">
 					</div>
 					<div class="row" style="margin:0px;">
 						<div class="col-md-4 col-xs-4"></div>
 						<div class="img-logo col-md-4 col-xs-4" style="padding:0%">
-							<img src="img/Increase.png" class="img-responsive" alt="Responsive image">
+							<img src="{{ siteUrl }}img/Increase.png" class="img-responsive" alt="Responsive image">
 						</div>
 					</div>
 					<br>

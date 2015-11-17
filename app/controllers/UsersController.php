@@ -21,5 +21,12 @@ class UsersController extends DefaultController{
 		
 		parent::frmAction($id);
 	}
+	
+	public function setValuesToObject($object){
+		parent::setValuesToObject($object);
+		
+	}
+	
+	
 }
 
