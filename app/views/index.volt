@@ -6,7 +6,7 @@
 		{{ stylesheet_link("css/styles.css") }}
 		{{ javascript_include('js/jquery.min.js') }}
 		{{ javascript_include('js/bootstrap.min.js') }}
-		<link rel="icon" href="public/img/increase.png" >
+		<link rel="icon" href="{{ siteUrl }}img/increase.png" >
 	</head>
 	<meta charset="UTF-8">
 	<body>
