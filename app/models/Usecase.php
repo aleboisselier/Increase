@@ -126,6 +126,16 @@ class Usecase extends \Phalcon\Mvc\Model
     {
         return $this->code;
     }
+    
+    /**
+     * Returns the value of field code
+     *
+     * @return string
+     */
+    public function getId()
+    {
+    	return $this->code;
+    }
 
     /**
      * Returns the value of field nom
