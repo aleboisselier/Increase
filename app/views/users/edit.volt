@@ -1,6 +1,6 @@
 {{ form("Users/update", "method": "post", "name":"frmObject", "id":"frmObject") }}
   <div class="form-group">
-    <input type="hidden" class="form-control" name="id" value="{{ user.getId() }}"/>
+    <input type="hidden" class="form-control" id="id" name="id" value="{{ user.getId() }}"/>
   </div>
   <div class="form-group">
     <label for="identite">Identité</label>

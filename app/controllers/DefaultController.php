@@ -108,7 +108,7 @@ class DefaultController extends ControllerBase{
     	if($this->request->isPost()){
     		$object=$this->getInstance(@$_POST["id"]);
     		$this->setValuesToObject($object);
-    		if($_POST["id"]){
+    		if(@$_POST["id"]){
     			try{
     				$object->save();
     				$msg=new DisplayedMessage($this->model." `{$object->toString()}` mis à jour");

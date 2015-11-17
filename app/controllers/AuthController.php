@@ -48,14 +48,12 @@ class AuthController extends Controller
 		if($this->request->isPost()){
 			$user = User::findFirst("mail = '".@$_POST['mail']."'");
 			if($user != null){
-				$this->session->set("user", $user);
-			}else{
+				if (password_verify(@$_POST['pass'], $user->getPassword()))
+					$this->session->set("user", $user);
 			}
 			$this->dispatcher->forward(array("controller"=>"Index","action"=>"index","params"=>array($msg)));
 		}
 	}
-	
-
 
 }
 
