@@ -1,4 +1,4 @@
-<form id="userForm" method="post" action="{{ url }}Users/update" name="userForm">
+{{ form("Users/update", "method": "post", "name":"frmObject", "id":"frmObject") }}
   <div class="form-group">
     <input type="hidden" class="form-control" name="id" value="{{ user.getId() }}"/>
   </div>
@@ -8,7 +8,7 @@
   </div>
   <div class="form-group">
     <label for="role">Rôle</label>
-    <input type="text" class="form-control" id="role" placeholder="Rôle(s)" name="role" value="{{ user.getRole() }}">
+    {{ q["role"] }}
   </div>
   <div class="form-group">
     <label for="mail">Mail</label>
@@ -17,14 +17,10 @@
  
 <div class="btn-toolbar pull-right">
 	<div class="btn-group" role="group">
-	    <button type="submit" class="btn btn-success updateUser" id="{{ user.getId() }}"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>&nbsp;Valider</button>
-	    <button class="btn btn-warning cancelUser" id="{{ user.getId() }}">Annuler&nbsp;<span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span></button>
-	</div>
-	<div class="btn-group" role="group">
-	    <button class="btn btn-danger delUser" id="{{ user.getId() }}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;Supprimer l'utilisateur</button>
+	    <input type="submit" value="Valider" class="btn btn-default validate">
+		<a class="btn btn-default cancel" href="{{url.get("Users")}}" data-ajax="{{ baseHref ~ "/index"}}">Annuler</a>
 	</div>
 </div>
 <div class="clearfix"></div>
 </form>
-
 {{ script_foot }}

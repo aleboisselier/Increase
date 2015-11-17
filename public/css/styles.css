@@ -53,7 +53,7 @@ body{
 .contains-menu{
 	padding-top:2%;
 }
-.breadcrumb h3 {
+.header h3 {
     color: #E4E4E4;
     height: 45px;
     text-align: left;
@@ -66,7 +66,7 @@ body{
     margin-top:0%;
 }
 
-.breadcrumb p{
+.header p{
 	color: #7DB383;
 	font-weight: 200;
 	font-size: 15px;
@@ -101,7 +101,7 @@ body{
 	color: #555;
 	font-weight: bold;
 }
-.breadcrumb{
+.header, .breadcrumb{
 	margin-bottom: 6px;
 	background-color: #262626;
 	border-radius: 0px;

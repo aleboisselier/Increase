@@ -26,22 +26,22 @@
 		<div class="row contains-menu">
 		</div>
 	</div>
-	
 	<div class="col-md-2 col-xs-2"></div>
 	<div class="container col-md-10 col-xs-10" style="padding-left:0%; padding-right:0%">
-		<ol class="breadcrumb">
+		<div class="header">
 		<h3>Increase</h3>
 			<p>Gérez la <b>progression</b> de vos projets, améliorez la <b>communication</b> 
 			avec vos clients.</p>
-				<li><a href="{{ url }}Index"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Accueil</a></li>
-				{% if ControllerName is defined %}<li {% if ObjectName is defined %}class="active"{% endif %}><a href="{{ url }}{{ ControllerName }}"><span class="glyphicon glyphicon-{{ controllerIcon }}" aria-hidden="true"></span>&nbsp;{{ title }}</a></li>{% endif %}
-				<li class="active objectBreadcrumb">{% if ObjectName is defined %}{{ ObjectName }}{% endif %}</li>
-			</ol>
+			</div>
+		<div class="bread"></div>
 		<div class="content">
-			{{ content() }}
+			<div id="message"></div>
+			<div id="content">
+				{{ content() }}
+			</div>
 		</div>
 	</div>
-
+</div>
 	<div id="footer" class="col-md-10 col-xs-10" style="margin-rigth:0%;">
 		<div class="container">
 			<p>Mentions légales</p>

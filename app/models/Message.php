@@ -248,5 +248,13 @@ class Message extends \Phalcon\Mvc\Model
     {
         return parent::findFirst($parameters);
     }
+    
+    public function __toString(){
+    	$str = $this->content;
+    	if (strlen($str) > 47){
+    		$str = substr($this->content, 0, 47)."...";
+    	}
+    	return $this->getUser()." : <i>".$str."</i>";
+    }
 
 }

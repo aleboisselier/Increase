@@ -1,12 +1,11 @@
 <?php
 
-class ProjectsController extends ControllerBase
-{		
+class ProjectsController extends DefaultController{
 	public function initialize(){
-		$this->model = "Projet";
-		$this->title = 'Projets';
-		$this->icon = "book";
+		$this->model="Projet";
+		$this->icon="book";
+		$this->title="Projets";
+		parent::initialize();
 	}
-
 }
 
