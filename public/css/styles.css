@@ -22,17 +22,9 @@ body{
 	cursor: pointer;
 	width:25%;
 }
-.menu{
-	position:fixed;
-	background-color: #444444;
-	height:100%;
-	-webkit-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.7);
-	-moz-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.7);
-	box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.7);
-}
 .bs-docs-header {
     color: rgb(129, 181, 221);
-    height: 200px;
+    height: 35%;
     position: relative;
     text-align: left;
     text-shadow: rgba(0, 0, 0, 0.0980392) 0px 1px 0px;
@@ -53,7 +45,7 @@ body{
 .contains-menu{
 	padding-top:2%;
 }
-.header h3 {
+.header .title{
     color: #E4E4E4;
     height: 45px;
     text-align: left;
@@ -62,20 +54,22 @@ body{
     font-size: normal normal 500 normal 60px/60px 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
     font-variant: small-caps;
     outline: rgb(255, 255, 255) none 0px;
-    font-size:20px;
+    font-size:25px;
     margin-top:0%;
+    padding-left:2%;
 }
 
 .header p{
 	color: #7DB383;
 	font-weight: 200;
-	font-size: 15px;
+	font-size: 20px;
 	font-stretch: ultra-expanded;
 	text-shadow: 1px 1px 1px rgba(150, 150, 150, 0.24);
 	font-variant: small-caps;
 	text-align: center;
 	margin-top : -3%;
 }
+
 .content{
 	margin:1%;
 	padding: 30px;
@@ -88,24 +82,143 @@ body{
 .content p a{
 	font-weight:bold;
 }
-#footer{
-	padding: 10px 0;
-	font-size: 13px;
-	background: #000;
-	color: #888;
-    position: fixed;
-    bottom: 0%;
-    right:0%;
-}
-#footer span{
-	color: #555;
-	font-weight: bold;
-}
 .header, .breadcrumb{
+	padding:1%;
 	margin-bottom: 6px;
 	background-color: #262626;
 	border-radius: 0px;
 }
 .breadcrumb a{
 	color: #fff;
+}
+
+/*!
+ * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/* Toggle Styles */
+#menu-toggle{
+	color:white;
+	font-size:20px;
+	cursor:pointer;
+}
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #000;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,1);
+	-moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,1);
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,1);
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #999999;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #fff;
+    background: none;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
 }
