@@ -6,7 +6,7 @@ body{
 }
 .alert {
     transition: 1s linear all;
-     opacity: 1;
+    opacity: 1;
 }
 .alert.ng-hide {
      opacity: 0;
@@ -15,42 +15,45 @@ body{
 .alert.ng-show {
      opacity: 1;
 }
-
+.display-user{
+	position:absolute;
+	z-index:2;
+	margin-top:5%;
+	cursor: pointer;
+	width:25%;
+}
+.menu{
+	position:fixed;
+	background-color: #444444;
+	height:100%;
+	-webkit-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.7);
+	-moz-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.7);
+	box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.7);
+}
 .bs-docs-header {
-    box-sizing: border-box;
     color: rgb(129, 181, 221);
-    height: 165px;
+    height: 200px;
     position: relative;
     text-align: left;
     text-shadow: rgba(0, 0, 0, 0.0980392) 0px 1px 0px;
     perspective-origin: 950.5px 128px;
     transform-origin: 950.5px 128px;
-    background-color: #444444;
+    background: url("../img/phalcon2.jpg") no-repeat;
     border: 0px none rgb(205, 191, 227);
     font: normal normal normal normal 24px/34.2857170104981px 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
-    margin: 0px 0px 6px;
     outline: rgb(205, 191, 227) none 0px;
     padding: 0px 15px;
 }
-.second-header {
-    box-sizing: border-box;
-    height: 8px;
-    position: relative;
-    perspective-origin: 950.5px 128px;
-    transform-origin: 950.5px 128px;
-    background-color: #7DB383;
-    border: 0px none rgb(205, 191, 227);
-    margin: 0px 0px 1px;
-    outline: rgb(205, 191, 227) none 0px;
-    padding: 0px 10px;
+.img-logo{
+	margin-top:-17%;
+	-webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.3);
+	-moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.3);
+	box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.3);
 }
-.bs-docs-header .header{
-    background: url(../img/Increase.png) no-repeat left;
-    box-sizing: border-box;
-    margin-left:0px;
-    height: 121px;
+.contains-menu{
+	padding-top:2%;
 }
-.bs-docs-header h1 {
+.breadcrumb h3 {
     color: #E4E4E4;
     height: 45px;
     text-align: left;
@@ -59,42 +62,40 @@ body{
     font-size: normal normal 500 normal 60px/60px 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
     font-variant: small-caps;
     outline: rgb(255, 255, 255) none 0px;
-    padding-left :140px;
-    padding-top: 25px;
+    font-size:20px;
+    margin-top:0%;
 }
 
-.bs-docs-header p{
+.breadcrumb p{
 	color: #7DB383;
 	font-weight: 200;
-	font-size: 18px;
+	font-size: 15px;
 	font-stretch: ultra-expanded;
 	text-shadow: 1px 1px 1px rgba(150, 150, 150, 0.24);
 	font-variant: small-caps;
-    padding-left :140px;
+	text-align: center;
+	margin-top : -3%;
 }
 .content{
+	margin:1%;
 	padding: 30px;
 	border: 1px solid #ddd;
 	background: #fff;
+	-webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.3);
+	-moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.3);
+	box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.3);
 }
 .content p a{
 	font-weight:bold;
 }
 #footer{
-	clear: both;
-	width: 100%;
-	float: left;
-	margin-left: 0;
-	margin-right: 0;
-	margin-top: 10px;
-	padding: 40px 0;
+	padding: 10px 0;
 	font-size: 13px;
 	background: #000;
 	color: #888;
-
     position: fixed;
-    bottom: 0;
-    width: 100%;
+    bottom: 0%;
+    right:0%;
 }
 #footer span{
 	color: #555;
@@ -102,7 +103,8 @@ body{
 }
 .breadcrumb{
 	margin-bottom: 6px;
-	background-color: #444444;
+	background-color: #262626;
+	border-radius: 0px;
 }
 .breadcrumb a{
 	color: #fff;
