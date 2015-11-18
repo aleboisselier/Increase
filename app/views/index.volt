@@ -12,6 +12,7 @@
 	<meta charset="UTF-8">
 	<body>
 		<div id="wrapper">
+			<div class="display"></div>
 	
 	        <!-- Sidebar -->
 	        <div id="sidebar-wrapper">
