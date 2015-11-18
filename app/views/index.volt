@@ -7,6 +7,7 @@
 		{{ javascript_include('js/jquery.min.js') }}
 		{{ javascript_include('js/bootstrap.min.js') }}
 		<link rel="icon" href="{{ siteUrl }}img/increase.png" >
+		<script src="{{ siteUrl }}js/menu.js" type="text/javascript"></script>
 	</head>
 	<meta charset="UTF-8">
 	<body>
@@ -82,10 +83,4 @@
 	    </div>
 	    <!-- /#wrapper -->
 	</body>
-	<script>
-	    $("#menu-toggle").click(function(e) {
-	        e.preventDefault();
-	        $("#wrapper").toggleClass("toggled");
-	    });
-	    </script>
 	</html>
