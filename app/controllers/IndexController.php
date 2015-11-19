@@ -13,7 +13,6 @@ class IndexController extends ControllerBase
     
     public function displayUser(){
     	$user=User::find();
-    	echo"pouet";
     }
 }
 
