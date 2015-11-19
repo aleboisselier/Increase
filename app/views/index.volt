@@ -34,10 +34,10 @@
 	                    <div id="Index" class="index">Accueil</div>
 	                </li>
 	                <li>
-	                    <div id="user" class="btnMenu">Utilisateur</div>
+	                    <div id="Users" class="btnMenu">Utilisateur</div>
 	                </li>
 	                <li>
-	                    <div id="Projet" class="btnMenu">Projet</div>
+	                    <div id="Projects" class="btnMenu">Projet</div>
 	                </li>
 	                <li>
 	                    <div id="Messages" class="btnMenu">Message</div>
@@ -49,7 +49,7 @@
 	                    <div id="Taches" class="btnMenu">Tâches</div>
 	                </li>
 	                <li>
-	                    <div id="Logout" class="btnMenu">Déconnexion</div>
+	                    <div id="Auth/Logout" class="btnMenu">Déconnexion</div>
 	                </li>
 	            </ul>
 	        </div>
