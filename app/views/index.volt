@@ -7,10 +7,12 @@
 		{{ javascript_include('js/jquery.min.js') }}
 		{{ javascript_include('js/bootstrap.min.js') }}
 		<link rel="icon" href="{{ siteUrl }}img/increase.png" >
+		<script src="{{ siteUrl }}js/menu.js" type="text/javascript"></script>
 	</head>
 	<meta charset="UTF-8">
 	<body>
 		<div id="wrapper">
+			<div class="display"></div>
 	
 	        <!-- Sidebar -->
 	        <div id="sidebar-wrapper">
@@ -29,25 +31,25 @@
 					</div>
 					<br>
 	                <li>
-	                    <a href="#">Dashboard</a>
+	                    <a href="{{url.get("Index")}}" data-ajax="Index">Accueil</a>
 	                </li>
 	                <li>
-	                    <a href="#">Shortcuts</a>
+	                    <a href="{{url.get("Users")}}" data-ajax="Users">Utilisateur</a>
 	                </li>
 	                <li>
-	                    <a href="#">Overview</a>
+	                    <a href="{{url.get("Users")}}" data-ajax="Users">Projet</a>
 	                </li>
 	                <li>
-	                    <a href="#">Events</a>
+	                    <a href="{{url.get("Messages")}}" data-ajax="Messages">Message</a>
 	                </li>
 	                <li>
-	                    <a href="#">About</a>
+	                    <a href="{{url.get("UseCases")}}" data-ajax="UseCases">Use Case</a>
 	                </li>
 	                <li>
-	                    <a href="#">Services</a>
+	                    <a href="{{url.get("Taches")}}" data-ajax="Taches">Tâches</a>
 	                </li>
 	                <li>
-	                    <a href="#">Contact</a>
+	                    <a href="{{url.get("Auth/logout")}}" data-ajax="Auth/logout">Déconnexion</a>
 	                </li>
 	            </ul>
 	        </div>
@@ -88,10 +90,4 @@
 	    </div>
 	    <!-- /#wrapper -->
 	</body>
-	<script>
-	    $("#menu-toggle").click(function(e) {
-	        e.preventDefault();
-	        $("#wrapper").toggleClass("toggled");
-	    });
-	    </script>
 	</html>
