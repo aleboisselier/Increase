@@ -38,9 +38,13 @@ class AuthController extends Controller
 		$this->jquery->getOnClick(".fastConnect", "Auth/fastConnect", "#content");
 		$this->jquery->compile($this->view);
 		
+		
 		if ($isAjax){
 			$this->view->setRenderLevel(View::LEVEL_ACTION_VIEW);
 		}
+		
+		$this->view->pick("Auth/signin");
+		
 	}
 	
 	public function initialize() {
