@@ -13,21 +13,36 @@ class ControllerBase extends Controller
 	 		$this->dispatcher->forward(array("controller" => "Auth", "action" => "signin"));
 	 	}
 	 	
-	 	$this->jquery->get("Index/breadCrumbs", ".bread");
-	 	$this->jquery->compile($this->view);
+	 	$this->breadCrumbsAction();
 	 }
 	 
 	 public function breadCrumbsAction(){
 	 	$controller = $this->dispatcher->getControllerName();
-	 	$bread = $this->session->get("bread");
-	 	if(isset($bread['object']))
-	 		$this->view->setVar("ObjectName", $bread['object']);
-		$this->view->setVar("ControllerName", $bread['controllerName']);
-		$this->view->setVar("siteUrl", $this->url->getBaseUri());
-		$this->view->setVar("controllerIcon", $bread['controllerIcon']);
-		$this->view->setVar("title", $bread['controllerTitle']);
-		$this->view->pick("main/breadcrumbs");
-		$this->view->setRenderLevel(View::LEVEL_ACTION_VIEW);
+	 	$url = $this->url->getBaseUri();
+		$bread = $this->session->get("bread");
+		
+    	$breadStr = "<li><a href='".$url."'><span class='glyphicon glyphicon-home' aria-hidden='true'></span>&nbsp;Accueil</a></li>";
+    	if($bread != null){
+    		if($bread['controllerName'] != ""){
+    			$this->view->setVar("title", $bread['controllerTitle']);
+    			$this->view->setVar("ControllerName", $bread['controllerName']);
+    			$this->view->setVar("controllerIcon", $bread['controllerIcon']);
+    			 
+    			$breadStr .= "<li><a href='".$url.$bread['controllerName']."'><span class='glyphicon glyphicon-".$bread['controllerIcon']."'></span>&nbsp; ".$bread['controllerTitle']."</a></li>";
+    		}
+    		if(isset($bread['object'])){
+    			$this->view->setVar("ObjectName", $bread['object']);
+    			$breadStr .= "<li class='active'>".$bread['object']."</li>";
+    		}
+
+    		$this->view->setVar("siteUrl", $this->url->getBaseUri());
+   			
+   			
+   		}
+
+    	
+    	$this->jquery->exec('$(".breadcrumb").html("'.$breadStr.'");', true);
+    	$this->jquery->compile($this->view);
 	 }
 	 
 }

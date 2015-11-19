@@ -111,14 +111,14 @@ class DefaultController extends ControllerBase{
     		if(@$_POST["id"]){
     			try{
     				$object->save();
-    				$msg=new DisplayedMessage($this->model." `{$object->toString()}` mis à jour");
+    				$msg=new DisplayedMessage($this->model." `{$object}` mis à jour");
     			}catch(\Exception $e){
     				$msg=new DisplayedMessage("Impossible de modifier l'instance de ".$this->model,"danger");
     			}
     		}else{
     			try{
     				$object->save();
-    				$msg=new DisplayedMessage("Instance de ".$this->model." `{$object->toString()}` ajoutée");
+    				$msg=new DisplayedMessage("Instance de ".$this->model." `{$object}` ajoutée");
     			}catch(\Exception $e){
     				$msg=new DisplayedMessage("Impossible d'ajouter l'instance de ".$this->model,"danger");
     			}
