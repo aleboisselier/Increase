@@ -31,25 +31,25 @@
 					</div>
 					<br>
 	                <li>
-	                    <a href="{{url.get("Index")}}" data-ajax="Index">Accueil</a>
+	                    <div id="Index" class="index">Accueil</div>
 	                </li>
 	                <li>
-	                    <a href="{{url.get("Users")}}" data-ajax="Users">Utilisateur</a>
+	                    <div id="user" class="btnMenu">Utilisateur</div>
 	                </li>
 	                <li>
-	                    <a href="{{url.get("Users")}}" data-ajax="Users">Projet</a>
+	                    <div id="Projet" class="btnMenu">Projet</div>
 	                </li>
 	                <li>
-	                    <a href="{{url.get("Messages")}}" data-ajax="Messages">Message</a>
+	                    <div id="Messages" class="btnMenu">Message</div>
 	                </li>
 	                <li>
-	                    <a href="{{url.get("UseCases")}}" data-ajax="UseCases">Use Case</a>
+	                    <div id="UseCases" class="btnMenu">Use Case</div>
 	                </li>
 	                <li>
-	                    <a href="{{url.get("Taches")}}" data-ajax="Taches">Tâches</a>
+	                    <div id="Taches" class="btnMenu">Tâches</div>
 	                </li>
 	                <li>
-	                    <a href="{{url.get("Auth/logout")}}" data-ajax="Auth/logout">Déconnexion</a>
+	                    <div id="Logout" class="btnMenu">Déconnexion</div>
 	                </li>
 	            </ul>
 	        </div>

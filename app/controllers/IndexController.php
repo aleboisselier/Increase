@@ -8,9 +8,12 @@ class IndexController extends ControllerBase
     public function indexAction($msg){
     	$this->view->setVar("msg", $msg);
     	$this->jquery->getOnClick("a.btn","","#content",array("attr"=>"data-ajax"));
+    	//$this->jquery->getOnClick(".index","Index/indexAjax","#content");
+    	//$this->jquery->getOnClick(".btnMenu","","#content");
     	$this->jquery->compile($this->view);
     	$this->session->__unset("bread");
-    	$this->jquery->getOnClick(".display-user","Index/displayUser",".display",array("user"=>$user));
+
+    	//$this->jquery->getOnClick(".display-user","Index/displayUser",".display",array("user"=>$user));
     }
     
     public function displayUser(){
