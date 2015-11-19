@@ -11,9 +11,12 @@ class ControllerBase extends Controller
 	 	
 	 	if(!Auth::isAuth()){
 	 		$this->dispatcher->forward(array("controller" => "Auth", "action" => "signin"));
+	 		$this->jquery->exec('$(".breadcrumb").hide();', true);
+    		$this->jquery->compile($this->view);
+	 	}else{
+	 		$this->breadCrumbsAction();
 	 	}
 	 	
-	 	$this->breadCrumbsAction();
 	 }
 	 
 	 public function breadCrumbsAction(){
@@ -40,7 +43,7 @@ class ControllerBase extends Controller
    			
    		}
 
-    	
+   		$this->jquery->exec('$(".breadcrumb").show();', true);
     	$this->jquery->exec('$(".breadcrumb").html("'.$breadStr.'");', true);
     	$this->jquery->compile($this->view);
 	 }

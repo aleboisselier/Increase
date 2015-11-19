@@ -33,9 +33,14 @@ class AuthController extends Controller
 		return false;
 	}
 	
-	public function signinAction(){
+	public function signinAction($isAjax){
 		$this->jquery->postFormOnClick(".validate", "Auth/login", "frmLogin","#content");
+		$this->jquery->getOnClick(".fastConnect", "Auth/fastConnect", "#content");
 		$this->jquery->compile($this->view);
+		
+		if ($isAjax){
+			$this->view->setRenderLevel(View::LEVEL_ACTION_VIEW);
+		}
 	}
 	
 	public function initialize() {
@@ -48,10 +53,28 @@ class AuthController extends Controller
 		if($this->request->isPost()){
 			$user = User::findFirst("mail = '".@$_POST['mail']."'");
 			if($user != null){
-				if (password_verify(@$_POST['pass'], $user->getPassword()))
+				if (password_verify(@$_POST['pass'], $user->getPassword())){
 					$this->session->set("user", $user);
+					$msg = new DisplayedMessage("Bienvenue ".$user);
+					$this->dispatcher->forward(array("controller"=>"Index","action"=>"indexAjax","params"=>array($msg)));
+				}
+				else{
+					$this->dispatcher->forward(array("controller"=>"Auth","action"=>"signin","params"=>array(true, $msg)));
+				}
+			}else{
+				$this->dispatcher->forward(array("controller"=>"Auth","action"=>"signin","params"=>array(true, $msg)));
 			}
-			$this->dispatcher->forward(array("controller"=>"Index","action"=>"index","params"=>array($msg)));
+		}
+	}
+	
+	public function fastConnectAction($role){
+		$user = User::findFirst("role LIKE '".$role."'");
+		if($user != null){
+			$this->session->set("user", $user);
+			$msg = new DisplayedMessage("Bienvenue ".$user);
+			$this->dispatcher->forward(array("controller"=>"Index","action"=>"indexAjax","params"=>array($msg)));
+		}else{
+			$this->dispatcher->forward(array("controller"=>"Auth","action"=>"signin","params"=>array(true)));
 		}
 	}
 	

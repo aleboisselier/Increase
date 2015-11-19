@@ -11,7 +11,19 @@
 		    <label for="pass">Mot de passe</label>
 		    <input type="password" class="form-control" id="pass" placeholder="Mot de passe" name="pass">
 		  </div>
-		  <button type="submit" class="btn btn-success btn-block btn-lg">Se Connecter <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> </button>
+		  <button type="submit" class="btn btn-success btn-block btn-lg validate">Se Connecter <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> </button>
+		  <div class="btn-group">
+			  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    Connexion Rapide <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu">
+			    <li><a class="fastConnect" id="admin">Admin</a></li>
+			    <li><a class="fastConnect" id="author">Développeur</a></li>
+			    <li><a class="fastConnect" id="user">Client</a></li>
+			    <li><a class="fastConnect" id="manager">Chef de Projet</a></li>
+			  </ul>
+			</div>
 		</form>
 	</div>
 </div>
+{{ script_foot }}
