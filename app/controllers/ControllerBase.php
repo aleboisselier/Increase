@@ -1,7 +1,6 @@
 <?php
 
 use Phalcon\Mvc\Controller;
-use Phalcon\Mvc\View;
 use AuthController as Auth;
 
 class ControllerBase extends Controller
@@ -52,6 +51,10 @@ class ControllerBase extends Controller
    		$this->jquery->exec('$(".breadcrumb").show();$(".menuItem").show()', true);
     	$this->jquery->exec('$(".breadcrumb").html("'.$breadStr.'");', true);
     	$this->jquery->compile($this->view);
+	 }
+	 
+	 public function beforeExecuteRoute(){
+		$acl = new AclList();
 	 }
 	 
 }
