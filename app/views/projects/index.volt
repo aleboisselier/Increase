@@ -1,17 +1,36 @@
-{% if q['alertResult'] is defined  %} 
-	{{ q['alertResult'] }}
-{% endif %}
-<table class='table '>
-	<thead><tr><th colspan="2"><span class="glyphicon glyphicon-{{ controllerIcon }}" aria-hidden="true"></span>&nbsp;{{title}}</th></tr></thead>
-	<tbody>
-		{% for  object in objects %}	
+{{msg}}
+<table class='table table-striped'>
+	<thead><tr><th colspan='3'>{{model}}</th></tr></thead>
+		<tbody>
+		{% for object in objects %}
 			<tr>
-				<td>{{object}} </td>
-				<td class='td-center'><a class='btn btn-primary btn-xs pull-right editBtn' id="{{ object.getId() }}" href='' data-toggle="tooltip" data-placement="top" title="Afficher les Détails"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span></a></td>
+				<td>{{object}}</td>
+				<td class='td-center'>
+					<a class='btn btn-primary btn-xs show' 
+						href='{{url.get(baseHref~"/show/"~object.getId())}}' 
+						data-ajax="{{ baseHref ~ "/show/" ~ object.getId() }}">
+						<span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span>
+					</a>
+				</td>
+				<td class='td-center'>
+					<a class='btn btn-primary btn-xs update' 
+						href='{{url.get(baseHref~"/frm/"~object.getId())}}' 
+						data-ajax="{{ baseHref ~ "/frm/" ~ object.getId() }}">
+						<span class='glyphicon glyphicon-edit' aria-hidden='true'></span>
+					</a>
+				</td>
+				<td class='td-center'>
+					<a class='btn btn-warning btn-xs delete' 
+						href='{{url.get(baseHref~"/delete/"~object.getId())}}' 
+						data-ajax="{{ baseHref ~ "/delete/" ~ object.getId() }}">
+						<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>
+					</a>
+				</td>
 			</tr>
 		{% endfor %}
-	</tbody>
+		</tbody>
 </table>
-<a class='btn btn-primary editBtn' href='' id="0">Ajouter...</a>
-
-{{ script_foot }}
+<a class='btn btn-primary add' href='{{url.get(baseHref~"/frm")}}' data-ajax="{{ baseHref ~ "/frm/"}}">Ajouter...</a>
+{% if script_foot is defined %}
+    {{ script_foot }}
+{% endif %}
