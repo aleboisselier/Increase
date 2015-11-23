@@ -9,6 +9,7 @@ class ProjectsController extends DefaultController{
 		parent::initialize();
 	}
 	public function indexAction($message=NULL){
+		parent::indexAction($message=NULL);
 		$this->view->pick("projects/index");
 	}
 	public function showAction($id=NULL){
