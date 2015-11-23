@@ -21,7 +21,6 @@ class ControllerBase extends Controller
 	 }
 	 
 	 public function menuAction(){
-	 	$this->jquery->getOnClick(".index","Index/indexAjax","#content");
 	 	$this->jquery->getOnClick(".menuItem","","#content",array("attr"=>"data-ajax"));
 	 	$this->jquery->compile($this->view);
 	 }
