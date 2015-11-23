@@ -222,4 +222,9 @@ body{
         position: relative;
         margin-right: 0;
     }
+    .divider{
+    content:"yujgjhg";
+    	width:100%;
+    	border: border-bottom: thick dotted #ff0000;
+    }
 }
