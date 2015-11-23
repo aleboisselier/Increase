@@ -46,3 +46,4 @@ vendor
 app/cache/*
 *.volt.php
 composer.lock
+composer.lock
