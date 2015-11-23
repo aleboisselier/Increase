@@ -15,8 +15,15 @@ class ControllerBase extends Controller
     		$this->jquery->compile($this->view);
 	 	}else{
 	 		$this->breadCrumbsAction();
+	 		$this->menuAction();
 	 	}
 	 	
+	 }
+	 
+	 public function menuAction(){
+	 	$this->jquery->getOnClick(".index","Index/indexAjax","#content");
+	 	$this->jquery->getOnClick(".menuItem","","#content",array("attr"=>"data-ajax"));
+	 	$this->jquery->compile($this->view);
 	 }
 	 
 	 public function breadCrumbsAction(){

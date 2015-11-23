@@ -31,13 +31,13 @@
 					</div>
 					<br>
 	                <li>
-	                    <a href="{{url.get("Index")}}" data-ajax="Index">Accueil</a>
+	                    <div href="{{url.get("Index")}}" class="index">Accueil</div>
 	                </li>
 	                <li>
-	                    <a href="{{url.get("Users")}}" data-ajax="Users" class="menuItem">Utilisateur</a>
+			          <a href="{{url.get("Users")}}" data-ajax="Users" class="menuItem">Utilisateur</a>
 	                </li>
 	                <li>
-	                    <a href="{{url.get("Users")}}" data-ajax="Users" class="menuItem">Projet</a>
+	                    <a href="{{url.get("Users")}}" data-ajax="Projects" class="menuItem">Projet</a>
 	                </li>
 	                <li>
 	                    <a href="{{url.get("Messages")}}" data-ajax="Messages" class="menuItem">Message</a>

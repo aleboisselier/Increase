@@ -10,10 +10,11 @@ class IndexController extends ControllerBase
     	$this->jquery->getOnClick("a.btn","","#content",array("attr"=>"data-ajax"));
     	$this->jquery->compile($this->view);
     	$this->session->__unset("bread");
-    	$this->jquery->getOnClick(".display-user","Index/displayUser",".display",array("user"=>$user));
+
+    	//$this->jquery->getOnClick(".display-user","Index/displayUser",".display",array("user"=>$user));
     }
     
-    public function displayUser(){
+    public function displayUserAction(){
     	$user=User::find();
     }
     
