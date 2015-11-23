@@ -8,7 +8,11 @@
   </div>
   <div class="form-group">
     <label for="role">Rôle</label>
-    {{ q["role"] }}
+    <select class="form-control">
+		{% for role in roles %}
+			<option value="{{ role.getId() }}" {% if role.getId() == user.getIdRole() %}selected{% endif %}>{{ role }}</option>
+		{% endfor %}
+	</select>
   </div>
   <div class="form-group">
     <label for="mail">Mail</label>
