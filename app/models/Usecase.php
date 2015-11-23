@@ -126,16 +126,6 @@ class Usecase extends \Phalcon\Mvc\Model
     {
         return $this->code;
     }
-    
-    /**
-     * Returns the value of field code
-     *
-     * @return string
-     */
-    public function getId()
-    {
-    	return $this->code;
-    }
 
     /**
      * Returns the value of field nom
@@ -188,6 +178,16 @@ class Usecase extends \Phalcon\Mvc\Model
     }
 
     /**
+     * Returns the value of field code
+     *
+     * @return string
+     */
+    public function getId()
+    {
+    	return $this->code;
+    }
+
+    /**
      * Initialize method for model.
      */
     public function initialize()
@@ -195,16 +195,6 @@ class Usecase extends \Phalcon\Mvc\Model
         $this->hasMany('code', 'Tache', 'codeUseCase', array('alias' => 'Tache'));
         $this->belongsTo('idProjet', 'Projet', 'id', array('alias' => 'Projet'));
         $this->belongsTo('idDev', 'User', 'id', array('alias' => 'User'));
-    }
-
-    /**
-     * Returns table name mapped in the model.
-     *
-     * @return string
-     */
-    public function getSource()
-    {
-        return 'usecase';
     }
 
     /**
@@ -228,9 +218,20 @@ class Usecase extends \Phalcon\Mvc\Model
     {
         return parent::findFirst($parameters);
     }
-    
+
+
     public function __toString(){
     	return $this->nom;
+    }
+
+    /**
+     * Returns table name mapped in the model.
+     *
+     * @return string
+     */
+    public function getSource()
+    {
+        return 'usecase';
     }
 
 }

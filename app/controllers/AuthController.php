@@ -20,6 +20,8 @@ class AuthController extends Controller
 		$this->session->destroy(true);
 		$this->cookies->delete('user');
 		$this->dispatcher->forward(array("controller"=>"Auth", "action"=>"signin"));
+		$this->jquery->exec('$(".breadcrumb").hide();$(".menuItem").hide()', true);
+		$this->jquery->compile($this->view);
 		$this->view->setRenderLevel(View::LEVEL_ACTION_VIEW);
 	}
 	
@@ -34,6 +36,8 @@ class AuthController extends Controller
 	}
 	
 	public function signinAction($isAjax){
+		$roles = Role::find();
+		
 		$this->jquery->postFormOnClick(".validate", "Auth/login", "frmLogin","#content");
 		$this->jquery->getOnClick(".fastConnect", "Auth/fastConnect", "#content");
 		$this->jquery->compile($this->view);
@@ -43,6 +47,7 @@ class AuthController extends Controller
 			$this->view->setRenderLevel(View::LEVEL_ACTION_VIEW);
 		}
 		
+		$this->view->setVar("roles", $roles);
 		$this->view->pick("Auth/signin");
 		
 	}
@@ -72,7 +77,7 @@ class AuthController extends Controller
 	}
 	
 	public function fastConnectAction($role){
-		$user = User::findFirst("role LIKE '".$role."'");
+		$user = User::findFirst("idRole = ".$role);
 		if($user != null){
 			$this->session->set("user", $user);
 			$msg = new DisplayedMessage("Bienvenue ".$user);

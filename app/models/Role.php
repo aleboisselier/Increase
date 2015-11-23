@@ -1,6 +1,6 @@
 <?php
 
-class Tache extends \Phalcon\Mvc\Model
+class Role extends \Phalcon\Mvc\Model
 {
 
     /**
@@ -19,19 +19,7 @@ class Tache extends \Phalcon\Mvc\Model
      *
      * @var string
      */
-    protected $date;
-
-    /**
-     *
-     * @var integer
-     */
-    protected $avancement;
-
-    /**
-     *
-     * @var string
-     */
-    protected $codeUseCase;
+    protected $description;
 
     /**
      * Method to set the value of field id
@@ -60,40 +48,14 @@ class Tache extends \Phalcon\Mvc\Model
     }
 
     /**
-     * Method to set the value of field date
+     * Method to set the value of field description
      *
-     * @param string $date
+     * @param string $description
      * @return $this
      */
-    public function setDate($date)
+    public function setDescription($description)
     {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    /**
-     * Method to set the value of field avancement
-     *
-     * @param integer $avancement
-     * @return $this
-     */
-    public function setAvancement($avancement)
-    {
-        $this->avancement = $avancement;
-
-        return $this;
-    }
-
-    /**
-     * Method to set the value of field codeUseCase
-     *
-     * @param string $codeUseCase
-     * @return $this
-     */
-    public function setCodeUseCase($codeUseCase)
-    {
-        $this->codeUseCase = $codeUseCase;
+        $this->description = $description;
 
         return $this;
     }
@@ -119,48 +81,20 @@ class Tache extends \Phalcon\Mvc\Model
     }
 
     /**
-     * Returns the value of field date
+     * Returns the value of field description
      *
      * @return string
      */
-    public function getDate()
+    public function getDescription()
     {
-        return $this->date;
-    }
-
-    /**
-     * Returns the value of field avancement
-     *
-     * @return integer
-     */
-    public function getAvancement()
-    {
-        return $this->avancement;
-    }
-
-    /**
-     * Returns the value of field codeUseCase
-     *
-     * @return string
-     */
-    public function getCodeUseCase()
-    {
-        return $this->codeUseCase;
-    }
-
-    /**
-     * Initialize method for model.
-     */
-    public function initialize()
-    {
-        $this->belongsTo('codeUseCase', 'Usecase', 'code', array('alias' => 'Usecase'));
+        return $this->description;
     }
 
     /**
      * Allows to query a set of records that match the specified conditions
      *
      * @param mixed $parameters
-     * @return Tache[]
+     * @return Role[]
      */
     public static function find($parameters = null)
     {
@@ -171,16 +105,11 @@ class Tache extends \Phalcon\Mvc\Model
      * Allows to query the first record that match the specified conditions
      *
      * @param mixed $parameters
-     * @return Tache
+     * @return Role
      */
     public static function findFirst($parameters = null)
     {
         return parent::findFirst($parameters);
-    }
-
-
-    public function __toString(){
-    	return $this->libelle;
     }
 
     /**
@@ -190,7 +119,11 @@ class Tache extends \Phalcon\Mvc\Model
      */
     public function getSource()
     {
-        return 'tache';
+        return 'role';
+    }
+    
+    public function __toString(){
+    	return $this->libelle;
     }
 
 }

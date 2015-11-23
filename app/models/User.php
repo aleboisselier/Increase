@@ -29,9 +29,9 @@ class User extends \Phalcon\Mvc\Model
 
     /**
      *
-     * @var string
+     * @var integer
      */
-    protected $role;
+    protected $idRole;
 
     /**
      * Method to set the value of field id
@@ -86,14 +86,14 @@ class User extends \Phalcon\Mvc\Model
     }
 
     /**
-     * Method to set the value of field role
+     * Method to set the value of field idRole
      *
-     * @param string $role
+     * @param integer $idRole
      * @return $this
      */
-    public function setRole($role)
+    public function setIdRole($idRole)
     {
-        $this->role = $role;
+        $this->idRole = $idRole;
 
         return $this;
     }
@@ -139,6 +139,29 @@ class User extends \Phalcon\Mvc\Model
     }
 
     /**
+     * Returns the value of field idRole
+     *
+     * @return integer
+     */
+    public function getIdRole()
+    {
+        return $this->idRole;
+    }
+
+    /**
+     * Method to set the value of field role
+     *
+     * @param string $role
+     * @return $this
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    /**
      * Returns the value of field role
      *
      * @return string
@@ -156,16 +179,7 @@ class User extends \Phalcon\Mvc\Model
         $this->hasMany('id', 'Message', 'idUser', array('alias' => 'Messages'));
         $this->hasMany('id', 'Projet', 'idClient', array('alias' => 'Projects'));
         $this->hasMany('id', 'Usecase', 'idDev', array('alias' => 'Usecases'));
-    }
-
-    /**
-     * Returns table name mapped in the model.
-     *
-     * @return string
-     */
-    public function getSource()
-    {
-        return 'user';
+        $this->belongsTo('idRole', 'Role', 'id', array('alias' => 'Role'));
     }
 
     /**
@@ -189,12 +203,24 @@ class User extends \Phalcon\Mvc\Model
     {
         return parent::findFirst($parameters);
     }
+
+
     public function __toString(){
     	$r = "";
-    	if ($this->role != ""){
-    		$r = " (".$this->role.")";
+    	if ($this->getRole() != ""){
+    		$r = " <small>(".$this->getRole().")</small>";
     	}
         return $this->identite.$r;
+    }
+
+    /**
+     * Returns table name mapped in the model.
+     *
+     * @return string
+     */
+    public function getSource()
+    {
+        return 'user';
     }
 
 }

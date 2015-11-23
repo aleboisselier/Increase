@@ -34,22 +34,22 @@
 	                    <a href="{{url.get("Index")}}" data-ajax="Index">Accueil</a>
 	                </li>
 	                <li>
-	                    <a href="{{url.get("Users")}}" data-ajax="Users">Utilisateur</a>
+	                    <a href="{{url.get("Users")}}" data-ajax="Users" class="menuItem">Utilisateur</a>
 	                </li>
 	                <li>
-	                    <a href="{{url.get("Users")}}" data-ajax="Users">Projet</a>
+	                    <a href="{{url.get("Users")}}" data-ajax="Users" class="menuItem">Projet</a>
 	                </li>
 	                <li>
-	                    <a href="{{url.get("Messages")}}" data-ajax="Messages">Message</a>
+	                    <a href="{{url.get("Messages")}}" data-ajax="Messages" class="menuItem">Message</a>
 	                </li>
 	                <li>
-	                    <a href="{{url.get("UseCases")}}" data-ajax="UseCases">Use Case</a>
+	                    <a href="{{url.get("UseCases")}}" data-ajax="UseCases" class="menuItem">Use Case</a>
 	                </li>
 	                <li>
-	                    <a href="{{url.get("Taches")}}" data-ajax="Taches">Tâches</a>
+	                    <a href="{{url.get("Taches")}}" data-ajax="Taches" class="menuItem">Tâches</a>
 	                </li>
 	                <li>
-	                    <a href="{{url.get("Auth/logout")}}" data-ajax="Auth/logout">Déconnexion</a>
+	                    <a href="{{url.get("Auth/logout")}}" data-ajax="Auth/logout" class="menuItem">Déconnexion</a>
 	                </li>
 	            </ul>
 	        </div>

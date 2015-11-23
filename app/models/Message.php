@@ -218,16 +218,6 @@ class Message extends \Phalcon\Mvc\Model
     }
 
     /**
-     * Returns table name mapped in the model.
-     *
-     * @return string
-     */
-    public function getSource()
-    {
-        return 'message';
-    }
-
-    /**
      * Allows to query a set of records that match the specified conditions
      *
      * @param mixed $parameters
@@ -248,13 +238,24 @@ class Message extends \Phalcon\Mvc\Model
     {
         return parent::findFirst($parameters);
     }
-    
+
+
     public function __toString(){
     	$str = $this->content;
     	if (strlen($str) > 47){
     		$str = substr($this->content, 0, 47)."...";
     	}
     	return $this->getUser()." : <i>".$str."</i>";
+    }
+
+    /**
+     * Returns table name mapped in the model.
+     *
+     * @return string
+     */
+    public function getSource()
+    {
+        return 'message';
     }
 
 }

@@ -17,10 +17,9 @@
 			    Connexion Rapide <span class="caret"></span>
 			  </button>
 			  <ul class="dropdown-menu">
-			    <li><a class="fastConnect" id="admin">Admin</a></li>
-			    <li><a class="fastConnect" id="author">Développeur</a></li>
-			    <li><a class="fastConnect" id="user">Client</a></li>
-			    <li><a class="fastConnect" id="manager">Chef de Projet</a></li>
+			    {% for role in roles %}
+					<li><a class="fastConnect" id="{{ role.getId() }}">{{ role }}</a></li>
+			    {% endfor %}
 			  </ul>
 			</div>
 		</form>

@@ -217,16 +217,6 @@ class Projet extends \Phalcon\Mvc\Model
     }
 
     /**
-     * Returns table name mapped in the model.
-     *
-     * @return string
-     */
-    public function getSource()
-    {
-        return 'projet';
-    }
-
-    /**
      * Allows to query a set of records that match the specified conditions
      *
      * @param mixed $parameters
@@ -248,8 +238,19 @@ class Projet extends \Phalcon\Mvc\Model
         return parent::findFirst($parameters);
     }
 
+
     public function __toString(){
         return $this->getNom();
+    }
+
+    /**
+     * Returns table name mapped in the model.
+     *
+     * @return string
+     */
+    public function getSource()
+    {
+        return 'projet';
     }
 
 }
