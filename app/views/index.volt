@@ -48,8 +48,6 @@
 	                <li>
 	                    <a href="{{url.get("Taches")}}" data-ajax="Taches" class="menuItem"><span class="glyphicon glyphicon-tasks" aria-hidden="true" style="margin-left:-10%;"></span>&nbsp;Tâches</a>
 	                </li>
-	                <li class="divider"></li>
-	                <li>
 	                    <a href="{{url.get("Auth/logout")}}" data-ajax="Auth/logout" class="menuItem"><span class="glyphicon glyphicon-log-out" aria-hidden="true" style="margin-left:-10%;"></span>&nbsp;Déconnexion</a>
 	                </li>
 	            </ul>
