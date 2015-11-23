@@ -15,8 +15,7 @@ class ProjectsController extends DefaultController{
 	public function showAction($id=NULL){
 		$this->view->pick("projects/show");
 		$projet=$this->getInstance($id);
-		$img=$projet->getImage($id);
-		$this->view->setVars(array("projet"=>$projet, "img"=>$img));
+		$this->view->setVars(array("projet"=>$projet));
 		$_SESSION['bread']['object'] = $projet;
 		
 		//parent::frmAction($id);

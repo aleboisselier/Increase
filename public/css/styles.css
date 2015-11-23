@@ -196,14 +196,7 @@ body{
     color: #fff;
     background: none;
 }
-#nomProjet{
-	color: white;
-	text-shadow: 1px 1px 1px rgba(25, 152, 91, 0.64);
-    font-size: normal normal 500 normal 60px/60px 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
-    font-variant: small-caps;
-    outline: rgb(255, 255, 255) none 0px;
-    font-size:25px;
-}
+
 @media(min-width:768px) {
     #wrapper {
         padding-left: 250px;
