@@ -12,7 +12,6 @@ class ControllerBase extends Controller
 	 	if(!Auth::isAuth()){
 	 		$this->dispatcher->forward(array("controller" => "Auth", "action" => "signin"));
 	 		$this->jquery->exec('$(".breadcrumb").hide();', true);
-	 		$this->jquery->exec('$(".btnMenu").hide();', true);
     		$this->jquery->compile($this->view);
 	 	}else{
 	 		$this->breadCrumbsAction();
