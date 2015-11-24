@@ -1,5 +1,4 @@
 <?php
-
 class ProjectsController extends DefaultController{
 	public function initialize(){
 		$this->model="Projet";
@@ -17,7 +16,8 @@ class ProjectsController extends DefaultController{
 	public function showAction($id=NULL){
 		$this->view->pick("projects/show");
 		$projet=$this->getInstance($id);
-		$this->view->setVars(array("projet"=>$projet));
+		$sourceImage=$this->jquery->exec("$('.img-circle').att('id)",true);
+		$this->view->setVars(array("projet"=>$projet,"sourceImage"=>$img));
 		$_SESSION['bread']['object'] = $projet;
 
 		//parent::frmAction($id);
