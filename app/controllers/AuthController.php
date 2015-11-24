@@ -35,7 +35,7 @@ class AuthController extends Controller
 		return false;
 	}
 	
-	public function signinAction($isAjax){
+	public function signinAction($isAjax = false){
 		$roles = Role::find();
 		
 		$this->jquery->postFormOnClick(".validate", "Auth/login", "frmLogin","#content");
