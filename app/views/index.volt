@@ -34,20 +34,24 @@
 	                    <a href="{{url.get("Index")}}"><span class="glyphicon glyphicon-home" aria-hidden="true" style="margin-left:-10%;"></span>&nbsp;Accueil</a>
 	                </li>
 	                <li>
-			          <a href="{{url.get("Users")}}" data-ajax="Users" class="menuItem"><span class="glyphicon glyphicon-user" aria-hidden="true" style="margin-left:-10%;"></span>&nbsp;Utilisateur</a>
+			          <a href="{{url.get("Users")}}" data-ajax="Users" class="menuItem"><span class="glyphicon glyphicon-user" aria-hidden="true" style="margin-left:-10%;"></span>&nbsp;Utilisateurs</a>
+	                </li>
+		            <li>
+	                    <a href="{{url.get("Roles")}}" data-ajax="Roles" class="menuItem"><span class="glyphicon glyphicon-tags" aria-hidden="true" style="margin-left:-10%;"></span>&nbsp; Rôles</a>
 	                </li>
 	                <li>
-	                    <a href="{{url.get("Users")}}" data-ajax="Projects" class="menuItem"><span class="glyphicon glyphicon-book" aria-hidden="true" style="margin-left:-10%;"></span>&nbsp;Projet</a>
+	                    <a href="{{url.get("Users")}}" data-ajax="Projects" class="menuItem"><span class="glyphicon glyphicon-book" aria-hidden="true" style="margin-left:-10%;"></span>&nbsp;Projets</a>
 	                </li>
 	                <li>
-	                    <a href="{{url.get("Messages")}}" data-ajax="Messages" class="menuItem"><span class="glyphicon glyphicon-comment" aria-hidden="true" style="margin-left:-10%;"></span>&nbsp;Message</a>
+	                    <a href="{{url.get("Messages")}}" data-ajax="Messages" class="menuItem"><span class="glyphicon glyphicon-comment" aria-hidden="true" style="margin-left:-10%;"></span>&nbsp;Messages</a>
 	                </li>
 	                <li>
-	                    <a href="{{url.get("UseCases")}}" data-ajax="UseCases" class="menuItem"><span class="glyphicon glyphicon-briefcase" aria-hidden="true" style="margin-left:-10%;"></span>&nbsp;Use Case</a>
+	                    <a href="{{url.get("UseCases")}}" data-ajax="UseCases" class="menuItem"><span class="glyphicon glyphicon-briefcase" aria-hidden="true" style="margin-left:-10%;"></span>&nbsp;Use Cases</a>
 	                </li>
 	                <li>
 	                    <a href="{{url.get("Taches")}}" data-ajax="Taches" class="menuItem"><span class="glyphicon glyphicon-tasks" aria-hidden="true" style="margin-left:-10%;"></span>&nbsp;Tâches</a>
 	                </li>
+	                <li>
 	                    <a href="{{url.get("Auth/logout")}}" data-ajax="Auth/logout" class="menuItem"><span class="glyphicon glyphicon-log-out" aria-hidden="true" style="margin-left:-10%;"></span>&nbsp;Déconnexion</a>
 	                </li>
 	            </ul>

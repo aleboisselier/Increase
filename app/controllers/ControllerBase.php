@@ -54,7 +54,7 @@ class ControllerBase extends Controller
 	 }
 	 
 	 public function beforeExecuteRoute(){
-		$acl = new AclList();
+	 	
 	 }
 	 
 }

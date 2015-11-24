@@ -1,6 +1,6 @@
 <?php
 
-class Role extends \Phalcon\Mvc\Model
+class Acl extends \Phalcon\Mvc\Model
 {
 
     /**
@@ -13,13 +13,24 @@ class Role extends \Phalcon\Mvc\Model
      *
      * @var string
      */
-    protected $libelle;
+    protected $controller;
 
     /**
      *
      * @var string
      */
-    protected $description;
+    protected $action;
+
+    /**
+     *
+     * @var integer
+     */
+    protected $idRole;
+    
+    public function initialize()
+    {
+    	$this->belongsTo('idRole', 'Role', 'id', array('alias' => 'Role'));
+    }
 
     /**
      * Method to set the value of field id
@@ -35,27 +46,40 @@ class Role extends \Phalcon\Mvc\Model
     }
 
     /**
-     * Method to set the value of field libelle
+     * Method to set the value of field controller
      *
-     * @param string $libelle
+     * @param string $controller
      * @return $this
      */
-    public function setLibelle($libelle)
+    public function setController($controller)
     {
-        $this->libelle = $libelle;
+        $this->controller = $controller;
 
         return $this;
     }
 
     /**
-     * Method to set the value of field description
+     * Method to set the value of field action
      *
-     * @param string $description
+     * @param string $action
      * @return $this
      */
-    public function setDescription($description)
+    public function setAction($action)
     {
-        $this->description = $description;
+        $this->action = $action;
+
+        return $this;
+    }
+
+    /**
+     * Method to set the value of field idRole
+     *
+     * @param integer $idRole
+     * @return $this
+     */
+    public function setIdRole($idRole)
+    {
+        $this->idRole = $idRole;
 
         return $this;
     }
@@ -71,30 +95,40 @@ class Role extends \Phalcon\Mvc\Model
     }
 
     /**
-     * Returns the value of field libelle
+     * Returns the value of field controller
      *
      * @return string
      */
-    public function getLibelle()
+    public function getController()
     {
-        return $this->libelle;
+        return $this->controller;
     }
 
     /**
-     * Returns the value of field description
+     * Returns the value of field action
      *
      * @return string
      */
-    public function getDescription()
+    public function getAction()
     {
-        return $this->description;
+        return $this->action;
+    }
+
+    /**
+     * Returns the value of field idRole
+     *
+     * @return integer
+     */
+    public function getIdRole()
+    {
+        return $this->idRole;
     }
 
     /**
      * Allows to query a set of records that match the specified conditions
      *
      * @param mixed $parameters
-     * @return Role[]
+     * @return Acl[]
      */
     public static function find($parameters = null)
     {
@@ -105,16 +139,11 @@ class Role extends \Phalcon\Mvc\Model
      * Allows to query the first record that match the specified conditions
      *
      * @param mixed $parameters
-     * @return Role
+     * @return Acl
      */
     public static function findFirst($parameters = null)
     {
         return parent::findFirst($parameters);
-    }
-
-
-    public function __toString(){
-    	return $this->libelle;
     }
 
     /**
@@ -124,7 +153,11 @@ class Role extends \Phalcon\Mvc\Model
      */
     public function getSource()
     {
-        return 'role';
+        return 'acl';
+    }
+    
+    public function __toString(){
+    	return $this->getRole()." : ".$this->getController().'/'.$this->getAction();
     }
 
 }

@@ -29,6 +29,4 @@
 	</div>
 </div>
 
-
-
 {{ script_foot }}
