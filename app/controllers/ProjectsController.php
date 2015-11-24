@@ -14,10 +14,10 @@ class ProjectsController extends DefaultController{
 		$this->jquery->compile($this->view);
 	}
 	public function showAction($id=NULL){
+		$uc=Usecase::find($id);
 		$this->view->pick("projects/show");
 		$projet=$this->getInstance($id);
-		$sourceImage=$this->jquery->exec("$('.img-circle').att('id)",true);
-		$this->view->setVars(array("projet"=>$projet,"sourceImage"=>$img));
+		$this->view->setVars(array("projet"=>$projet,"uc"=>$uc));
 		$_SESSION['bread']['object'] = $projet;
 
 		//parent::frmAction($id);
