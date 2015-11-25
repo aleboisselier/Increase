@@ -1,5 +1,4 @@
 <?php
-
 class ProjectsController extends DefaultController{
 	public function initialize(){
 		$this->model="Projet";
@@ -15,9 +14,10 @@ class ProjectsController extends DefaultController{
 		$this->jquery->compile($this->view);
 	}
 	public function showAction($id=NULL){
+		$uc=Usecase::find($id);
 		$this->view->pick("projects/show");
 		$projet=$this->getInstance($id);
-		$this->view->setVars(array("projet"=>$projet));
+		$this->view->setVars(array("projet"=>$projet,"uc"=>$uc));
 		$_SESSION['bread']['object'] = $projet;
 
 		//parent::frmAction($id);

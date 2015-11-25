@@ -71,7 +71,7 @@ body{
 }
 
 .content{
-	margin:1%;
+	margin:2%;
 	padding: 30px;
 	border: 1px solid #ddd;
 	background: #fff;
@@ -196,7 +196,7 @@ body{
     color: #fff;
     background: none;
 }
-
+/*----------------STYLE PROJECT-----------------*/
 #nomProjet{
 	color: white;
 	text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.64);
@@ -206,7 +206,35 @@ body{
     font-size:25px;
 }
 
-
+.ticket{
+	color:white;
+	text-shadow:0px 0px 5px rgba(0,0,0,1);
+	border-radius:0px;
+	background-color:#639D82;
+}
+.imgProjet{
+	background-color:white;
+	border-radius:50%;
+	margin-left:2%;
+	margin-top:35%;
+  	width:92px;
+  	height:92px;
+}
+.client{
+	margin-left:2%;
+	margin-top:15%;
+	font-size:15px;
+}
+.titleProject{
+	margin-top:10%;
+	font-size:60px;
+}
+.percentage{
+	margin-top:60%;
+	margin-bottom:5%;
+	font-size:80px;
+}
+/*----------------END STYLE PROJECT-----------------*/
 @media(min-width:768px) {
     #wrapper {
         padding-left: 250px;

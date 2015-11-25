@@ -1,25 +1,33 @@
-<fieldset>
-	<div class="alert alert-success row" style="border-radius:0px">
-		{% if projet.getImage()==NULL %}
-			<img src="{{siteUrl}}/public/img/phalconIcon.png" style="float:left">
-		{% else %}
-			<img src="{{siteUrl~projet.getImage()}}" style="float:left">
-		{% endif %}
-		<p class="margin-top:50%" style="float:left; margin:1%;">
-			<span class="title" style="font-size:25px"> Projet : </span><b id="nomProjet">{{projet}}</b>
-		</p>
-	</div>
-	<div class="form-group row">
-		<h3>Commanditaire du projet :</h3>
-		{{projet.getClient()}}
-		
-		<h3>Dates :</h3>
-		<div class="date row">
-			<div class="col-md-5">Lancement : {{projet.getDateLancement()}}</div>
-			<div class="col-md-5">Fin prévue : {{projet.getDateFinPrevue()}}</div>
+<fieldset style="margin:-30px;">
+	<div class="col-md-3 col-xs-3 ticket" id="color">
+		<div class="imgProjet row">
+			{% if projet.getImage()==NULL %}
+				<img src="{{siteUrl}}img/phalconIcon.png" class="img-circle" alt="imageProject" id="imageProject" style="width:100%">
+			{% else %}
+				<img src="{{siteUrl~projet.getImage()}}" class="img-circle" alt="imageProject" id="imageProject" style="width:100%">
+			{% endif %}
 		</div>
-		
-		<h3>Description : </h3>
-		{{projet.getDescription()}}
- 	</fieldset>
- </form>
+		<div class="client row">
+			{{projet.getClient()}}
+		</div>
+		<div class="percentage">
+			75%
+		</div>
+			
+	</div>
+	<div class="form-group col-md-7 col-xs-7" style="margin-left:5%">
+		<h1 class="titleProject">{{projet}}</h1>
+		<div class="date row">
+			<div class="col-md-10">Lancement : {{projet.getDateLancement()}} // Fin prévue : {{projet.getDateFinPrevue()}}</div>
+		</div>
+		<div class="progress" style="border-radius:0px;">
+			<div class="progress-bar progress-bar-success" style="width: 35%">
+			<span class="sr-only">35% Complete (success)</span>
+		</div>
+		</div>
+		<div class="description" style="margin-top:15%">
+			<h3>Description : </h3>
+			{{projet.getDescription()}}
+		</div>
+	</div>
+</fieldset>
