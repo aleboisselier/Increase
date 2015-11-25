@@ -16,36 +16,31 @@
 </form>
 
 <hr>
+<legend>Droits du Groupe</legend>
 
+{% for key, controller in controllers %}
 {{ form("Roles/update", "method": "post", "name":"frmObject", "id":"frmObject") }}
-	<legend>Droits du Groupe</legend>
-	<div id="list">
-		{% for acl in acls %}
-			<div class="row" style="margin-top:10px;">
-				<div class="col-md-4"></div>
-				<div class="input-group col-md-4">
-					<select class="form-control" name="controllers[]">
-						{% for key, controller in controllers %}
-							<option value="{{ key }}" {% if key == acl.getController() %}selected{% endif %}>{{ controller['name'] }}</option>
-						{% endfor %}
-					</select>
-					<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></span>
-					<select class="form-control" name="acl[]">
-						{% for key, action in controllers['Default']['actions'] %}
-							<option value="{{ key }}" {% if key == acl.getAction() %}selected{% endif %}>{{ action }}</option>
-						{% endfor %}
-					</select>
-				</div>
+<div class="panel panel-success">
+	<div class="panel-heading"><h3 class="panel-title pull-left">{{ controller['name'] }}</h3><button class="btn btn-success btn-xs pull-right" type="submit">Mettre à jour</button><div class="clearfix"></div></div>
+		<div class="panel-body">
+			<div class="row">
+				{% for key, action in controllers['Default']['actions'] %}
+					<div class="col-md-3">
+						<div class="checkbox"><label><input type="checkbox" value="{{ key }}"> {{ action }}</label></div>
+					</div>
+				{% endfor %}
+				{% if key == "Default" %}
+					{% for actionKey, action in controller['actions'] %}
+						<div class="col-md-3">
+							<div class="checkbox"><label><input type="checkbox" value="{{ actionKey }}"> {{ action }}</label></div>
+						</div>
+					{% endfor %}
+				{% endif %}
 			</div>
-		{% endfor %}
-	</div>
-	<div class="row" style="margin-top:10px;">
-		<div class="col-md-4"></div>
-		<div class="input-group col-md-4">
-			<button type="button" class="btn btn-default btn-block">Ajouter</button>
 		</div>
 	</div>
 </form>
+{% endfor %}
 
 
 {{ script_foot }}

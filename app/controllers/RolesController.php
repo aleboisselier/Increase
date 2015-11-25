@@ -28,21 +28,27 @@ class RolesController extends DefaultController{
 				),
 				"Projects" => array(
 					"name" => "Projets",
+					"actions" => array()
 				), 
 				"Roles" => array(
 					"name" => "Rôles",
+					"actions" => array()
 				),
 				"Taches"=>array(
 					"name" => "Tâches",
+					"actions" => array()
 				),
 				"Messages"=>array(
 					"name" => "Messages",
+					"actions" => array()
 				),
 				"UseCases" => array(
 					"name" => "Use Cases",
+					"actions" => array()
 				),
 				"Users" => array(
 					"name" => "Utilisateurs",
+					"actions" => array()
 				)
 		);
 
