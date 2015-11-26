@@ -28,5 +28,4 @@
 		</div>
 	</div>
 </div>
-{{ session }}
 {{ script_foot }}
