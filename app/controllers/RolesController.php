@@ -53,16 +53,8 @@ class RolesController extends DefaultController{
 		);
 
 		$acls = Acl::find("idRole=".$role->getId());
-		$finalAcls = array();
 		
-		foreach ($acls as $acl){
-			if (!array_key_exists($acl->getController(), $finalAcls)){
-				
-				$finalAcls[$acl->getController()] = array();		
-			}
-			$finalAcls[$acl->getController()][$acl->getAction()] = 1;
-		}		
-		$this->view->setVars(array("role"=>$role,"acls"=>$finalAcls, "controllers"=> $controllers,"siteUrl"=>$this->url->getBaseUri(),"baseHref"=>$this->dispatcher->getControllerName()));
+		$this->view->setVars(array("role"=>$role,"acls"=>AclController::toArray($acls), "controllers"=> $controllers,"siteUrl"=>$this->url->getBaseUri(),"baseHref"=>$this->dispatcher->getControllerName()));
 		$_SESSION['bread']['object'] = $role;
 		
 		$this->jquery->postFormOnClick(".validateACL", $this->dispatcher->getControllerName()."/updateACL", "frmObject","#content");

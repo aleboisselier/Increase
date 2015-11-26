@@ -15,6 +15,19 @@ class AclController extends DefaultController{
 
 		parent::frmAction($id);
 	}
+	
+	public function toArray($acls){
+		$finalAcls = array();
+		
+		foreach ($acls as $acl){
+			if (!array_key_exists($acl->getController(), $finalAcls)){
+		
+				$finalAcls[$acl->getController()] = array();
+			}
+			$finalAcls[$acl->getController()][$acl->getAction()] = 1;
+		}
+		return $finalAcls;
+	}
 
 
 }

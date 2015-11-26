@@ -19,6 +19,17 @@ class DefaultController extends ControllerBase{
 				"controllerTitle"=>$this->title,
 		));
 	}
+	
+	public function beforeExecuteRoute(){
+		 $acls = $this->session->get("rights");
+		 $controller = $this->dispatcher->getControllerName();
+		 $action = $this->dispatcher->getActionName();
+		 
+		 if(!isset($acls[$controller][$action]) && !isset($acls['Default'][$action])){
+		 	$this->dispatcher->forward(array("controller"=>"Index","action"=>"indexAjax"/*,"params"=>array($msg)*/));
+		 }
+	}
+	
     public function indexAction($message=NULL){
     	$msg="";
     	if(isset($message)){
@@ -28,6 +39,7 @@ class DefaultController extends ControllerBase{
     		$message->setTimerInterval($this->messageTimerInterval);
     		$msg=$this->_showDisplayedMessage($message);
     	}
+    	
     	$objects=call_user_func($this->model."::find");
     	$this->view->setVars(array("objects"=>$objects,"siteUrl"=>$this->url->getBaseUri(),"baseHref"=>$this->dispatcher-> getControllerName(),"model"=>$this->model,"msg"=>$msg));
     	$this->jquery->getOnClick(".update, .add","","#content",array("attr"=>"data-ajax"));

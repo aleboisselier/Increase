@@ -65,7 +65,7 @@ class AuthController extends Controller
 				if (password_verify(@$_POST['pass'], $user->getPassword())){
 					$this->session->set("user", $user);
 					$acl = Acl::find("idRole = ".$user->getIdRole());
-					$this->session->set("rights", $acl);
+					$this->session->set("rights", AclController::toArray($acl));
 					
 					$msg = new DisplayedMessage("Bienvenue ".$user);
 					$this->dispatcher->forward(array("controller"=>"Index","action"=>"indexAjax","params"=>array($msg)));
@@ -84,7 +84,7 @@ class AuthController extends Controller
 		if($user != null){
 			$this->session->set("user", $user);
 			$acl = Acl::find("idRole = ".$user->getIdRole());
-			$this->session->set("rights", $acl);
+			$this->session->set("rights", AclController::toArray($acl));
 			$msg = new DisplayedMessage("Bienvenue ".$user);
 			$this->dispatcher->forward(array("controller"=>"Index","action"=>"indexAjax","params"=>array($msg)));
 		}else{

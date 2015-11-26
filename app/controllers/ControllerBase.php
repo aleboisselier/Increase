@@ -53,8 +53,4 @@ class ControllerBase extends Controller
     	$this->jquery->compile($this->view);
 	 }
 	 
-	 public function beforeExecuteRoute(){
-	 	
-	 }
-	 
 }
