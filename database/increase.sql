@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 09 Novembre 2015 à 01:12
+-- Généré le :  Ven 27 Novembre 2015 à 23:11
 -- Version du serveur :  5.6.21
 -- Version de PHP :  5.6.3
 
@@ -21,6 +21,29 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `increase` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `increase`;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `acl`
+--
+
+CREATE TABLE IF NOT EXISTS `acl` (
+`id` int(11) NOT NULL,
+  `controller` varchar(50) NOT NULL,
+  `action` varchar(50) NOT NULL,
+  `idRole` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `acl`
+--
+
+INSERT INTO `acl` (`id`, `controller`, `action`, `idRole`) VALUES
+(50, 'Default', 'index', 1),
+(51, 'Default', 'frm', 1),
+(52, 'Default', 'update', 1),
+(53, 'Default', 'delete', 1);
 
 -- --------------------------------------------------------
 
@@ -74,6 +97,28 @@ INSERT INTO `projet` (`id`, `nom`, `description`, `dateLancement`, `dateFinPrevu
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `role`
+--
+
+CREATE TABLE IF NOT EXISTS `role` (
+`id` int(11) NOT NULL,
+  `libelle` varchar(50) NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `role`
+--
+
+INSERT INTO `role` (`id`, `libelle`, `description`) VALUES
+(1, 'Administrateur', 'Administrateur du site, un boss quoi'),
+(2, 'Développeur', 'Développeur / Auteur'),
+(3, 'Client', 'Client souhaitant accéder à ses infos de projet'),
+(4, 'Chef de Projet', 'Chef de Projet');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `tache`
 --
 
@@ -118,7 +163,6 @@ CREATE TABLE IF NOT EXISTS `usecase` (
 --
 
 INSERT INTO `usecase` (`code`, `nom`, `poids`, `avancement`, `idProjet`, `idDev`) VALUES
-('', 'oo', 10, 0, 3, 4),
 ('I-UC-Dev1', 'Connexion utilisateur', 5, 0, 1, 4),
 ('I-UC-Dev2', 'Gestion des ACL', 10, 0, 1, 4),
 ('I-UC-Dev3-Cli', 'Lister mes projets (client)', 5, 0, 1, 4),
@@ -133,7 +177,8 @@ INSERT INTO `usecase` (`code`, `nom`, `poids`, `avancement`, `idProjet`, `idDev`
 ('I-UC3', 'Base de données', 2, 100, 1, 2),
 ('I-UC4', 'Analyse fonctionnelle', 20, 100, 1, 4),
 ('OB-UC1', 'Connexion au server REST', 10, 0, 2, 5),
-('OB-UC2', 'Gestion des bières (liste/ajout/modification)', 10, 0, 2, 5);
+('OB-UC2', 'Gestion des bières (liste/ajout/modification)', 10, 0, 2, 5),
+('TEST', 'oo', 10, 0, 3, 4);
 
 -- --------------------------------------------------------
 
@@ -146,24 +191,30 @@ CREATE TABLE IF NOT EXISTS `user` (
   `mail` varchar(255) NOT NULL,
   `password` varchar(255) DEFAULT NULL,
   `identite` varchar(100) DEFAULT NULL,
-  `role` varchar(255) NOT NULL DEFAULT 'user'
+  `idRole` int(11) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `user`
 --
 
-INSERT INTO `user` (`id`, `mail`, `password`, `identite`, `role`) VALUES
-(1, 'jcheron@kobject.net', 'ffffff9afffffff15b336e6affffff9619ffffff92ffffff8537ffffffdf30ffffffb2ffffffe6ffffffa2376569fffffffcfffffff9ffffffd7ffffffe773ffffffecffffffceffffffde65606529ffffffa0', 'JC HERON', 'user'),
-(2, 'igor.minar@gmail.com', 'ffffff9afffffff15b336e6affffff9619ffffff92ffffff8537ffffffdf30ffffffb2ffffffe6ffffffa2376569fffffffcfffffff9ffffffd7ffffffe773ffffffecffffffceffffffde65606529ffffffa0', 'Igor MINAR', 'author'),
-(3, 'admin@local.fr', 'ffffff8c6976ffffffe5ffffffb5410415ffffffbdffffffe908ffffffbd4dffffffee15ffffffdfffffffb167ffffffa9ffffffc873fffffffc4bffffffb8ffffffa81f6f2affffffb448ffffffa918', 'Admin', 'admin,user,author'),
-(4, 'misko.hevery@gmail.com', '15ffffffe2ffffffb0ffffffd3ffffffc338ffffff91ffffffebffffffb0fffffff1ffffffef60ffffff9effffffc419420c20ffffffe320ffffffceffffff94ffffffc65fffffffbcffffff8c331244ffffff8effffffb225', 'Miško Hevery', 'author'),
-(5, 'pete.bacon@gmail.com', '15ffffffe2ffffffb0ffffffd3ffffffc338ffffff91ffffffebffffffb0fffffff1ffffffef60ffffff9effffffc419420c20ffffffe320ffffffceffffff94ffffffc65fffffffbcffffff8c331244ffffff8effffffb225', 'Pete Bacon Darwin', 'author'),
-(7, 'moi@kobject.net', 'ffffff9afffffff15b336e6affffff9619ffffff92ffffff8537ffffffdf30ffffffb2ffffffe6ffffffa2376569fffffffcfffffff9ffffffd7ffffffe773ffffffecffffffceffffffde65606529ffffffa0', 'moi', 'user');
+INSERT INTO `user` (`id`, `mail`, `password`, `identite`, `idRole`) VALUES
+(1, 'jcheron@kobject.net', '$2y$10$JHa4mP5ZPrCCn4B/OD93Ye5tJJS6ZIHxfm2zwXcjDrZdUifBUqXZm', 'JC HERON', 1),
+(2, 'igor.minar@gmail.com', '$2y$10$sUcYHjVsSfzal9oXioOL2u6i09Nq5yqgHHSxm6T0gZVl0LuzGo8iO', 'Igor MINAR', 2),
+(3, 'admin@local.fr', '$2y$10$XoGDtFzyzW/HD2kbC48wx.CEE7V70Eg7bhQliF4uo7Q.r.Ujgx8Wu', 'Admin', 2),
+(4, 'misko.hevery@gmail.com', '$2y$10$EMM4Zp3gqnGyCKblCzCck.Wni.1IS62E/DvjIrqjnnFmRTicbrWf2', 'Miško Hevery', 2),
+(5, 'pete.bacon@gmail.com', '$2y$10$zf8FKCKVv0PJdM.6v/mLZOybC/V2ZMSILCK4Ekrxju9FEKn1gOiNy', 'Pete Bacon Darwin', 3),
+(7, 'moi@kobject.net', '$2y$10$cSFaJx5TB4KyrGnPbRZsAejOHjnWaqJaP0Ktcv5jORAiwU5dFCUnC', 'moi', 4);
 
 --
 -- Index pour les tables exportées
 --
+
+--
+-- Index pour la table `acl`
+--
+ALTER TABLE `acl`
+ ADD PRIMARY KEY (`id`), ADD KEY `idRole` (`idRole`);
 
 --
 -- Index pour la table `message`
@@ -176,6 +227,12 @@ ALTER TABLE `message`
 --
 ALTER TABLE `projet`
  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `nom_UNIQUE` (`nom`), ADD KEY `fk_projet_user1_idx` (`idClient`);
+
+--
+-- Index pour la table `role`
+--
+ALTER TABLE `role`
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `tache`
@@ -193,12 +250,17 @@ ALTER TABLE `usecase`
 -- Index pour la table `user`
 --
 ALTER TABLE `user`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `mail_UNIQUE` (`mail`);
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `mail_UNIQUE` (`mail`), ADD KEY `idRole` (`idRole`);
 
 --
 -- AUTO_INCREMENT pour les tables exportées
 --
 
+--
+-- AUTO_INCREMENT pour la table `acl`
+--
+ALTER TABLE `acl`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=54;
 --
 -- AUTO_INCREMENT pour la table `message`
 --
@@ -209,6 +271,11 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 ALTER TABLE `projet`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT pour la table `role`
+--
+ALTER TABLE `role`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `tache`
 --
