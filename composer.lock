@@ -163,12 +163,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jcheron/phalcon-jquery.git",
-                "reference": "d285c8a58952f421af2d23b8e1fd3de78ca8b52e"
+                "reference": "09bbc1e9a3ff42e40242d768c589bdf4fb1bc221"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jcheron/phalcon-jquery/zipball/d285c8a58952f421af2d23b8e1fd3de78ca8b52e",
-                "reference": "d285c8a58952f421af2d23b8e1fd3de78ca8b52e",
+                "url": "https://api.github.com/repos/jcheron/phalcon-jquery/zipball/09bbc1e9a3ff42e40242d768c589bdf4fb1bc221",
+                "reference": "09bbc1e9a3ff42e40242d768c589bdf4fb1bc221",
                 "shasum": ""
             },
             "require": {
@@ -198,7 +198,7 @@
                 "jquery",
                 "phalcon"
             ],
-            "time": "2015-11-12 01:32:29"
+            "time": "2015-11-26 01:03:39"
         },
         {
             "name": "twitter/bootstrap",

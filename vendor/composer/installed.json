@@ -215,12 +215,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/jcheron/phalcon-jquery.git",
-            "reference": "3dff2a808e73d9f21824674ac80261311e471ae6"
+            "reference": "09bbc1e9a3ff42e40242d768c589bdf4fb1bc221"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/jcheron/phalcon-jquery/zipball/3dff2a808e73d9f21824674ac80261311e471ae6",
-            "reference": "3dff2a808e73d9f21824674ac80261311e471ae6",
+            "url": "https://api.github.com/repos/jcheron/phalcon-jquery/zipball/09bbc1e9a3ff42e40242d768c589bdf4fb1bc221",
+            "reference": "09bbc1e9a3ff42e40242d768c589bdf4fb1bc221",
             "shasum": ""
         },
         "require": {
@@ -230,7 +230,7 @@
             "php": ">5.3.9",
             "twitter/bootstrap": "~3.3"
         },
-        "time": "2015-11-18 10:47:32",
+        "time": "2015-11-26 01:03:39",
         "type": "phalcon-jquery",
         "installation-source": "source",
         "notification-url": "https://packagist.org/downloads/",
