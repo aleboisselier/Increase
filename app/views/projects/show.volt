@@ -10,8 +10,8 @@
 		<div class="client row">
 			{{projet.getClient()}}
 		</div>
-		<div class="percentage">
-			75%
+		<div class="percentage"> 
+			{{avancement}} %
 		</div>
 			
 	</div>
@@ -20,10 +20,27 @@
 		<div class="date row">
 			<div class="col-md-10">Lancement : {{projet.getDateLancement()}} // Fin prévue : {{projet.getDateFinPrevue()}}</div>
 		</div>
-		<div class="progress" style="border-radius:0px;">
-			<div class="progress-bar progress-bar-success" style="width: 35%">
-			<span class="sr-only">35% Complete (success)</span>
+		<br>
+		Temps Ecoulé : 
+		{{tmpEcoule}}
+		<div class="progress">
+			<div class="progress-bar progress-bar-success" 
+				role="progressbar" 
+				aria-valuenow="40" 
+				aria-valuemin="0" 
+				aria-valuemax="100" 
+				style="width: 40%">
+			</div>
 		</div>
+		Pourcentage du projet effectué :
+		<div class="progress">
+			<div class="progress-bar progress-bar-info" 
+				role="progressbar" 
+				aria-valuenow="{{avancement}}" 
+				aria-valuemin="0" 
+				aria-valuemax="100" 
+				style="width: {{avancement}}%">
+			</div>
 		</div>
 		<div class="description" style="margin-top:15%">
 			<h3>Description : </h3>

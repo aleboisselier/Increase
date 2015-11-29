@@ -13,11 +13,38 @@ class ProjectsController extends DefaultController{
 		$this->jquery->exec("$('[data-toggle=\"tooltip\"]').tooltip()", true);
 		$this->jquery->compile($this->view);
 	}
+	public function totalPoidsUcs($id=NULL){
+		$ucs=Usecase::find("idProjet=".$id);
+		foreach ($ucs as $uc){
+			$ucTotal+=$uc->getPoids();
+		}
+		return $ucTotal;
+	}
+	public function tmpEcoule($id){
+		$projet=$this->getInstance($id);
+		$fin=$projet->getDateFinPrevue();
+		$date=date("d-m-Y");
+		return $pourcentJour=(($fin-$date)/$date)*100;
+	}
 	public function showAction($id=NULL){
-		$uc=Usecase::find($id);
+		$ucs=Usecase::find("idProjet=".$id);
+		$poidTotal=$this->totalPoidsUcs($id);
+		$avancement = 0;
+		foreach ($ucs as $uc){
+			$poidRel=($uc->getPoids()/$poidTotal)*100;
+			$avancement+=$poidRel*($uc->getAvancement()/100);			
+		}
 		$this->view->pick("projects/show");
 		$projet=$this->getInstance($id);
-		$this->view->setVars(array("projet"=>$projet,"uc"=>$uc));
+		$tmpEcoule= $this->tmpEcoule($id);
+		$this->view->setVars(
+				array(
+						"projet"=>$projet,
+						"ucs"=>$ucs,
+						"avancement"=>round($avancement),
+						"tmpEcoule"=>$tmpEcoule,
+						
+				));
 		$_SESSION['bread']['object'] = $projet;
 
 		//parent::frmAction($id);
