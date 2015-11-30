@@ -6,6 +6,10 @@
 		{{ stylesheet_link("css/styles.css") }}
 		{{ javascript_include('js/jquery.min.js') }}
 		{{ javascript_include('js/bootstrap.min.js') }}
+		
+		{{ stylesheet_link("css/rangeslider.css") }}
+		{{ javascript_include('js/rangeslider.min.js') }}
+
 		<link rel="icon" href="{{ siteUrl }}img/increase.png" >
 		<script src="{{ siteUrl }}js/menu.js" type="text/javascript"></script>
 	</head>

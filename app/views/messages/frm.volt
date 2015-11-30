@@ -20,6 +20,10 @@
 				{% endfor %}
 			</select>
 		  </div>
+		  <div class="form-group">
+			<label for="libelle">Objet</label>
+			<input type="text" name="objet" id="objet" class="form-control" value="{{message.getObjet()}}"/>
+		</div>
 		<div class="form-group">
 			<label for="libelle">Contenu</label>
 			<textarea name="content" id="content" class="form-control">{{message.getContent()}}</textarea>

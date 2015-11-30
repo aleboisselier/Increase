@@ -116,6 +116,19 @@ class Usecase extends \Phalcon\Mvc\Model
 
         return $this;
     }
+    
+    /**
+     * Method to set the value of field code
+     *
+     * @param string $code
+     * @return $this
+     */
+    public function setId($code)
+    {
+    	$this->code = $code;
+    
+    	return $this;
+    }
 
     /**
      * Returns the value of field code

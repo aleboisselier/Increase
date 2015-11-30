@@ -62,6 +62,7 @@ class ProjectsController extends DefaultController{
 		$this->view->setVar("clients", $clients);
 		
 		parent::frmAction($id);
+		$_SESSION['bread']['object'] = $projet;
 		
 	}
 }
