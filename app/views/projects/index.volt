@@ -7,8 +7,8 @@
 				<td>{{object}}</td>
 				<td class='td-center'>
 					<a class='btn btn-primary btn-xs' 
-					href='{{url.get(baseHref~"/show/"~object.getId())}}' 
-					data-ajax="{{ baseHref ~ "/show/" ~ object.getId() }}"
+					href='{{url.get(baseHref~"/frm/"~object.getId())}}' 
+					data-ajax="{{ baseHref ~ "/frm/" ~ object.getId() }}"
 					data-toggle="tooltip" data-placement="top" title="Voir le projet">
 						<span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span>
 					</a>
