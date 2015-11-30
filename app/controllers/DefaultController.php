@@ -79,7 +79,6 @@ class DefaultController extends ControllerBase{
     	$this->jquery->compile($this->view);
     }
 
-
     /**
      * Affecte membre à membre les valeurs du tableau associatif $_POST aux membres de l'objet $object<br>
      * Prévoir une sur-définition de la méthode pour l'affectation des membres de type objet<br>

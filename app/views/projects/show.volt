@@ -22,17 +22,22 @@
 		</div>
 		<br>
 		Temps Ecoulé : 
-		{{tmpEcoule}}
 		<div class="progress">
 			<div class="progress-bar progress-bar-success" 
 				role="progressbar" 
 				aria-valuenow="40" 
 				aria-valuemin="0" 
 				aria-valuemax="100" 
-				style="width: 40%">
+				style="width: {{tmpEcoule}}">
+				{% if tmpEcoule=="0%" %}
+					<b style="color:red">{{tmpEcoule}}</b>
+				{% else %}
+					<b>{{tmpEcoule}}</b>
+				{% endif%}
 			</div>
+			
 		</div>
-		Pourcentage du projet effectué :
+		Pourcentage du projet effectué : 
 		<div class="progress">
 			<div class="progress-bar progress-bar-info" 
 				role="progressbar" 
@@ -40,6 +45,11 @@
 				aria-valuemin="0" 
 				aria-valuemax="100" 
 				style="width: {{avancement}}%">
+				{% if avancement==0 %}
+					<b style="color:red">{{avancement}}%</b>
+				{% else %}
+					<b>{{avancement}}%</b>
+				{% endif%}
 			</div>
 		</div>
 		<div class="description" style="margin-top:15%">
