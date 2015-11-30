@@ -37,7 +37,7 @@
 				{% if key != "Default" %}
 					{% for actionKey, action in controller['actions'] %}
 						<div class="col-md-3">
-							<div class="checkbox"><label><input name="acl[]" type="checkbox" value="{{ actionKey }}" {% if acls[key][actionKey] is defined  %}checked{% endif %}> {{ action }}</label></div>
+							<div class="checkbox"><label><input name="acl[]" type="checkbox" value="{{ key }}/{{ actionKey }}" {% if acls[key][actionKey] is defined  %}checked{% endif %}> {{ action }}</label></div>
 						</div>
 					{% endfor %}
 				{% endif %}

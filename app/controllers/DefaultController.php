@@ -77,6 +77,7 @@ class DefaultController extends ControllerBase{
     	$this->jquery->postFormOnClick(".validate", $this->dispatcher->getControllerName()."/update", "frmObject","#content");
     	$this->jquery->getOnClick(".cancel","","#content",array("attr"=>"data-ajax"));
     	$this->jquery->compile($this->view);
+    	$this->view->setVar("baseHref", $this->dispatcher-> getControllerName());
     }
 
     /**
