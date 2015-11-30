@@ -21,9 +21,10 @@ class RolesController extends DefaultController{
 					"name" => "Tous",
 					"actions" => array(
 						"index" => "Lister",
-						"frm" => "Afficher les détails",
+						"frm" => "Modifiation des données Brutes",
 						"update" => "Modifier/Ajouter",
-						"delete" => "Supprimer"
+						"delete" => "Supprimer",
+						"show"=>"Afficher les détails"
 					)
 				),
 				"Projects" => array(
@@ -32,7 +33,9 @@ class RolesController extends DefaultController{
 				), 
 				"Roles" => array(
 					"name" => "Rôles",
-					"actions" => array()
+					"actions" => array(
+						"updateACL"=>"Mettre à jour es droits"
+					)
 				),
 				"Taches"=>array(
 					"name" => "Tâches",

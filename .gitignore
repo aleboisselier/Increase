@@ -45,3 +45,4 @@ Temporary Items
 app/cache/*
 *.volt.php
 
+.settings/org.eclipse.php.core.prefs

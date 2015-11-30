@@ -1,4 +1,5 @@
 <?php
+
 class ProjectsController extends DefaultController{
 	public function initialize(){
 		$this->model="Projet";
@@ -8,11 +9,13 @@ class ProjectsController extends DefaultController{
 	}
 	
 	public function indexAction($message=NULL){
-		parent::indexAction($message=NULL);
+		parent::indexAction($message);
 		$this->view->pick("projects/index");
 		$this->jquery->exec("$('[data-toggle=\"tooltip\"]').tooltip()", true);
+		$this->jquery->getOnClick(".update, .add","","#content",array("attr"=>"data-ajax"));
 		$this->jquery->compile($this->view);
 	}
+	
 	public function totalPoidsUcs($id=NULL){
 		$ucs=Usecase::find("idProjet=".$id);
 		foreach ($ucs as $uc){
@@ -27,7 +30,7 @@ class ProjectsController extends DefaultController{
 		return $pourcentJour=(($fin-$date)/$date)*100;
 	}
 
-	public function frmAction($id=NULL){
+	public function showAction($id=NULL){
 
 		$ucs=Usecase::find("idProjet=".$id);
 		$poidTotal=$this->totalPoidsUcs($id);
@@ -49,6 +52,17 @@ class ProjectsController extends DefaultController{
 				));
 		$_SESSION['bread']['object'] = $projet;
 		//parent::frmAction($id);
+	}
+	
+	public function frmAction($id=null){
+		$projet=$this->getInstance($id);
+		$this->view->setVar("project", $projet);
+		
+		$clients = User::find("idRole=3");
+		$this->view->setVar("clients", $clients);
+		
+		parent::frmAction($id);
+		
 	}
 }
 

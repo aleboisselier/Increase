@@ -8,7 +8,7 @@
   </div>
   <div class="form-group">
     <label for="role">Rôle</label>
-    <select class="form-control">
+    <select class="form-control" name="idRole">
 		{% for role in roles %}
 			<option value="{{ role.getId() }}" {% if role.getId() == user.getIdRole() %}selected{% endif %}>{{ role }}</option>
 		{% endfor %}
