@@ -25,9 +25,23 @@ class ProjectsController extends DefaultController{
 	}
 	public function tmpEcoule($id){
 		$projet=$this->getInstance($id);
-		$fin=$projet->getDateFinPrevue();
-		$date=date("d-m-Y");
-		return $pourcentJour=(($fin-$date)/$date)*100;
+		
+		//date begin project
+		$dateBegin=$projet->getDateLancement();
+		
+		//date end project
+		$dateEnd=$projet->getDateFinPrevue();
+		
+		//return result in day of project duration
+		$dureeProjet = ceil((strtotime($dateEnd) - strtotime($dateBegin))/86400);
+		
+		//return result in day of number elapsed days
+		$nowDaysProject = ceil((strtotime($dateEnd) - strtotime(date("Y-m-d")))/86400);
+		if($nowDaysProject<=0){
+			return "100%";
+		}else{
+			return ceil(($nowDaysProject*100)/$dureeProjet)."%";
+		}
 	}
 
 	public function showAction($id=NULL){
@@ -37,21 +51,27 @@ class ProjectsController extends DefaultController{
 		$avancement = 0;
 		foreach ($ucs as $uc){
 			$poidRel=($uc->getPoids()/$poidTotal)*100;
-			$avancement+=$poidRel*($uc->getAvancement()/100);			
+			$avancement+=$poidRel*($uc->getAvancement()/100);	
+			ceil($avancement);
 		}
 		$this->view->pick("projects/show");
 		$projet=$this->getInstance($id);
-		$tmpEcoule= $this->tmpEcoule($id);
+		$tmpEcoule=$this->tmpEcoule($id);
 		$this->view->setVars(
-				array(
-						"projet"=>$projet,
-						"ucs"=>$ucs,
-						"avancement"=>round($avancement),
-						"tmpEcoule"=>$tmpEcoule,
-						
-				));
+			array(
+					"projet"=>$projet,
+					"ucs"=>$ucs,
+					"avancement"=>round($avancement),
+					"tmpEcoule"=>$tmpEcoule,
+					
+			));
 		$_SESSION['bread']['object'] = $projet;
 		//parent::frmAction($id);
+	}
+
+	public function listAction($id=Null){
+		$project=$this->getInstance($id);
+		$this->view->setVars();
 	}
 	
 	public function frmAction($id=null){
@@ -63,7 +83,7 @@ class ProjectsController extends DefaultController{
 		
 		parent::frmAction($id);
 		$_SESSION['bread']['object'] = $projet;
-		
+
 	}
 }
 
