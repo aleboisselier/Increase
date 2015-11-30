@@ -26,7 +26,9 @@ class ProjectsController extends DefaultController{
 		$date=date("d-m-Y");
 		return $pourcentJour=(($fin-$date)/$date)*100;
 	}
+
 	public function frmAction($id=NULL){
+
 		$ucs=Usecase::find("idProjet=".$id);
 		$poidTotal=$this->totalPoidsUcs($id);
 		$avancement = 0;
