@@ -45,33 +45,49 @@ class ProjectsController extends DefaultController{
 	}
 
 	public function showAction($id=NULL){
-
+		$this->view->pick("projects/show");
+		$projet=$this->getInstance($id);
+		
+		//recupere les taches
+		$taches=$this->listAction($id);
+		
+		//poid uc
 		$ucs=Usecase::find("idProjet=".$id);
-		$poidTotal=$this->totalPoidsUcs($id);
+		$poidTotal=$this->totalPoidsUcs($id);		
 		$avancement = 0;
 		foreach ($ucs as $uc){
 			$poidRel=($uc->getPoids()/$poidTotal)*100;
 			$avancement+=$poidRel*($uc->getAvancement()/100);	
 			ceil($avancement);
 		}
-		$this->view->pick("projects/show");
-		$projet=$this->getInstance($id);
+		
+		//recupere le pourcentage de temps écoulé
 		$tmpEcoule=$this->tmpEcoule($id);
+		
 		$this->view->setVars(
 			array(
 					"projet"=>$projet,
 					"ucs"=>$ucs,
 					"avancement"=>round($avancement),
 					"tmpEcoule"=>$tmpEcoule,
+					"taches"=>$taches,
 					
 			));
 		$_SESSION['bread']['object'] = $projet;
-		//parent::frmAction($id);
 	}
 
 	public function listAction($id=Null){
-		$project=$this->getInstance($id);
-		$this->view->setVars();
+		$ucs=Usecase::find("idProjet=".$id);
+		$arrayTaches = '';
+		foreach ($ucs as $uc){
+			$ucCode=$uc->getCode();
+			$arrayTaches .= "<br>".$ucCode." =>";
+			$taches=Tache::find("codeUseCase='".$ucCode."'");
+			foreach($taches as $tache){
+				$arrayTaches.=$tache."-";
+			}
+		}
+		return $arrayTaches;
 	}
 	
 	public function frmAction($id=null){
