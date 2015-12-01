@@ -56,7 +56,7 @@
 			<h3>Description : </h3>
 			{{projet.getDescription()}}
 		</div>
-		
+
 		<div class="ucs" style="margin-top:15%">
 			<h3>Use Cases : </h3>
 			{% for u in ucs %}

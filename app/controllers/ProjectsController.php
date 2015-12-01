@@ -78,7 +78,7 @@ class ProjectsController extends DefaultController{
 		$this->jquery->jsonArrayOn("click",".panel-heading",".taskRepeat", "", array("context"=>" $('table[id='+$(self.attr('id'))+']')","attr"=>"data-ajax"));
 		$this->jquery->compile($this->view);
 	}
-	
+
 	public function listAction($id=Null){
 		$ucs=Usecase::find("idProjet=".$id);
 		$arrayTaches = '';
