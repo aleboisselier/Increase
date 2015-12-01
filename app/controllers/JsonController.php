@@ -8,7 +8,10 @@ class JsonController extends ControllerBase{
 		$this->view->disable();
 	}
 	
-	public function getActions(){
-		
+	public function listTachesAction($codeUseCase){
+		$taches = Tache::find('codeUseCase LIKE "'.$codeUseCase.'"');
+		$ar = $taches->toArray();
+		print_r(json_encode($ar));
+		$this->view->disable();
 	}
 }

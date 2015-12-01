@@ -25,9 +25,9 @@ class DefaultController extends ControllerBase{
 		 $controller = $this->dispatcher->getControllerName();
 		 $action = $this->dispatcher->getActionName();
 		 
-		 if(!isset($acls[$controller][$action]) && !isset($acls['Default'][$action])){
-		 	$this->dispatcher->forward(array("controller"=>"Index","action"=>"indexAjax"/*,"params"=>array($msg)*/));
-		 }
+// 		 if(!isset($acls[$controller][$action]) && !isset($acls['Default'][$action])){
+// 		 	$this->dispatcher->forward(array("controller"=>"Index","action"=>"indexAjax"/*,"params"=>array($msg)*/));
+// 		 }
 	}
 	
     public function indexAction($message=NULL){

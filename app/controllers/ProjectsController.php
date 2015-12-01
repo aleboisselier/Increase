@@ -45,6 +45,7 @@ class ProjectsController extends DefaultController{
 	}
 
 	public function showAction($id=NULL){
+	    
 		$this->view->pick("projects/show");
 		$projet=$this->getInstance($id);
 		
@@ -71,12 +72,13 @@ class ProjectsController extends DefaultController{
 					"avancement"=>round($avancement),
 					"tmpEcoule"=>$tmpEcoule,
 					"taches"=>$taches,
-					
 			));
 		$_SESSION['bread']['object'] = $projet;
+		
+		$this->jquery->jsonArrayOn("click",".panel-heading",".taskRepeat", "", array("context"=>" $('table[id='+$(self.attr('id'))+']')","attr"=>"data-ajax"));
+		$this->jquery->compile($this->view);
 	}
 	
-	//UNECESSARY
 	public function listAction($id=Null){
 		$ucs=Usecase::find("idProjet=".$id);
 		$arrayTaches = '';

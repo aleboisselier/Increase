@@ -47,7 +47,7 @@ class TachesController extends DefaultController{
 			try {
 				$a = 0;
 				$usecase = Usecase::findFirst("code='".$object->getCodeUseCase()."'");
-				$taches = Tache::find("codeUseCase='".$object->getCodeUseCase()."'");
+				$taches = Tache::find("codeUseCase LIKE '".$object->getCodeUseCase()."'");
 				foreach ($taches as $tache){
 					$a += $tache->getAvancement();
 				}
