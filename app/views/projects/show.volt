@@ -58,10 +58,12 @@
 		</div>
 		
 		{{taches}}
-		<!-- {% for taches in tache %}
+		<!-- {% for tache in taches %}
 			<ul class="dropdown-menu">
 			{{ uc.get}}
 			</ul>
 		{% endfor %}-->
 	</div>
 </fieldset>
+
+{{ script_foot }}

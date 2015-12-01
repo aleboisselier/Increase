@@ -75,7 +75,8 @@ class ProjectsController extends DefaultController{
 			));
 		$_SESSION['bread']['object'] = $projet;
 	}
-
+	
+	//UNECESSARY
 	public function listAction($id=Null){
 		$ucs=Usecase::find("idProjet=".$id);
 		$arrayTaches = '';
