@@ -22,10 +22,10 @@ body{
 	cursor: pointer;
 	width:25%;
 }
-.nomUser{
-	float:left;
-	margin-top:-85%;
-	margin-left:120%;
+.infoUser{
+	position:absolute;
+	z-index:2;
+	margin-top:5%;
 	padding:5%;
 	background-color:rgba(0, 0, 0, 0.5);
 	color:white;

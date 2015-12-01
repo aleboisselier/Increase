@@ -27,9 +27,19 @@ class ControllerBase extends Controller
 	 
 	 public function userAction(){
 	 	$user=$this->session->get("user");
-	 	$this->view->setVars(array("user"=>$user));
-	 	$this->jquery->doJqueryOn("mouseover",".display-user",".nomUser","change","pouet");
-	 	$this->jquery->compile();
+	 	$this->jquery->doJqueryOn(
+	 			"mouseover",
+	 			".display-user",
+	 			".infoUser",
+	 			"html",
+	 			$user."<br>".$user->getMail()
+	 			);
+	 	$this->jquery->doJqueryOn(
+	 			"mouseout",
+	 			".display-user",
+	 			".infoUser",
+	 			"html","");
+	 	$this->jquery->compile($this->view);
 	 }
 	 
 	 public function breadCrumbsAction(){

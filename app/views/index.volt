@@ -24,7 +24,7 @@
 	            <ul class="sidebar-nav">
 	            	<div class="display-user">
 						<img src="{{ siteUrl }}img/user.png" class="img-responsive" alt="Responsive image" style="float:left">
-						<div class="nomUser">{{user}}</div>
+						<div class="infoUser"></div>
 					</div>
 					<div class="bs-docs-header">
 						<img src="{{ siteUrl }}img/phalcon.png" class="img-responsive" alt="Responsive image">
