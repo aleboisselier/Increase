@@ -10,11 +10,12 @@ class ControllerBase extends Controller
 	 	
 	 	if(!Auth::isAuth()){
 	 		$this->dispatcher->forward(array("controller" => "Auth", "action" => "signin"));
-	 		$this->jquery->exec('$(".breadcrumb").hide();$(".menuItem").hide()', true);
+	 		$this->jquery->exec('$(".breadcrumb").hide();$(".menuItem").hide();$(".nomUser").hide()', true);
     		$this->jquery->compile($this->view);
 	 	}else{
 	 		$this->breadCrumbsAction();
 	 		$this->menuAction();
+	 		$this->userAction();
 	 	}
 	 	
 	 }
@@ -22,6 +23,13 @@ class ControllerBase extends Controller
 	 public function menuAction(){
 	 	$this->jquery->getOnClick(".menuItem","","#content",array("attr"=>"data-ajax"));
 	 	$this->jquery->compile($this->view);
+	 }
+	 
+	 public function userAction(){
+	 	$user=$this->session->get("user");
+	 	$this->view->setVars(array("user"=>$user));
+	 	$this->jquery->doJqueryOn("mouseover",".display-user",".nomUser","change","pouet");
+	 	$this->jquery->compile();
 	 }
 	 
 	 public function breadCrumbsAction(){

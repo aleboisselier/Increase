@@ -22,6 +22,14 @@ body{
 	cursor: pointer;
 	width:25%;
 }
+.nomUser{
+	float:left;
+	margin-top:-85%;
+	margin-left:120%;
+	padding:5%;
+	background-color:rgba(0, 0, 0, 0.5);
+	color:white;
+}
 .bs-docs-header {
     color: rgb(129, 181, 221);
     height: 35%;
