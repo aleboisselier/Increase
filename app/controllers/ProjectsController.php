@@ -98,6 +98,8 @@ class ProjectsController extends DefaultController{
 		$this->jquery->execOn("click", ".chevron", 
 				"$('.viewUc').hide();$('chevron').addClass('glyphicon-menu-down');$('.chevron').hide();
 				");
+		$this->jquery->execOn("click", ".displayUcs","$('.ucs').show();$('.hideUcs').show();$('.displayUcs').hide();");
+		$this->jquery->execOn("click", ".hideUcs","$('.ucs').hide();$('.displayUcs').show();$('.hideUcs').hide();");
 		
 		$_SESSION['bread']['object'] = $projet;
 		
