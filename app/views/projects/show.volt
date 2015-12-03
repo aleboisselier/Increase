@@ -88,25 +88,35 @@
 				</div>
 			{% endfor %}
 		</div>
-
-		<div class="messages" style="margin-top:15%">
-			<h3>Messages : </h3>
-			{% for message in messages %}
-			<div class="panel panel-default" style="margin-top:5%">
-				<div class="panel-heading">
-					<span>{{ message.getObjet()}}
-					Auteur :
-					<i style="font-size:12px">{{message.getUser()}}</i>
-					</span>
+		
+		<h3>Messages : </h3>
+		
+		{% if nbMessages > 0 %}
+			<a href="" data-ajax="Json/loadMessages/{{ projet.getId() }}" class="btn btn-primary loadMessages btn-block">Afficher {{ nbMessages }} message{% if nbMessages > 1 %}s{% endif%}.</a>
+		{% else %}
+			<a class="btn btn-primary load btn-block disabled">Aucun Message à Afficher.</a>
+		{% endif%}
+		
+		<div class="messages" style="display:none">
+			<div class="msgTemplate">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<span>[[objet]]
+							<small>Auteur :
+								<i style="font-size:12px">[[author]]</i>
+							</small>
+						</span>
+					</div>
+				  	<div class="panel-body" id="[[id]]">
+				  		<i>[[content]]</i>
+				  	</div>
 				</div>
-			  	<div class="panel-body" id="message.getId()" style="display:none">
-			  		<i>{{message.getContent()}}</i>
-			  	</div>
+				<div class="loadFil pull-right" data-ajax="Json/loadMessages/{{ projet.getId() }}/[[id]]">
+					<span class="glyphicon glyphicon-eye-open" style="margin:20%;"></span>
+				</div>
+				<div class="responses"></div>
 			</div>
-			<div class="repondre pull-right">
-				<span class="glyphicon glyphicon-eye-open" style="margin:20%;"></span>
-			</div>
-			{% endfor %}
+			<a class="btn btn-primary load btn-block hideMessages">Masquer les Messages</a>
 		</div>
 	</div>
 </fieldset>
