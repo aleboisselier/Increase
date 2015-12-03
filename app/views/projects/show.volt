@@ -74,8 +74,16 @@
 			<h3>Use Cases : </h3>
 			{% for u in ucs %}
 				<div class="panel panel-default">
-	  				<div class="panel-heading" id="{{ u.getCode() }}" data-ajax="Json/listTaches/{{ u.getCode() }}">{{ u }}</div>
+	  				<div class="panel-heading loadTasks" id="{{ u.getCode() }}" data-ajax="Json/listTaches/{{ u.getCode() }}">
+		  				{{ u }}
+		  				{% for tachesUc in tachesUcs %}
+							{% if u.getCode() == tachesUc %} 
+							<span class="glyphicon chevron pull-right glyphicon-menu-down down" id="{{ u.getCode() }}"></span> 
+							{% endif %}
+						{% endfor %}
+					</div>
 	  				<table class="table" id="{{ u.getCode() }}">
+	  					<span class="chevron up pull-right" id="{{ u.getCode() }}"></span>
 				  	</table>
 				</div>
 			{% endfor %}

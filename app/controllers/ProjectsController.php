@@ -68,6 +68,10 @@ class ProjectsController extends DefaultController{
 		//users
 		$users=User::find();
 		
+		//recupere les taches
+		$tachesUcs=$this->listAction($id);
+		$listTachesUcs = explode("/", $tachesUcs);
+		
 		$this->view->setVars(
 			array(
 					"projet"=>$projet,
@@ -76,14 +80,40 @@ class ProjectsController extends DefaultController{
 					"tmpEcoule"=>$tmpEcoule,
 					"messages"=>$messages,
 					"users"=>$users,
+					"tachesUcs"=>$listTachesUcs,
 			));
 		$_SESSION['bread']['object'] = $projet;
 		
-		$this->jquery->jsonArrayOn("click",".panel-heading",".taskRepeat > *", "", array("context"=>"$('table[id=\"'+self.attr('id')+'\"]')","attr"=>"data-ajax"));
+		$this->jquery->jsonArrayOn("click",".loadTasks",".taskRepeat > *", "", 
+				array(
+						"context"=>"$('table[id=\"'+self.attr('id')+'\"]')",
+						"attr"=>"data-ajax",
+						"jsCallback"=>
+						"$('.glyphicon-menu-down[id=\"'+self.attr('id')+'\"]').removeClass('glyphicon-menu-down');
+						$('.up[id=\"'+self.attr('id')+'\"]').addClass('glyphicon glyphicon-menu-up');
+						$(self).removeClass('loadTasks');
+						$('.up[id=\"'+self.attr('id')+'\"]').click(function(){
+							$('.up[id=\"'+self.attr('id')+'\"]').removeClass('glyphicon glyphicon-menu-up');
+							$('.down[id=\"'+self.attr('id')+'\"]').addClass('glyphicon-menu-down');
+							$('.table[id=\"'+self.attr('id')+'\"]').hide();
+						})",
+				));
 		$this->jquery->compile($this->view);
 		//table[id=\"'+$(self).attr('id')+'\"]
 	}
-	
+	public function listAction($id=Null){
+			$ucs=Usecase::find("idProjet=".$id);
+			$tachesUcs = '';
+			foreach ($ucs as $uc){
+				$ucCode=$uc->getCode();
+				$taches=Tache::find("codeUseCase='".$ucCode."'");
+				foreach($taches as $tache){
+					$tachesUcs .= $ucCode."/";
+				}
+			}
+			$tachesUcs=substr($tachesUcs,0,-1);
+			return $tachesUcs;
+	}
 	public function frmAction($id=null){
 		$projet=$this->getInstance($id);
 		$this->view->setVar("project", $projet);
