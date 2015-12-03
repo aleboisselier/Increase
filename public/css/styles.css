@@ -262,11 +262,11 @@ body{
 .repondre{
 	margin-top:-8%;
 	margin-bottom:2%;
-	width:45px;
-	height:45px;
+	width:30px;
+	height:30px;
 	color:white;
-	font-size:25px;
-	background-color: #ff8040;
+	font-size:18px;
+	background-color:  #03a9f4;
 	border-radius:50%;
 	cursor:pointer;
 }
