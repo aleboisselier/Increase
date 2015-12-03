@@ -26,10 +26,13 @@ class ControllerBase extends Controller
 	 }
 	 
 	 public function userAction(){
-	 	$user=$this->session->get("user");
-	 	//$this->jquery->doJqueryOn("click",".display-user",".infoUser","html",$user."<br>".$user->getMail());
-	 	//$this->jquery->compile($this->view);
-	 	$this->view->setVars(array("viewUser"=>$user."<br>".$user->getMail()));
+	 	if($this->session->get("user")==!null){
+		 	$user=$this->session->get("user");
+		 	$this->view->setVars(array("viewUser"=>$user."<br>".$user->getMail()));
+	 	}else{
+	 		$user="";
+	 		$this->view->setVars(array("viewUser"=>$user));
+	 	}
 	 }
 	 
 	 public function breadCrumbsAction(){
