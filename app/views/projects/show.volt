@@ -78,12 +78,11 @@
 		  				{{ u }}
 		  				{% for tachesUc in tachesUcs %}
 							{% if u.getCode() == tachesUc %} 
-							<span class="glyphicon chevron pull-right glyphicon-menu-down down" id="{{ u.getCode() }}"></span> 
+							<span class="glyphicon chevron pull-right glyphicon-menu-down" id="{{ u.getCode() }}"></span> 
 							{% endif %}
 						{% endfor %}
 					</div>
 	  				<table class="table" id="{{ u.getCode() }}">
-	  					<span class="chevron up pull-right" id="{{ u.getCode() }}"></span>
 				  	</table>
 				</div>
 			{% endfor %}

@@ -91,20 +91,15 @@ class ProjectsController extends DefaultController{
 						"context"=>"$('table[id=\"'+self.attr('id')+'\"]')",
 						"attr"=>"data-ajax",
 						"jsCallback"=>
-						"$('.glyphicon-menu-down[id=\"'+self.attr('id')+'\"]').removeClass('glyphicon-menu-down');
-						$('.up[id=\"'+self.attr('id')+'\"]').addClass('glyphicon glyphicon-menu-up');
-						$(self).removeClass('loadTasks');
-						$('.up[id=\"'+self.attr('id')+'\"]').click(function(){
-							$('.up[id=\"'+self.attr('id')+'\"]').removeClass('glyphicon glyphicon-menu-up');
-							$('.down[id=\"'+self.attr('id')+'\"]').addClass('glyphicon-menu-down');
-							$('.table[id=\"'+self.attr('id')+'\"]').hide();
-						})",
+						"$('.chevron[id=\"'+self.attr('id')+'\"]').removeClass('glyphicon-menu-down');
+						$('.chevron[id=\"'+self.attr('id')+'\"]').addClass('glyphicon-menu-up');"
 				));
+		$this->jquery->execOn("click", ".chevron", "$('.table[id=\"'+self.attr('id')+'\"]').hide();");
+		
 		$_SESSION['bread']['object'] = $projet;
 		
 		$this->jquery->jsonArrayOn("click", ".loadMessages", ".msgTemplate", "", array("attr"=>"data-ajax", "jsCallback"=>"$('.messages').show();$('.loadMessages').hide();"));
 		$this->jquery->execOn("click", ".hideMessages", "$('.messages').hide();$('.loadMessages').show();");
-		$this->jquery->jsonArrayOn("click",".panel-heading",".taskRepeat > *", "", array("context"=>"$('table[id=\"'+self.attr('id')+'\"]')","attr"=>"data-ajax"));
 		$this->jquery->compile($this->view);
 		//table[id=\"'+$(self).attr('id')+'\"]
 	}
