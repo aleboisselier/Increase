@@ -56,6 +56,19 @@
 			<h3>Description : </h3>
 			{{projet.getDescription()}}
 		</div>
+		
+		<table class="taskRepeat" >
+		<tr>
+			<td class="col-md-6">[[libelle]]</td>
+			<td class="col-md-6">
+				<div class="progress">
+					<div class="progress-bar progress-bar-success" role="progressbar"
+						aria-valuenow="[[avancement]]" aria-valuemin="0"
+						aria-valuemax="100" style="width: [[avancement]]%;">[[avancement]]%</div>
+				</div>
+			</td>
+		</tr>	
+		</table>
 
 		<div class="ucs" style="margin-top:15%">
 			<h3>Use Cases : </h3>
@@ -63,20 +76,11 @@
 				<div class="panel panel-default">
 	  				<div class="panel-heading" id="{{ u.getCode() }}" data-ajax="Json/listTaches/{{ u.getCode() }}">{{ u }}</div>
 	  				<table class="table" id="{{ u.getCode() }}">
-	  					<tr class="taskRepeat" style="display:none;">
-							<td class="col-md-6">[[libelle]]</td>
-							<td class="col-md-6">
-								<div class="progress">
-									<div class="progress-bar progress-bar-success" role="progressbar"
-										aria-valuenow="[[avancement]]" aria-valuemin="0"
-										aria-valuemax="100" style="width: [[avancement]]%;">[[avancement]]%</div>
-								</div>
-							</td>
-						</tr>	
 				  	</table>
 				</div>
 			{% endfor %}
 		</div>
+		
 </fieldset>
 
 {{ script_foot }}

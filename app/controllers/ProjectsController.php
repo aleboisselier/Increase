@@ -75,8 +75,9 @@ class ProjectsController extends DefaultController{
 			));
 		$_SESSION['bread']['object'] = $projet;
 		
-		$this->jquery->jsonArrayOn("click",".panel-heading",".taskRepeat", "", array("context"=>" $('table[id='+$(self.attr('id'))+']')","attr"=>"data-ajax"));
+		$this->jquery->jsonArrayOn("click",".panel-heading",".taskRepeat > *", "", array("context"=>"$('table[id=\"'+self.attr('id')+'\"]')","attr"=>"data-ajax"));
 		$this->jquery->compile($this->view);
+		//table[id=\"'+$(self).attr('id')+'\"]
 	}
 
 	public function listAction($id=Null){
