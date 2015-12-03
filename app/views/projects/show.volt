@@ -86,10 +86,10 @@
 			{% for message in messages %}
 			<div class="panel panel-default" style="margin-top:5%">
 				<div class="panel-heading">
-					<h4>{{ message.getObjet()}}
+					<span>{{ message.getObjet()}}
 					Auteur :
 					<i style="font-size:12px">{{message.getUser()}}</i>
-					</h4>
+					</span>
 				</div>
 			  	<div class="panel-body" id="message.getId()" style="display:none">
 			  		<i>{{message.getContent()}}</i>
