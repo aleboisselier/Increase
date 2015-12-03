@@ -67,6 +67,7 @@ class ProjectsController extends DefaultController{
 		
 		//users
 		$users=User::find();
+		$count = count(Message::find("idProjet=".$id));
 		
 		$this->view->setVars(
 			array(
@@ -76,9 +77,12 @@ class ProjectsController extends DefaultController{
 					"tmpEcoule"=>$tmpEcoule,
 					"messages"=>$messages,
 					"users"=>$users,
+					"nbMessages"=>$count,
 			));
 		$_SESSION['bread']['object'] = $projet;
 		
+		$this->jquery->jsonArrayOn("click", ".loadMessages", ".msgTemplate", "", array("attr"=>"data-ajax", "jsCallback"=>"$('.messages').show();$('.loadMessages').hide();"));
+		$this->jquery->execOn("click", ".hideMessages", "$('.messages').hide();$('.loadMessages').show();");
 		$this->jquery->jsonArrayOn("click",".panel-heading",".taskRepeat > *", "", array("context"=>"$('table[id=\"'+self.attr('id')+'\"]')","attr"=>"data-ajax"));
 		$this->jquery->compile($this->view);
 		//table[id=\"'+$(self).attr('id')+'\"]
