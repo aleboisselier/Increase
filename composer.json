@@ -1,5 +1,5 @@
 {
     "require": {
-        "aleboisselier/phalcon-jquery": "dev-master"
+        "jcheron/phalcon-jquery": "dev-master"
     }
 }

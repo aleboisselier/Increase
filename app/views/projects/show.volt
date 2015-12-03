@@ -57,7 +57,7 @@
 			{{projet.getDescription()}}
 		</div>
 		
-		<table class="taskRepeat" >
+		<table class="taskRepeat" style="display:none;" >
 		<tr>
 			<td class="col-md-6">[[libelle]]</td>
 			<td class="col-md-6">
