@@ -90,11 +90,14 @@ class ProjectsController extends DefaultController{
 				array(
 						"context"=>"$('table[id=\"'+self.attr('id')+'\"]')",
 						"attr"=>"data-ajax",
-						"jsCallback"=>
-						"$('.chevron[id=\"'+self.attr('id')+'\"]').removeClass('glyphicon-menu-down');
-						$('.chevron[id=\"'+self.attr('id')+'\"]').addClass('glyphicon-menu-up');"
+						"jsCallback"=>"
+							$('.chevron[id=\"'+self.attr('id')+'\"]').show();
+							$('.viewUc[id=\"'+self.attr('id')+'\"]').show();
+							$('.table[id=\"'+self.attr('id')+'\"]').show();"
 				));
-		$this->jquery->execOn("click", ".chevron", "$('.table[id=\"'+self.attr('id')+'\"]').hide();");
+		$this->jquery->execOn("click", ".chevron", 
+				"$('.viewUc').hide();$('chevron').addClass('glyphicon-menu-down');$('.chevron').hide();
+				");
 		
 		$_SESSION['bread']['object'] = $projet;
 		

@@ -77,13 +77,20 @@
 	  				<div class="panel-heading loadTasks" id="{{ u.getCode() }}" data-ajax="Json/listTaches/{{ u.getCode() }}">
 		  				{{ u }}
 		  				{% for tachesUc in tachesUcs %}
-							{% if u.getCode() == tachesUc %} 
-							<span class="glyphicon chevron pull-right glyphicon-menu-down" id="{{ u.getCode() }}"></span> 
-							{% endif %}
+							{% if u.getCode() == tachesUc %} 	
+		  						<span class="glyphicon glyphicon-eye-open pull-right" style="color:rgba(0,0,0,0.2); cursor:pointer"></span>
+		  					{% endif %}
 						{% endfor %}
 					</div>
-	  				<table class="table" id="{{ u.getCode() }}">
-				  	</table>
+					{% for tachesUc in tachesUcs %}
+						{% if u.getCode() == tachesUc %} 
+							<div class="glyphicon glyphicon-menu-up chevron pull-right" id="{{ u.getCode() }}" style="display:none"></div> 
+						{% endif %}
+					{% endfor %}
+					<div class="viewUc" id="{{ u.getCode() }}">
+		  				<table class="table" id="{{ u.getCode() }}" style="display:none">
+					  	</table>
+				  	</div>
 				</div>
 			{% endfor %}
 		</div>
