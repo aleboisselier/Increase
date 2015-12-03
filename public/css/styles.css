@@ -25,7 +25,7 @@ body{
 .infoUser{
 	margin-left:20%;
 	height:100%;
-	width:120px;
+	width:100px;
 	position:absolute;
 	z-index:2;
 	padding:8%;
@@ -258,6 +258,17 @@ body{
 	margin-top:80%;
 	margin-bottom:5%;
 	font-size:80px;
+}
+.repondre{
+	margin-top:-8%;
+	margin-bottom:2%;
+	width:45px;
+	height:45px;
+	color:white;
+	font-size:25px;
+	background-color: #ff8040;
+	border-radius:50%;
+	cursor:pointer;
 }
 /*----------------END STYLE PROJECT-----------------*/
 @media(min-width:768px) {

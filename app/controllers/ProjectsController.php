@@ -43,14 +43,11 @@ class ProjectsController extends DefaultController{
 			return ceil(($nowDaysProject*100)/$dureeProjet)."%";
 		}
 	}
-
+	
 	public function showAction($id=NULL){
 	    
 		$this->view->pick("projects/show");
 		$projet=$this->getInstance($id);
-		
-		//recupere les taches
-		$taches=$this->listAction($id);
 		
 		//poid uc
 		$ucs=Usecase::find("idProjet=".$id);
@@ -65,33 +62,26 @@ class ProjectsController extends DefaultController{
 		//recupere le pourcentage de temps écoulé
 		$tmpEcoule=$this->tmpEcoule($id);
 		
+		//messages
+		$messages=Message::find("idProjet=".$id);
+		
+		//users
+		$users=User::find();
+		
 		$this->view->setVars(
 			array(
 					"projet"=>$projet,
 					"ucs"=>$ucs,
 					"avancement"=>round($avancement),
 					"tmpEcoule"=>$tmpEcoule,
-					"taches"=>$taches,
+					"messages"=>$messages,
+					"users"=>$users,
 			));
 		$_SESSION['bread']['object'] = $projet;
 		
 		$this->jquery->jsonArrayOn("click",".panel-heading",".taskRepeat > *", "", array("context"=>"$('table[id=\"'+self.attr('id')+'\"]')","attr"=>"data-ajax"));
 		$this->jquery->compile($this->view);
 		//table[id=\"'+$(self).attr('id')+'\"]
-	}
-
-	public function listAction($id=Null){
-		$ucs=Usecase::find("idProjet=".$id);
-		$arrayTaches = '';
-		foreach ($ucs as $uc){
-			$ucCode=$uc->getCode();
-			$arrayTaches .= "<br>".$ucCode." =>";
-			$taches=Tache::find("codeUseCase='".$ucCode."'");
-			foreach($taches as $tache){
-				$arrayTaches.=$tache."-";
-			}
-		}
-		return $arrayTaches;
 	}
 	
 	public function frmAction($id=null){

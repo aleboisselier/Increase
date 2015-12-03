@@ -23,7 +23,11 @@
 	            <ul class="sidebar-nav">
 	            	<div class="display-user">
 						<img src="{{ siteUrl }}img/user.png" class="img-responsive" alt="Responsive image" style="float:left; margin-left:20%;">
-						<div class="infoUser">{{viewUser}}</div>
+						<div class="infoUser">
+						{% if viewUser is defined%}
+							{{viewUser}}
+						{% endif %}
+						</div>
 					</div>
 					<div class="bs-docs-header">
 						<img src="{{ siteUrl }}img/phalcon.png" class="img-responsive" alt="Responsive image">

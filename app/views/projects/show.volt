@@ -80,7 +80,33 @@
 				</div>
 			{% endfor %}
 		</div>
-		
+
+		<div class="messages" style="margin-top:15%">
+			<h3>Messages : </h3>
+			{% for message in messages %}
+			<div class="panel panel-primary" style="margin-top:5%">
+				<div class="panel-heading">
+					<h4>{{ message.getObjet()}}</h4>
+					Auteur :
+					{% for user in users %}
+						{% if user.getId() == message.getIdUser() %}
+							{{ user.getIdentite() }}
+						{% endif %}
+					{% endfor %}
+				</div>
+			  	<div class="panel-body" id="msg{{message.getId()}}">
+			  		<i>{{message.getContent()}}</i>
+			  	</div>
+			  	<div class="panel-footer">
+			  		
+			  	</div>
+			</div>
+			<div class="repondre pull-right">
+				<span class="glyphicon glyphicon-pencil" style="margin:22%;"></span>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
 </fieldset>
 
 {{ script_foot }}
