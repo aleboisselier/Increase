@@ -59,6 +59,16 @@ class ProjectsController extends DefaultController{
 			ceil($avancement);
 		}
 		
+		//avancement global des taches pour un uc
+		foreach ($ucs as $uc){
+			$taches=Tache::find("codeUseCase='".$uc->getCode()."'");
+			foreach($taches as $tache){
+				if($uc->getCode()==$tache->getCodeUseCase()){
+					$poids += $tache->getAvancement();
+				}
+			}
+		}
+		
 		//recupere le pourcentage de temps écoulé
 		$tmpEcoule=$this->tmpEcoule($id);
 		
@@ -78,6 +88,7 @@ class ProjectsController extends DefaultController{
 					"projet"=>$projet,
 					"ucs"=>$ucs,
 					"avancement"=>round($avancement),
+					"poids"=>$poids,
 					"tmpEcoule"=>$tmpEcoule,
 					"messages"=>$messages,
 					"users"=>$users,
@@ -106,7 +117,6 @@ class ProjectsController extends DefaultController{
 		$this->jquery->jsonArrayOn("click", ".loadMessages", ".msgTemplate", "", array("attr"=>"data-ajax", "jsCallback"=>"$('.messages').show();$('.loadMessages').hide();"));
 		$this->jquery->execOn("click", ".hideMessages", "$('.messages').hide();$('.loadMessages').show();");
 		$this->jquery->compile($this->view);
-		//table[id=\"'+$(self).attr('id')+'\"]
 	}
 	public function listAction($id=Null){
 			$ucs=Usecase::find("idProjet=".$id);

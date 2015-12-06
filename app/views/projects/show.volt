@@ -80,15 +80,15 @@
 			{% for u in ucs %}
 				<div class="panel panel-default">
 	  				<div class="panel-heading loadTasks" id="{{ u.getCode() }}" data-ajax="Json/listTaches/{{ u.getCode() }}">
-		  				{{ u }}
+		  				{{ u }}{{ poids }}
 		  				{% for tachesUc in tachesUcs %}
-							{% if u.getCode() == tachesUc %} 	
-		  						<span class="glyphicon glyphicon-eye-open pull-right" style="color:rgba(0,0,0,0.2); cursor:pointer"></span>
+							{% if u.getCode() == tachesUc and loop.revindex0 %}							
+		  						<span class="glyphicon glyphicon-eye-open pull-right" style="color:rgba(0,0,0,0.7); cursor:pointer"></span>
 		  					{% endif %}
 						{% endfor %}
 					</div>
 					{% for tachesUc in tachesUcs %}
-						{% if u.getCode() == tachesUc %} 
+						{% if u.getCode() == tachesUc and loop.revindex0 %} 
 							<div class="glyphicon glyphicon-menu-up chevron pull-right" id="{{ u.getCode() }}" style="display:none"></div> 
 						{% endif %}
 					{% endfor %}

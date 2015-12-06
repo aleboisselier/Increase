@@ -282,11 +282,10 @@ body{
 }
 
 .chevron{
-	margin-top:-1%;
-	padding:1%;
+	margin-top:2%;
 	width:30px;
 	height:30px;
-	color:rgba(0,0,0,0.2);
+	color:rgba(0,0,0,0.7);
 	font-size:18px;
 	border-radius:50%;
 	cursor:pointer;
