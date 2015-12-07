@@ -82,6 +82,8 @@ class ProjectsController extends DefaultController{
 		$_SESSION['bread']['object'] = $projet;
 		
 		$this->jquery->jsonArrayOn("click", ".loadMessages", ".msgTemplate", "", array("attr"=>"data-ajax", "jsCallback"=>"$('.messages').show();$('.loadMessages').hide();"));
+		$this->jquery->jsonArrayOn("click", ".loadReponses", ".msgTemplate", "", array("attr"=>"data-ajax", "jsCallback"=>"", "context"=>"$('.responses #'+self.attr('id'))"));
+
 		$this->jquery->execOn("click", ".hideMessages", "$('.messages').hide();$('.loadMessages').show();");
 		$this->jquery->jsonArrayOn("click",".panel-heading",".taskRepeat > *", "", array("context"=>"$('table[id=\"'+self.attr('id')+'\"]')","attr"=>"data-ajax"));
 		$this->jquery->compile($this->view);

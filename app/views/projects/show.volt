@@ -90,25 +90,25 @@
 		{% endif%}
 		
 		<div class="messages" style="display:none">
-			<div class="msgTemplate">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<span>[[objet]]
-							<small>Auteur :
-								<i style="font-size:12px">[[author]]</i>
-							</small>
-						</span>
-					</div>
-				  	<div class="panel-body" id="[[id]]">
-				  		<i>[[content]]</i>
-				  	</div>
-				</div>
-				<div class="loadFil pull-right" data-ajax="Json/loadMessages/{{ projet.getId() }}/[[id]]">
-					<span class="glyphicon glyphicon-eye-open" style="margin:20%;"></span>
-				</div>
-				<div class="responses"></div>
-			</div>
 			<a class="btn btn-primary load btn-block hideMessages">Masquer les Messages</a>
+			<div class="msgTemplate">
+					<div class="panel panel-default" >
+						<div class="panel-heading">
+							<span>[[objet]]
+								<small>Auteur :
+									<i style="font-size:12px">[[author]]</i>
+								</small>
+							</span>
+						</div>
+					  	<div class="panel-body" id="[[id]]">
+					  		<i>[[content]]</i>
+					  	</div>
+					  	<div class="panel-footer">
+					  		<small class="pull-right"> <a id="[[id]]" class="loadReponses" data-ajax="Json/loadMessages/{{ projet.getId() }}/[[id]]" >Afficher [[responses]] réponses</a></small>
+					  		<div class="clearfix"></div>
+					  	</div>
+				</div>
+				<div class="responses" id="[[id]]"></div>
 		</div>
 	</div>
 </fieldset>

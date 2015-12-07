@@ -28,11 +28,13 @@ class JsonController extends ControllerBase{
 		
 		$result = array();
 		foreach ($messages as $message){
+			$responses = count(Message::find("idFil=".$message->getId()));
 			array_push($result, array(
 					"id"=>$message->getId(),
 					"objet"=>$message->getObjet(),
 					"content"=> $message->getContent(),
 					"author"=> $message->getUser()->__toString(),
+					"responses"=> $responses
 			));
 		}
 		print_r(json_encode($result));
