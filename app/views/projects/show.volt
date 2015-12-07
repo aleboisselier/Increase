@@ -108,7 +108,7 @@
 		<div class="messages" style="display:none">
 			<a class="btn btn-primary load btn-block hideMessages" style="margin-bottom: 25px;">Masquer les Messages</a>
 			<div class="msgTemplate">
-				<div class="col-md-11 pull-right">
+				<div class="col-md-11 pull-right" style="padding:0">
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<span>[[objet]]
