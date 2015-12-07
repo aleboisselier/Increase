@@ -103,15 +103,16 @@
 		<h3>Messages : </h3>
 		
 		{% if nbMessages > 0 %}
-			<a href="" data-ajax="Json/loadMessages/{{ projet.getId() }}" class="btn btn-primary loadMessages btn-block">Afficher {{ nbMessages }} message{% if nbMessages > 1 %}s{% endif%}.</a>
+			<a href="" data-ajax="Json/loadMessages/{{ projet.getId() }}" class="btn btn-primary loadMessages btn-block" >Afficher {{ nbMessages }} message{% if nbMessages > 1 %}s{% endif%}.</a>
 		{% else %}
 			<a class="btn btn-primary load btn-block disabled">Aucun Message à Afficher.</a>
 		{% endif%}
 		
 		<div class="messages" style="display:none">
-			<a class="btn btn-primary load btn-block hideMessages">Masquer les Messages</a>
+			<a class="btn btn-primary load btn-block hideMessages" style="margin-bottom: 25px;">Masquer les Messages</a>
 			<div class="msgTemplate">
-					<div class="panel panel-default" >
+				<div class="col-md-11 pull-right">
+					<div class="panel panel-default">
 						<div class="panel-heading">
 							<span>[[objet]]
 								<small>Auteur :
@@ -127,7 +128,8 @@
 					  		<div class="clearfix"></div>
 					  	</div>
 				</div>
-				<div class="responses" id="[[id]]"></div>
+				<div class="responses [[id]]"></div>
+			</div>
 		</div>
 	</div>
 </fieldset>

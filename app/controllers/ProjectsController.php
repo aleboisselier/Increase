@@ -18,6 +18,7 @@ class ProjectsController extends DefaultController{
 	
 	public function totalPoidsUcs($id=NULL){
 		$ucs=Usecase::find("idProjet=".$id);
+		$ucTotal = 0;
 		foreach ($ucs as $uc){
 			$ucTotal+=$uc->getPoids();
 		}
@@ -44,20 +45,27 @@ class ProjectsController extends DefaultController{
 		}
 	}
 	
+	public function avancement($idProjet){
+		//poid uc
+		$ucs=Usecase::find("idProjet=".$idProjet);
+		$poidTotal=$this->totalPoidsUcs($idProjet);
+		$avancement = 0;
+		foreach ($ucs as $uc){
+			$poidRel=($uc->getPoids()/$poidTotal)*100;
+			$avancement+=$poidRel*($uc->getAvancement()/100);
+			ceil($avancement);
+		}
+		
+		return round($avancement);
+	}
+	
 	public function showAction($id=NULL){
 	    
 		$this->view->pick("projects/show");
 		$projet=$this->getInstance($id);
 		
-		//poid uc
+		$avancement = $this->avancement($id);
 		$ucs=Usecase::find("idProjet=".$id);
-		$poidTotal=$this->totalPoidsUcs($id);		
-		$avancement = 0;
-		foreach ($ucs as $uc){
-			$poidRel=($uc->getPoids()/$poidTotal)*100;
-			$avancement+=$poidRel*($uc->getAvancement()/100);	
-			ceil($avancement);
-		}
 		
 		//avancement global des taches pour un uc
 		foreach ($ucs as $uc){
@@ -77,7 +85,7 @@ class ProjectsController extends DefaultController{
 		
 		//users
 		$users=User::find();
-		$count = count(Message::find("idProjet=".$id));
+		$count = count(Message::find("idProjet=".$id." AND idFil IS NULL"));
 		
 		//recupere les taches
 		$tachesUcs=$this->listAction($id);
@@ -114,9 +122,13 @@ class ProjectsController extends DefaultController{
 		
 		$_SESSION['bread']['object'] = $projet;
 		
-		$this->jquery->jsonArrayOn("click", ".loadMessages", ".msgTemplate", "", array("attr"=>"data-ajax", "jsCallback"=>"$('.messages').show();$('.loadMessages').hide();"));
-		$this->jquery->jsonArrayOn("click", ".loadReponses", ".msgTemplate", "", array("attr"=>"data-ajax", "jsCallback"=>"", "context"=>"$('.responses #'+self.attr('id'))"));
-
+		$event = "function loadResponses(){";
+		$event .= $this->jquery->jsonArrayOn("click", ".loadReponses", ".msgTemplate", "", array("immediatly"=>true, "attr"=>"data-ajax", "jsCallback"=>"loadResponses()", "context"=>"$('.responses.'+self.attr('id'))"));
+		$event .= "}";
+		
+		$this->jquery->jsonArrayOn("click", ".loadMessages", ".msgTemplate", "", array( "attr"=>"data-ajax", "jsCallback"=>"$('.messages').show();$('.loadMessages').hide();loadResponses()"));
+		
+		$this->jquery->exec($event, true);
 		$this->jquery->execOn("click", ".hideMessages", "$('.messages').hide();$('.loadMessages').show();");
 		$this->jquery->compile($this->view);
 	}
