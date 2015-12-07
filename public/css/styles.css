@@ -232,10 +232,10 @@ body{
 
 .ticket{
 	height:100%;
-	color:white;
-	text-shadow:0px 0px 5px rgba(0,0,0,1);
+	color:black;
+	/*text-shadow:0px 0px 5px rgba(0,0,0,1);*/
 	border-radius:0px;
-	background-color:#639D82;
+	background-color:rgba(0,0,0,0.1);
 }
 .imgProjet{
 	background-color:white;
@@ -267,6 +267,26 @@ body{
 	color:white;
 	font-size:18px;
 	background-color:  #03a9f4;
+	border-radius:50%;
+	cursor:pointer;
+}
+.view{
+	padding:1%;
+	width:30px;
+	height:30px;
+	color:white;
+	font-size:18px;
+	background-color:  #03a9f4;
+	border-radius:50%;
+	cursor:pointer;
+}
+
+.chevron{
+	margin-top:2%;
+	width:30px;
+	height:30px;
+	color:rgba(0,0,0,0.7);
+	font-size:18px;
 	border-radius:50%;
 	cursor:pointer;
 }

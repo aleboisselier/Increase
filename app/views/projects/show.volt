@@ -52,7 +52,8 @@
 				{% endif%}
 			</div>
 		</div>
-		<div class="description" style="margin-top:15%">
+		<br>
+		<div class="description">
 			<h3>Description : </h3>
 			{{projet.getDescription()}}
 		</div>
@@ -70,13 +71,31 @@
 		</tr>	
 		</table>
 
-		<div class="ucs" style="margin-top:15%">
-			<h3>Use Cases : </h3>
+		<h3>Use Cases : </h3>
+		<div class="btn btn-primary btn-block displayUcs">Afficher les Use Cases</div>
+		<div class="btn btn-primary btn-block hideUcs" style="display:none">Cacher les Use Cases</div>
+
+		<div class="ucs" style="display:none;">
+		<br>
 			{% for u in ucs %}
 				<div class="panel panel-default">
-	  				<div class="panel-heading" id="{{ u.getCode() }}" data-ajax="Json/listTaches/{{ u.getCode() }}">{{ u }}</div>
-	  				<table class="table" id="{{ u.getCode() }}">
-				  	</table>
+	  				<div class="panel-heading loadTasks" id="{{ u.getCode() }}" data-ajax="Json/listTaches/{{ u.getCode() }}">
+		  				{{ u }}{{ poids }}
+		  				{% for tachesUc in tachesUcs %}
+							{% if u.getCode() == tachesUc and loop.revindex0 %}							
+		  						<span class="glyphicon glyphicon-eye-open pull-right" style="color:rgba(0,0,0,0.7); cursor:pointer"></span>
+		  					{% endif %}
+						{% endfor %}
+					</div>
+					{% for tachesUc in tachesUcs %}
+						{% if u.getCode() == tachesUc and loop.revindex0 %} 
+							<div class="glyphicon glyphicon-menu-up chevron pull-right" id="{{ u.getCode() }}" style="display:none"></div> 
+						{% endif %}
+					{% endfor %}
+					<div class="viewUc" id="{{ u.getCode() }}">
+		  				<table class="table" id="{{ u.getCode() }}" style="display:none">
+					  	</table>
+				  	</div>
 				</div>
 			{% endfor %}
 		</div>

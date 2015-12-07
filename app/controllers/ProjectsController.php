@@ -59,6 +59,16 @@ class ProjectsController extends DefaultController{
 			ceil($avancement);
 		}
 		
+		//avancement global des taches pour un uc
+		foreach ($ucs as $uc){
+			$taches=Tache::find("codeUseCase='".$uc->getCode()."'");
+			foreach($taches as $tache){
+				if($uc->getCode()==$tache->getCodeUseCase()){
+					$poids += $tache->getAvancement();
+				}
+			}
+		}
+		
 		//recupere le pourcentage de temps écoulé
 		$tmpEcoule=$this->tmpEcoule($id);
 		
@@ -69,27 +79,60 @@ class ProjectsController extends DefaultController{
 		$users=User::find();
 		$count = count(Message::find("idProjet=".$id));
 		
+		//recupere les taches
+		$tachesUcs=$this->listAction($id);
+		$listTachesUcs = explode("/", $tachesUcs);
+		
 		$this->view->setVars(
 			array(
 					"projet"=>$projet,
 					"ucs"=>$ucs,
 					"avancement"=>round($avancement),
+					"poids"=>$poids,
 					"tmpEcoule"=>$tmpEcoule,
 					"messages"=>$messages,
 					"users"=>$users,
+					"tachesUcs"=>$listTachesUcs,
 					"nbMessages"=>$count,
 			));
+		$_SESSION['bread']['object'] = $projet;
+		
+		$this->jquery->jsonArrayOn("click",".loadTasks",".taskRepeat > *", "", 
+				array(
+						"context"=>"$('table[id=\"'+self.attr('id')+'\"]')",
+						"attr"=>"data-ajax",
+						"jsCallback"=>"
+							$('.chevron[id=\"'+self.attr('id')+'\"]').show();
+							$('.viewUc[id=\"'+self.attr('id')+'\"]').show();
+							$('.table[id=\"'+self.attr('id')+'\"]').show();"
+				));
+		$this->jquery->execOn("click", ".chevron", 
+				"$('.viewUc').hide();$('chevron').addClass('glyphicon-menu-down');$('.chevron').hide();
+				");
+		$this->jquery->execOn("click", ".displayUcs","$('.ucs').show();$('.hideUcs').show();$('.displayUcs').hide();");
+		$this->jquery->execOn("click", ".hideUcs","$('.ucs').hide();$('.displayUcs').show();$('.hideUcs').hide();");
+		
 		$_SESSION['bread']['object'] = $projet;
 		
 		$this->jquery->jsonArrayOn("click", ".loadMessages", ".msgTemplate", "", array("attr"=>"data-ajax", "jsCallback"=>"$('.messages').show();$('.loadMessages').hide();"));
 		$this->jquery->jsonArrayOn("click", ".loadReponses", ".msgTemplate", "", array("attr"=>"data-ajax", "jsCallback"=>"", "context"=>"$('.responses #'+self.attr('id'))"));
 
 		$this->jquery->execOn("click", ".hideMessages", "$('.messages').hide();$('.loadMessages').show();");
-		$this->jquery->jsonArrayOn("click",".panel-heading",".taskRepeat > *", "", array("context"=>"$('table[id=\"'+self.attr('id')+'\"]')","attr"=>"data-ajax"));
 		$this->jquery->compile($this->view);
-		//table[id=\"'+$(self).attr('id')+'\"]
 	}
-	
+	public function listAction($id=Null){
+			$ucs=Usecase::find("idProjet=".$id);
+			$tachesUcs = '';
+			foreach ($ucs as $uc){
+				$ucCode=$uc->getCode();
+				$taches=Tache::find("codeUseCase='".$ucCode."'");
+				foreach($taches as $tache){
+					$tachesUcs .= $ucCode."/";
+				}
+			}
+			$tachesUcs=substr($tachesUcs,0,-1);
+			return $tachesUcs;
+	}
 	public function frmAction($id=null){
 		$projet=$this->getInstance($id);
 		$this->view->setVar("project", $projet);
