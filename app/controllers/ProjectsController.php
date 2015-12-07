@@ -136,22 +136,6 @@ class ProjectsController extends DefaultController{
 	}
 	public function listAction($id=Null){
 			$ucs=Usecase::find("idProjet=".$id);
-			$tachesUcs = '';
-			foreach ($ucs as $uc){
-				$ucCode=$uc->getCode();
-				$taches=Tache::find("codeUseCase='".$ucCode."'");
-				foreach($taches as $tache){
-					$tachesUcs .= $ucCode."/";			
-				}
-			}
-			$list = explode("/", $tachesUcs);
-			/*$length=count($listTachesUcs);
-			for($i = 0; $i < $length-1; $i++){
-				if($list[i]==$list[i+1]){
-					$pouet="pouet";
-				}
-			}*/
-			
 			$tasks = array();
 			foreach ($ucs as $uc){
 				$ucCode=$uc->getCode();
