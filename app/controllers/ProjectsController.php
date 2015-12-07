@@ -89,18 +89,17 @@ class ProjectsController extends DefaultController{
 		
 		//recupere les taches
 		$tachesUcs=$this->listAction($id);
-		$listTachesUcs = explode("/", $tachesUcs);
 		
 		$this->view->setVars(
 			array(
 					"projet"=>$projet,
 					"ucs"=>$ucs,
 					"avancement"=>round($avancement),
-					"poids"=>$poids,
+					//"poids"=>$poids,
 					"tmpEcoule"=>$tmpEcoule,
 					"messages"=>$messages,
 					"users"=>$users,
-					"tachesUcs"=>$listTachesUcs,
+					"tachesUcs"=>$tachesUcs,
 					"nbMessages"=>$count,
 			));
 		$_SESSION['bread']['object'] = $projet;
@@ -110,12 +109,15 @@ class ProjectsController extends DefaultController{
 						"context"=>"$('table[id=\"'+self.attr('id')+'\"]')",
 						"attr"=>"data-ajax",
 						"jsCallback"=>"
-							$('.chevron[id=\"'+self.attr('id')+'\"]').show();
-							$('.viewUc[id=\"'+self.attr('id')+'\"]').show();
-							$('.table[id=\"'+self.attr('id')+'\"]').show();"
+							$('table[id=\"'+self.attr('id')+'\"]').show();
+							self.hide();
+							self.parent().parent().find('.hideTasks').show();
+						"
 				));
-		$this->jquery->execOn("click", ".chevron", 
-				"$('.viewUc').hide();$('chevron').addClass('glyphicon-menu-down');$('.chevron').hide();
+		$this->jquery->execOn("click", ".hideTasks", "
+				$(this).hide();
+				$(this).parent().parent().find('.loadTasks').show();
+				$(this).parent().parent().parent().find('table').hide();
 				");
 		$this->jquery->execOn("click", ".displayUcs","$('.ucs').show();$('.hideUcs').show();$('.displayUcs').hide();");
 		$this->jquery->execOn("click", ".hideUcs","$('.ucs').hide();$('.displayUcs').show();$('.hideUcs').hide();");
@@ -139,11 +141,24 @@ class ProjectsController extends DefaultController{
 				$ucCode=$uc->getCode();
 				$taches=Tache::find("codeUseCase='".$ucCode."'");
 				foreach($taches as $tache){
-					$tachesUcs .= $ucCode."/";
+					$tachesUcs .= $ucCode."/";			
 				}
 			}
-			$tachesUcs=substr($tachesUcs,0,-1);
-			return $tachesUcs;
+			$list = explode("/", $tachesUcs);
+			/*$length=count($listTachesUcs);
+			for($i = 0; $i < $length-1; $i++){
+				if($list[i]==$list[i+1]){
+					$pouet="pouet";
+				}
+			}*/
+			
+			$tasks = array();
+			foreach ($ucs as $uc){
+				$ucCode=$uc->getCode();
+				$taches=Tache::find("codeUseCase='".$ucCode."'");
+				$tasks[$ucCode] = $taches->toArray();
+			}
+			return $tasks;
 	}
 	public function frmAction($id=null){
 		$projet=$this->getInstance($id);
