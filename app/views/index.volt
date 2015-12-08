@@ -39,9 +39,18 @@
 						</div>
 					</div>
 					<br>
-	                <li>
+					<li>
 	                    <a href="{{url.get("Index")}}"><span class="glyphicon glyphicon-home" aria-hidden="true" style="margin-left:-10%;"></span>&nbsp;Accueil</a>
 	                </li>
+	                <!--<li class="btn-template">
+	                    <a href="{{url.get("Index")}}"><span aria-hidden="true" style="margin-left:3%;"></span>&nbsp;Accueil</a>
+	                </li>
+	                <li>
+	                    <a href="{{url.get("Auth/logout")}}" data-ajax="Auth/logout" class="menuItem"><span class="glyphicon glyphicon-log-out" aria-hidden="true" style="margin-left:-10%;"></span>&nbsp;Déconnexion</a>
+	                </li
+	                <li>
+	                    <a href="{{url.get("Index")}}"><span class="glyphicon glyphicon-home" aria-hidden="true" style="margin-left:-10%;"></span>&nbsp;Accueil</a>
+	                </li>>-->
 	                <li>
 			          <a href="{{url.get("Users")}}" data-ajax="Users" class="menuItem"><span class="glyphicon glyphicon-user" aria-hidden="true" style="margin-left:-10%;"></span>&nbsp;Utilisateurs</a>
 	                </li>
