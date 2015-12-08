@@ -92,6 +92,8 @@ class ProjectsController extends DefaultController{
 		
 		$this->view->setVars(
 			array(
+					"baseHref"=>$this->url->getBaseUri(),
+					"currUser"=>$this->session->get("user"),
 					"projet"=>$projet,
 					"ucs"=>$ucs,
 					"avancement"=>round($avancement),
@@ -126,9 +128,37 @@ class ProjectsController extends DefaultController{
 		
 		$event = "function loadResponses(){";
 		$event .= $this->jquery->jsonArrayOn("click", ".loadReponses", ".msgTemplate", "", array("immediatly"=>true, "attr"=>"data-ajax", "jsCallback"=>"loadResponses()", "context"=>"$('.responses.'+self.attr('id'))"));
+		$event.= $this->jquery->execOn("click", ".newResponse", " 
+				$('.msgForm:not(.model)').empty(); 
+				$('.newResponse').removeClass('disabled'); 
+				var newMsg = $('.msgForm').clone(true, true);
+				newMsg.removeClass('model'); 
+				newMsg.appendTo($('.responses.'+$(this).attr('id')));
+				$(this).addClass('disabled');
+				newMsg.show(true);
+				newMsg.find('#idFil').attr('value', $(this).attr('id'));
+				newMsg.attr('id', 'sendMessage');
+				$('.newMessage').addClass('disabled');
+				", array("immediatly"=>true));
+		$event.= $this->jquery->execOn("click", ".newMessage", "
+				$('.msgForm:not(.model)').empty();
+				$('.newResponse').removeClass('disabled');
+				var newMsg = $('.msgForm').clone(true, true);
+				newMsg.removeClass('model');
+				newMsg.appendTo($('.messages'));
+				$(this).addClass('disabled');
+				newMsg.show(true);
+				newMsg.find('#idFil').attr('value', $(this).attr('id'));
+				newMsg.attr('id', 'sendMessage');
+				", array("immediatly"=>true));
+		$event.= $this->jquery->execOn("click", ".cancel", "
+				$('.msgForm:not(.model)').empty();
+				$('.newResponse').removeClass('disabled');
+				", array("immediatly"=>true));
 		$event .= "}";
 		
 		$this->jquery->jsonArrayOn("click", ".loadMessages", ".msgTemplate", "", array( "attr"=>"data-ajax", "jsCallback"=>"$('.messages').show();$('.loadMessages').hide();loadResponses()"));
+		$this->jquery->postFormOn('click', ".validate", "Messages/updateProject", 'sendMessage',"#content");
 		
 		$this->jquery->exec($event, true);
 		$this->jquery->execOn("click", ".hideMessages", "$('.messages').hide();$('.loadMessages').show();");

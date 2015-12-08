@@ -36,6 +36,7 @@ class JsonController extends ControllerBase{
 					"content"=> $message->getContent(),
 					"author"=> $message->getUser()->__toString(),
 					"responses"=> $responses,
+					"date"=> $message->getDate()
 			));
 		}
 		print_r(json_encode($result));

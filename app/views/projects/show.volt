@@ -104,31 +104,59 @@
 		{% else %}
 			<a class="btn btn-primary load btn-block disabled">Aucun Message à Afficher.</a>
 		{% endif%}
-		
-		<div class="messages" style="display:none">
-			<a class="btn btn-primary load btn-block hideMessages" style="margin-bottom: 25px;">Masquer les Messages</a>
-			<div class="msgTemplate">
-				<div class="col-md-11 pull-right" style="padding:0">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<span>[[objet]]
-								<small>Auteur :
-									<i style="font-size:12px">[[author]]</i>
-								</small>
-							</span>
-						</div>
-					  	<div class="panel-body" id="[[id]]">
-					  		<i>[[content]]</i>
-					  	</div>
-					  	<div class="panel-footer">
-					  		<small class="pull-right"> <a id="[[id]]" class="loadReponses" data-ajax="Json/loadMessages/{{ projet.getId() }}/[[id]]" >Afficher [[responses]] réponses</a></small>
-					  		<div class="clearfix"></div>
-					  	</div>
+				
+	<div class="messages" style="display:none">
+		<a class="btn btn-primary load btn-block hideMessages">Masquer les Messages</a>
+		<a class="btn btn-primary newMessage btn-block"  style="margin-bottom: 25px;">Nouveau Message</a>
+		<div class="msgTemplate">
+			<div class="col-md-11 pull-right" style="padding:0">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<span>[[objet]]
+							<small>Auteur :
+								<i style="font-size:12px">[[author]]</i>
+							</small>
+						</span>
+					</div>
+				  	<div class="panel-body" id="[[id]]">
+				  		<i>[[content]]</i>
+				  		<small class="pull-right">[[date]]</small>
+				  	</div>
+				  	<div class="panel-footer">
+				  		<button class="btn btn-xs btn-default newResponse" id="[[id]]"><span class="glyphicon glyphicon-share-alt"></span></button>
+				  		<small class="pull-right"> <a id="[[id]]" class="loadReponses" data-ajax="Json/loadMessages/{{ projet.getId() }}/[[id]]" >Afficher [[responses]] réponses</a></small>
+				  		<div class="clearfix"></div>
+				  	</div>
 				</div>
 				<div class="responses [[id]]"></div>
 			</div>
 		</div>
 	</div>
 </fieldset>
+
+	<form action="messages/updateProject"  method="post" style="display: none;" class="msgForm model">
+		<div class="col-md-12">
+			<fieldset>
+				<div class="form-group">
+					<input type="hidden" name="id" id="id" value="">
+					<input type="hidden" name="idProjet" value="{{ projet.getId() }}">
+					<input type="hidden" name="idUser" value="{{ currUser.getId() }}">
+					<input type="hidden" name="idFil" id="idFil" value="{{ currUser.getId() }}">
+				</div>
+				  <div class="form-group">
+					<label for="libelle">Objet</label>
+					<input type="text" name="objet" id="objet" class="form-control" value=""/>
+				</div>
+				<div class="form-group">
+					<label for="libelle">Message</label>
+					<textarea name="content" id="content" class="form-control"></textarea>
+				</div>
+				<div class="form-group">
+					<input type="submit" value="Envoyer" class="btn btn-default validate">
+					<button class="btn btn-default cancel">Annuler</button>
+				</div>
+			</fieldset>
+		</div>
+	</form>
 
 {{ script_foot }}

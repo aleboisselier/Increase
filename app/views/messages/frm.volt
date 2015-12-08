@@ -1,6 +1,6 @@
 {{ form("messages/update", "method": "post", "name":"frmObject", "id":"frmObject") }}
 	<fieldset>
-	<legend>Ajouter/modifier un Projet</legend>
+	<legend>Ajouter/modifier un Message</legend>
 		<div class="form-group">
 			<input type="hidden" name="id" id="id" value="{{message.getId()}}">
 		</div>
