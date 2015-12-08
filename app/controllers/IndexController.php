@@ -40,37 +40,23 @@ class IndexController extends ControllerBase
 		$this->jquery->compile($this->view); 	
     }
     public function dvlpIndex(){
-    	if($this->session->get("user")==!null){
-    		$user=$this->session->get("user");
-    		$user=$user->getId();
-    		$ucs=Usecase::find("idDev=".$user);
-    		$list=array();
-    		foreach($ucs as $uc){
-    			$idProjet=$uc->getIdProjet();
-    			$projets=Projet::find("id=".$idProjet);
-    			foreach($projets as $projet){
-    				$list[]= $projet->getNom()."/".$projet->getId();
-    			}
-    		}
-    		$listTri=array();
-    		for($i = 0; $i < count($list); ++$i) {
-    			if($list[$i] != $list[$i+1]){
-    				$listTri[]=$list[$i];
-    			}
-    		};
-    		$id=array();
-    		$listP=array();
-    		foreach($listTri as $data){
-    			$id[]=substr($data, -1);
-    			$listP[]=substr($data,0, -2);
-    			
-    		};
-    	}
+    	$user=$this->session->get("user");
+    	$user=$user->getId();
+
+    	$projects = $this->modelsManager->createBuilder()
+		   ->from('Projet')
+		   ->join('Usecase', 'Usecase.idProjet = Projet.id')
+		   ->where("Usecase.idDev = ".$user)
+		   ->groupBy("Projet.id")
+		   ->getQuery()
+		   ->execute();
+    	
     	$this->view->pick("index/dvlp");
-    	$this->jquery->exec("$('[data-toggle=\"tooltip\"]').tooltip()", true);
-    	$this->jquery->getOnClick("a.btn","","#content",array("attr"=>"data-ajax"));
+    	//$this->jquery->exec("$('[data-toggle=\"tooltip\"]').tooltip()", true);
+    	
+    	$this->jquery->getOnClick("a.list-group-item","","#content",array("attr"=>"data-ajax"));
     	$this->jquery->compile($this->view);
-    	$this->view->setVars(array("listP"=>$listP,"projets"=>$projets, "id"=>$id));
+    	$this->view->setVars(array("projets"=>$projects, "id"=>$id));
     }
 }
 

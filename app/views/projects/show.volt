@@ -120,7 +120,7 @@
 					</div>
 				  	<div class="panel-body" id="[[id]]">
 				  		<i>[[content]]</i>
-				  		<small class="pull-right">[[date]]</small>
+				  		<small class="pull-right">Il y a [[date]]</small>
 				  	</div>
 				  	<div class="panel-footer">
 				  		<button class="btn btn-xs btn-default newResponse" id="[[id]]"><span class="glyphicon glyphicon-share-alt"></span></button>

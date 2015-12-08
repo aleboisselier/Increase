@@ -205,6 +205,32 @@ class Message extends \Phalcon\Mvc\Model
     {
         return $this->idFil;
     }
+    
+    public function getFormattedDate($format = 'Y-m-d H:i:s'){
+    	$date = new DateTime($this->date);
+    	return $date->format($format);
+    }
+    
+    public function getSince(){
+    	$time = strtotime($this->date);
+    	$time = time() - $time; // to get the time since that moment
+    	$time = ($time<1)? 1 : $time;
+    	$tokens = array (
+    			31536000 => 'an',
+    			2592000 => 'mois',
+    			604800 => 'semaine',
+    			86400 => 'jour',
+    			3600 => 'heure',
+    			60 => 'minute',
+    			1 => 'seconde'
+    	);
+    	
+    	foreach ($tokens as $unit => $text) {
+    		if ($time < $unit) continue;
+    		$numberOfUnits = floor($time / $unit);
+    		return $numberOfUnits.' '.$text.(($numberOfUnits>1 && $text[strlen($text)-1] != 's')?'s':'');
+    	}
+    }
 
     /**
      * Initialize method for model.

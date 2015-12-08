@@ -3,9 +3,9 @@
 <br>
 <ul class="list-group">
  	<li class="list-group-item active">Vos Projets :</li>
-	{% set i=0 %}
-	{% for data in listP %}
-		<a href="{{siteUrl}}/Projects/show/{{id[i]}}" class="list-group-item">{{data}}</a>
-		{% set i+=1 %}
+	{% for project in projets %}
+		<a href="#" data-ajax="Projects/show/{{project.getId()}}" class="list-group-item">{{project.getNom()}}</a>
 	{% endfor %}
 </ul>
+
+{{ script_foot }}
