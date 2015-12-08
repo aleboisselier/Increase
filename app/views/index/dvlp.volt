@@ -3,7 +3,9 @@
 <br>
 <ul class="list-group">
  	<li class="list-group-item active">Vos Projets :</li>
- 	{% for projet in projets %}
-		<li class="list-group-item">{{ projet }}</li>
+	{% set i=0 %}
+	{% for data in listP %}
+		<a href="{{siteUrl}}/Projects/show/{{id[i]}}" class="list-group-item">{{data}}</a>
+		{% set i+=1 %}
 	{% endfor %}
 </ul>
