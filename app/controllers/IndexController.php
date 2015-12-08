@@ -7,6 +7,7 @@ class IndexController extends ControllerBase
 
     public function indexAction($msg=""){
 	
+<<<<<<< HEAD
     	$this->view->setVar("msg", $msg);
     	$this->session->__unset("bread");
     	if (AuthController::isAuth()){
@@ -25,6 +26,8 @@ class IndexController extends ControllerBase
     		}
     	}
 
+=======
+>>>>>>> origin/master
     }
     
     public function displayUserAction(){
@@ -41,6 +44,7 @@ class IndexController extends ControllerBase
     	$this->jquery->getOnClick("a.btn","","#content",array("attr"=>"data-ajax"));
 		$this->jquery->compile($this->view); 	
     }
+<<<<<<< HEAD
     public function dvlpIndex(){
     	if($this->session->get("user")==!null){
     		$user=$this->session->get("user");
@@ -67,5 +71,8 @@ class IndexController extends ControllerBase
     	$this->jquery->compile($this->view);
     	$this->view->setVars(array("projets"=>$listTri,"attr"=>"data-ajax","baseHref"=>$this->dispatcher-> getControllerName()));
     }
+=======
+
+>>>>>>> origin/master
 }
 

@@ -1,4 +1,4 @@
-{{msg}}
+{% if msg is defined %}{{msg}}{%  endif %}
 <h1>Congratulations!</h1>
 
 <p>You're now flying with Phalcon. Great things are about to happen!</p>
@@ -21,9 +21,6 @@
 		  </div>
 		  <div class="btn-group" role="group">
 		    <a class="btn btn-warning" href="{{url.get("Messages")}}" data-ajax="Messages">Messages</a>&nbsp;
-		  </div>
-		  <div class="btn-group" role="group">
-		    <a class="btn btn-danger" href="{{url.get("Auth/logout")}}" data-ajax="Auth/logout"><b>Deconnexion</b></a>&nbsp;
 		  </div>
 		</div>
 	</div>
