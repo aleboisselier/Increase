@@ -166,8 +166,16 @@ class ProjectsController extends DefaultController{
 	public function manageUcAction($id=Null){
 		$uc=Usecase::findFirst("code='".$id."'");
 		$users=User::find("idRole <> 3 ORDER BY idRole");
-		$this->jquery->compile($this->view);
-		$this->view->setVars(array("uc"=>$uc,"users"=>$users));
+		$this->jquery->postFormOnClick(".validateUpUc", "Usecases/updateFromProject", "frmObject","");
+    	$this->jquery->getOnClick(".cancel","","#content",array("attr"=>"data-ajax"));
+    	$this->jquery->exec("$('input[type=\"range\"]').rangeslider({
+  								polyfill: false,
+								onSlide: function(position, value) {
+									$('.avancement').html(value.toString()+'%');
+								},
+							});", true);
+    	$this->jquery->compile($this->view);
+		$this->view->setVars(array("usecase"=>$uc,"users"=>$users, "baseHref"=>$this->url->getBaseUri()));
 	}
 	
 	public function frmAction($id=null){

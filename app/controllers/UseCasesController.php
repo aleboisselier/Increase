@@ -28,4 +28,10 @@ class UseCasesController extends DefaultController{
 	public function getInstance($id=NULL){
     	return parent::getInstance("code='".$id."'");
 	}
+	
+	public function updateFromProjectAction(){
+		if($this->request->isPost()){
+			$this->_updateAction(@$_POST);
+		}
+	}
 }

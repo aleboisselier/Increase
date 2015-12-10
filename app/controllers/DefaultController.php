@@ -118,26 +118,31 @@ class DefaultController extends ControllerBase{
      */
     public function updateAction(){
     	if($this->request->isPost()){
-    		$object=$this->getInstance(@$_POST["id"]);
-    		$this->setValuesToObject($object);
-    		if(@$_POST["id"]){
-    			try{
-    				$object->save();
-    				$msg=new DisplayedMessage($this->model." `{$object}` mis à jour");
-    			}catch(\Exception $e){
-    				$msg=new DisplayedMessage("Impossible de modifier l'instance de ".$this->model,"danger");
-    			}
-    		}else{
-    			try{
-    				$object->save();
-    				$msg=new DisplayedMessage("Instance de ".$this->model." `{$object}` ajoutée");
-    			}catch(\Exception $e){
-    				$msg=new DisplayedMessage("Impossible d'ajouter l'instance de ".$this->model,"danger");
-    			}
-    		}
-    	$this->dispatcher->forward(array("controller"=>$this->dispatcher->getControllerName(),"action"=>"index","params"=>array($msg)));
+    		$this->_updateAction(@$_POST);
+    		$this->dispatcher->forward(array("controller"=>$this->dispatcher->getControllerName(),"action"=>"index","params"=>array($msg)));
     	}
     }
+    
+    public function _updateAction($post){
+    	$object=$this->getInstance($post["id"]);
+    	$this->setValuesToObject($object);
+    	if($post["id"]){
+    		try{
+    			$object->save();
+    			$msg=new DisplayedMessage($this->model." `{$object}` mis à jour");
+    		}catch(\Exception $e){
+    			$msg=new DisplayedMessage("Impossible de modifier l'instance de ".$this->model,"danger");
+    		}
+    	}else{
+    		try{
+    			$object->save();
+    			$msg=new DisplayedMessage("Instance de ".$this->model." `{$object}` ajoutée");
+    		}catch(\Exception $e){
+    			$msg=new DisplayedMessage("Impossible d'ajouter l'instance de ".$this->model,"danger");
+    		}
+    	}
+    }
+    
     public function deleteAction($id){
     	$object=call_user_func($this->model."::findfirst",$id);
     	$bs=$this->jquery->bootstrap();
