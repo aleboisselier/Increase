@@ -153,6 +153,23 @@ class ProjectsController extends DefaultController{
 			}
 			return $tasks;
 	}
+	
+	public function manageAction($id=Null){
+		$this->view->pick("projects/manage");
+		$projet=$this->getInstance($id);
+		$ucs=Usecase::find("idProjet=".$id);
+		$this->jquery->getOn("click",".optionUc","",".infoUc",
+				array("attr"=>"data-ajax", "jsCallback"=>"$('.infoUc').show();"));
+		$this->view->setVars(array("project"=> $projet, "baseHref"=>$this->url->getBaseUri(), "ucs"=>$ucs));
+	}
+	
+	public function manageUcAction($id=Null){
+		$uc=Usecase::findFirst("code='".$id."'");
+		$users=User::find("idRole <> 3 ORDER BY idRole");
+		$this->jquery->compile($this->view);
+		$this->view->setVars(array("uc"=>$uc,"users"=>$users));
+	}
+	
 	public function frmAction($id=null){
 		$projet=$this->getInstance($id);
 		$this->view->setVar("project", $projet);
