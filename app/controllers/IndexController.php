@@ -78,14 +78,22 @@ class IndexController extends ControllerBase
     	$user=$this->session->get("user");
     	$idUser=$user->getId();
     
-    	$projects = Projet::find("idClient=".$idUser);
+    	$projectsManager = Projet::find("idManager=".$idUser);
+    	
+    	$projectsDvlp = $this->modelsManager->createBuilder()
+    	->from('Projet')
+    	->join('Usecase', 'Usecase.idProjet = Projet.id')
+    	->where("Usecase.idDev = ".$idUser)
+    	->groupBy("Projet.id")
+    	->getQuery()
+    	->execute();
     
-    	$this->view->pick("index/client");
+    	$this->view->pick("index/manager");
     	//$this->jquery->exec("$('[data-toggle=\"tooltip\"]').tooltip()", true);
     
     	$this->jquery->getOnClick("a.list-group-item","","#content",array("attr"=>"data-ajax"));
     	$this->jquery->compile($this->view);
-    	$this->view->setVars(array("projects"=>$projects, "user"=>$user->getIdentite()));
+    	$this->view->setVars(array("projectsManager"=>$projectsManager, "projectsDvlp"=>$projectsDvlp, "user"=>$user->getIdentite()));
     }
 }
 
