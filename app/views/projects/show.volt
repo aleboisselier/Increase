@@ -1,4 +1,4 @@
-<fieldset style="margin:-30px;">
+<fieldset style="margin:-2%;margin-bottom:-3%;">
 	<div class="col-md-3 col-xs-3 ticket" id="color">
 		<div class="imgProjet row">
 			{% if projet.getImage()==NULL %}
@@ -15,7 +15,7 @@
 		</div>
 			
 	</div>
-	<div class="form-group col-md-7 col-xs-7" style="margin-left:5%">
+	<div class="form-group col-md-7 col-xs-7 projectContent" style="margin-left:5%">
 		<h1 class="titleProject">{{projet}}</h1>
 		<div class="date row">
 			<div class="col-md-10">Lancement : {{projet.getDateLancement()}} // Fin prévue : {{projet.getDateFinPrevue()}}</div>
@@ -79,13 +79,17 @@
 			{% for u in ucs %}
 				<div class="panel panel-default">
 	  				<div class="panel-heading">
-		  				{{ u }}<!--  {{ poids }}-->
+		  				{{ u }}
 							{% if tachesUcs[u.getCode()]|length > 0 %}							
 		  						<a class="loadTasks" id="{{ u.getCode() }}" data-ajax="Json/listTaches/{{ u.getCode() }}">
 		  							<span class="glyphicon glyphicon-eye-open pull-right" style="color:rgba(0,0,0,0.7); cursor:pointer"></span>
 		  						</a>
 		  						<a class="hideTasks" id="{{ u.getCode() }}" style="display:none;">
 		  							<span class="glyphicon glyphicon-eye-close pull-right" style="color:rgba(0,0,0,0.7); cursor:pointer"></span>
+		  						</a>
+		  					{% elseif (rights['Taches']['update'] is defined) or (rights['Default']['update'] is defined) %}
+		  						<a class="hideTasks" id="{{ u.getCode() }}">
+		  							<span class="glyphicon glyphicon-plus pull-right" style="color:rgba(0,0,0,0.7); cursor:pointer"></span>
 		  						</a>
 		  					{% endif %}
 					</div>
@@ -132,6 +136,8 @@
 			</div>
 		</div>
 	</div>
+			<br><br>
+	
 </fieldset>
 
 	<form action="messages/updateProject"  method="post" style="display: none;" class="msgForm model">

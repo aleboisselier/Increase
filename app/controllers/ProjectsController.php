@@ -89,7 +89,7 @@ class ProjectsController extends DefaultController{
 		
 		//recupere les taches
 		$tachesUcs=$this->listAction($id);
-		
+				
 		$this->view->setVars(
 			array(
 					"baseHref"=>$this->url->getBaseUri(),
@@ -103,6 +103,7 @@ class ProjectsController extends DefaultController{
 					"users"=>$users,
 					"tachesUcs"=>$tachesUcs,
 					"nbMessages"=>$count,
+					"rights"=>$this->session->get("rights"),
 			));
 		$_SESSION['bread']['object'] = $projet;
 		
@@ -114,6 +115,7 @@ class ProjectsController extends DefaultController{
 							$('table[id=\"'+self.attr('id')+'\"]').show();
 							self.hide();
 							self.parent().parent().find('.hideTasks').show();
+							$('.ticket').css('height', $('.projectContent').height());
 						"
 				));
 		$this->jquery->execOn("click", ".hideTasks", "
@@ -121,47 +123,50 @@ class ProjectsController extends DefaultController{
 				$(this).parent().parent().find('.loadTasks').show();
 				$(this).parent().parent().parent().find('table').hide();
 				");
-		$this->jquery->execOn("click", ".displayUcs","$('.ucs').show();$('.hideUcs').show();$('.displayUcs').hide();");
-		$this->jquery->execOn("click", ".hideUcs","$('.ucs').hide();$('.displayUcs').show();$('.hideUcs').hide();");
+		$this->jquery->execOn("click", ".displayUcs","$('.ucs').show();$('.hideUcs').show();$('.displayUcs').hide();$('.ticket').css('height', $('.projectContent').height());");
+		$this->jquery->execOn("click", ".hideUcs","$('.ucs').hide();$('.displayUcs').show();$('.hideUcs').hide();$('.ticket').css('height', $('.projectContent').height());");
 		
 		$_SESSION['bread']['object'] = $projet;
 		
 		$event = "function loadResponses(){";
 		$event .= $this->jquery->jsonArrayOn("click", ".loadReponses", ".msgTemplate", "", array("immediatly"=>true, "attr"=>"data-ajax", "jsCallback"=>"loadResponses()", "context"=>"$('.responses.'+self.attr('id'))"));
-		$event.= $this->jquery->execOn("click", ".newResponse", " 
-				$('.msgForm:not(.model)').empty(); 
-				$('.newResponse').removeClass('disabled'); 
-				var newMsg = $('.msgForm').clone(true, true);
-				newMsg.removeClass('model'); 
-				newMsg.appendTo($('.responses.'+$(this).attr('id')));
-				$(this).addClass('disabled');
-				newMsg.show(true);
-				newMsg.find('#idFil').attr('value', $(this).attr('id'));
-				newMsg.attr('id', 'sendMessage');
-				$('.newMessage').addClass('disabled');
-				", array("immediatly"=>true));
-		$event.= $this->jquery->execOn("click", ".newMessage", "
-				$('.msgForm:not(.model)').empty();
-				$('.newResponse').removeClass('disabled');
-				var newMsg = $('.msgForm').clone(true, true);
-				newMsg.removeClass('model');
-				newMsg.appendTo($('.messages'));
-				$(this).addClass('disabled');
-				newMsg.show(true);
-				newMsg.find('#idFil').attr('value', $(this).attr('id'));
-				newMsg.attr('id', 'sendMessage');
-				", array("immediatly"=>true));
+
+		$event.= $this->jquery->execOn("click", ".newMessage", "loadMsgForm($(this), false)", array("immediatly"=>true));
+		$event.= $this->jquery->execOn("click", ".newResponse", "loadMsgForm($(this), true)", array("immediatly"=>true));
 		$event.= $this->jquery->execOn("click", ".cancel", "
 				$('.msgForm:not(.model)').empty();
 				$('.newResponse').removeClass('disabled');
+				$('.ticket').css('height', $('.projectContent').height());
 				", array("immediatly"=>true));
 		$event .= "}";
+		$event.="$('.ticket').css('height', $('.projectContent').height());";
 		
-		$this->jquery->jsonArrayOn("click", ".loadMessages", ".msgTemplate", "", array( "attr"=>"data-ajax", "jsCallback"=>"$('.messages').show();$('.loadMessages').hide();loadResponses()"));
+		$loadMessageForm = $this->jquery->exec("
+				function loadMsgForm(elt, response){
+					$('.msgForm:not(.model)').empty();
+					$('.newResponse').removeClass('disabled');
+					var newMsg = $('.msgForm').clone(true, true);
+					newMsg.removeClass('model');
+					
+					if(response){
+						newMsg.appendTo($('.responses.'+elt.attr('id')));
+					}else{
+						newMsg.appendTo($('.messages'));
+					}
+				
+					elt.addClass('disabled');
+					newMsg.show(true);
+					newMsg.find('#idFil').attr('value', elt.attr('id'));
+					newMsg.attr('id', 'sendMessage');
+					$('.ticket').css('height', $('.projectContent').height());
+				}
+				", true);
+		
+		$this->jquery->jsonArrayOn("click", ".loadMessages", ".msgTemplate", "", array( "attr"=>"data-ajax", "jsCallback"=>"$('.messages').show();$('.loadMessages').hide();loadResponses();$('.ticket').css('height', $('.projectContent').height());"));
 		$this->jquery->postFormOn('click', ".validate", "Messages/updateProject", 'sendMessage',"#content");
 		
 		$this->jquery->exec($event, true);
-		$this->jquery->execOn("click", ".hideMessages", "$('.messages').hide();$('.loadMessages').show();");
+		$this->jquery->execOn("click", ".hideMessages", "$('.messages').hide();$('.loadMessages').show();$('.ticket').css('height', $('.projectContent').height());");
 		$this->jquery->compile($this->view);
 	}
 	public function listAction($id=Null){

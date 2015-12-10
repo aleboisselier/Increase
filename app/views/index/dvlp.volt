@@ -1,5 +1,5 @@
 {{msg}}
-<h1>Bonjour !</h1>
+<h1>Bonjour {{ user.getIdentite() }}.</h1>
 <br>
 <ul class="list-group">
  	<li class="list-group-item active">Vos Projets :</li>

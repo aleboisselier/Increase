@@ -235,6 +235,8 @@ div.modal div.modal-backdrop{
 }
 
 .ticket{
+	padding:0;
+	margin:0;
 	height:100%;
 	color:black;
 	/*text-shadow:0px 0px 5px rgba(0,0,0,1);*/
@@ -259,7 +261,6 @@ div.modal div.modal-backdrop{
 	font-size:60px;
 }
 .percentage{
-	margin-top:80%;
 	margin-bottom:5%;
 	font-size:80px;
 }

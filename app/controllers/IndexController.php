@@ -41,12 +41,11 @@ class IndexController extends ControllerBase
     }
     public function dvlpIndex(){
     	$user=$this->session->get("user");
-    	$user=$user->getId();
 
     	$projects = $this->modelsManager->createBuilder()
 		   ->from('Projet')
 		   ->join('Usecase', 'Usecase.idProjet = Projet.id')
-		   ->where("Usecase.idDev = ".$user)
+		   ->where("Usecase.idDev = ".$user->getId())
 		   ->groupBy("Projet.id")
 		   ->getQuery()
 		   ->execute();
@@ -56,7 +55,7 @@ class IndexController extends ControllerBase
     	
     	$this->jquery->getOnClick("a.list-group-item","","#content",array("attr"=>"data-ajax"));
     	$this->jquery->compile($this->view);
-    	$this->view->setVars(array("projets"=>$projects, "id"=>$id));
+    	$this->view->setVars(array("projets"=>$projects, "id"=>$id, "user"=>$user));
     }
 }
 

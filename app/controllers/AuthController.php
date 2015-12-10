@@ -19,6 +19,7 @@ class AuthController extends Controller
 	public function logoutAction(){
 		$this->session->destroy(true);
 		$this->cookies->delete('user');
+		$this->session->destroy("rights");
 		$this->dispatcher->forward(array("controller"=>"Auth", "action"=>"signin"));
 		$this->jquery->exec('$(".breadcrumb").hide();$(".menuItem").hide()', true);
 		$this->jquery->compile($this->view);
