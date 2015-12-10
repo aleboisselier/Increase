@@ -9,6 +9,9 @@
 			<div class="progress-bar progress-bar-success" role="progressbar"
 				aria-valuenow="[[avancement]]" aria-valuemin="0"
 				aria-valuemax="100" style="width: {{project.getAvancement()}}%;">{{project.getAvancement()}}%</div>
+				<div class="progress-bar progress-bar-warning" style="width: {{ 100-project.getAvancement() }}%">
+				     {{ 100-project.getAvancement() }}% avant le {{ project.getDateFinPrevue() }}
+				  </div>
 		</div>
 	{% endfor %}
 </ul>

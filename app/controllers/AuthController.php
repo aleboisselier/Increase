@@ -72,9 +72,11 @@ class AuthController extends Controller
 					$this->dispatcher->forward(array("controller"=>"Index","action"=>"indexAjax","params"=>array($msg)));
 				}
 				else{
+					$msg=new DisplayedMessage("Erreur d'authetification ", "danger");
 					$this->dispatcher->forward(array("controller"=>"Auth","action"=>"signin","params"=>array(true, $msg)));
 				}
 			}else{
+				$msg = new DisplayedMessage("Utilisateur non reconnu ", "danger");
 				$this->dispatcher->forward(array("controller"=>"Auth","action"=>"signin","params"=>array(true, $msg)));
 			}
 		}

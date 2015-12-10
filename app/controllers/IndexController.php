@@ -39,6 +39,7 @@ class IndexController extends ControllerBase
     	$this->jquery->getOnClick("a.btn","","#content",array("attr"=>"data-ajax"));
 		$this->jquery->compile($this->view); 	
     }
+    
     public function dvlpIndex(){
     	$user=$this->session->get("user");
 
@@ -55,7 +56,7 @@ class IndexController extends ControllerBase
     	$this->jquery->getOnClick("a.list-group-item","","#content",array("attr"=>"data-ajax"));
     	$this->jquery->compile($this->view);
 
-    	$this->view->setVars(array("projets"=>$projects, "id"=>$id, "user"=>$user));
+    	$this->view->setVars(array("projets"=>$projects, "user"=>$user));
     }
 }
 

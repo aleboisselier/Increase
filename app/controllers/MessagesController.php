@@ -36,7 +36,7 @@ class MessagesController extends DefaultController{
 					$msg=new DisplayedMessage("Impossible d'ajouter l'instance de ".$this->model,"danger");
 				}
 			}
-			$this->dispatcher->forward(array("controller"=>"Projects","action"=>"show","params"=>array(@$_POST["idProjet"])));
+			$this->dispatcher->forward(array("controller"=>"Projects","action"=>"show","params"=>array(@$_POST["idProjet"], $msg)));
 		}
 	}
 }

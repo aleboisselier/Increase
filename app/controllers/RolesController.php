@@ -15,7 +15,6 @@ class RolesController extends DefaultController{
 		$role=$this->getInstance($id);
 		
 		
-		$controllers = array("Projects" => "Projets", "Roles" => "Rôles","Taches"=>"Tâches","Messages"=>"Messages","UseCases" => "Use Cases","Users" => "Utilisateurs");
 		$controllers = array(
 				"Default" => array(
 					"name" => "Tous",
@@ -74,14 +73,7 @@ class RolesController extends DefaultController{
     				foreach ($acls as $a){
     					$a->delete();
     				}
-    				foreach ($_POST['acl'] as $acl){
-    					$acl = explode("/", $acl);
-    					$dbAcl = new Acl();
-    					$dbAcl->setIdRole(@$_POST["idRole"]);
-    					$dbAcl->setController($acl[0]);
-    					$dbAcl->setAction($acl[1]);
-    					$dbAcl->save();
-    				}
+    				$this->saveAcls($_POST['acl'] , @$_POST["idRole"]);
     				$msg=new DisplayedMessage("Droits de  `{$object}` mis à jour");
     			}catch(\Exception $e){
     				$msg=new DisplayedMessage("Impossible de mettre à jour les droits de `{$object}`","danger");
@@ -89,14 +81,7 @@ class RolesController extends DefaultController{
     		}else{
     			try{
     				$object->save();
-    				foreach ($_POST['acl'] as $acl){
-    					$acl = explode("/", $acl);
-    					$dbAcl = new Acl();
-    					$dbAcl->setIdRole(@$_POST["idRole"]);
-    					$dbAcl->setController($acl[0]);
-    					$dbAcl->setAction($acl[1]);
-    					$dbAcl->save();
-    				}
+    				$this->saveAcls($_POST['acl'] , @$_POST["idRole"]);
     				$msg=new DisplayedMessage("Instance de ".$this->model." `{$object}` ajoutée");
     			}catch(\Exception $e){
     				$msg=new DisplayedMessage("Impossible d'ajouter l'instance de ".$this->model,"danger");
@@ -105,7 +90,18 @@ class RolesController extends DefaultController{
     		
     	$this->dispatcher->forward(array("controller"=>$this->dispatcher->getControllerName(),"action"=>"index","params"=>array($msg)));
     	}
-	}	
+	}
+	
+	protected function saveAcls($acls, $role){
+		foreach ($acls as $acl){
+			$acl = explode("/", $acl);
+			$dbAcl = new Acl();
+			$dbAcl->setIdRole($role);
+			$dbAcl->setController($acl[0]);
+			$dbAcl->setAction($acl[1]);
+			$dbAcl->save();
+		}
+	}
 	
 }
 

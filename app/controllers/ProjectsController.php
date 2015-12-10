@@ -116,7 +116,7 @@ class ProjectsController extends DefaultController{
 		$event .= "}";
 		$event.="$('.ticket').css('height', $('.projectContent').height());";
 		
-		$loadMessageForm = $this->jquery->exec("
+		$this->jquery->exec("
 				function loadMsgForm(elt, response){
 					$('.msgForm:not(.model)').empty();
 					$('.newResponse').removeClass('disabled');

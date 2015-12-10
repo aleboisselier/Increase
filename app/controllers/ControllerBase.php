@@ -36,7 +36,6 @@ class ControllerBase extends Controller
 	 }
 	 
 	 public function breadCrumbsAction(){
-	 	$controller = $this->dispatcher->getControllerName();
 	 	$url = $this->url->getBaseUri();
 		$bread = $this->session->get("bread");
 		
