@@ -16,6 +16,9 @@
 						<b>{{projectManager.getAvancement()}}%</b>
 					{% endif%}
 				</div>
+				<div class="progress-bar progress-bar-warning" style="width: {{ 100-projectManager.getAvancement() }}%">
+					{{ 100-projectManager.getAvancement() }}% avant le {{ projectManager.getDateFinPrevue() }}
+				</div>
 			</div>
 		</a>
 	{% endfor %}
@@ -34,6 +37,9 @@
 					{% else %}
 						<b>{{projectDvlp.getAvancement()}}%</b>
 					{% endif%}
+				</div>
+				<div class="progress-bar progress-bar-warning" style="width: {{ 100-projectDvlp.getAvancement() }}%">
+					{{ 100-projectDvlp.getAvancement() }}% avant le {{ projectDvlp.getDateFinPrevue() }}
 				</div>
 			</div>
 		</a>

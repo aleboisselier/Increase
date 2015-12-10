@@ -17,8 +17,8 @@
 					{% endif%}
 				</div>
 				<div class="progress-bar progress-bar-warning" style="width: {{ 100-project.getAvancement() }}%">
-				     {{ 100-project.getAvancement() }}% avant le {{ project.getDateFinPrevue() }}
-				  </div>
+					{{ 100-project.getAvancement() }}% avant le {{ project.getDateFinPrevue() }}
+				</div>
 			</div>
 		</a>
 
