@@ -27,10 +27,6 @@ class IndexController extends ControllerBase
     	}
     }
     
-    public function displayUserAction(){
-    	$user=User::find();
-    }
-    
     public function indexAjaxAction($msg){
     	$this->view->pick("index/index");
     	$this->indexAction();
@@ -68,7 +64,6 @@ class IndexController extends ControllerBase
     	$projects = Projet::find("idClient=".$idUser);
     	 
     	$this->view->pick("index/client");
-    	//$this->jquery->exec("$('[data-toggle=\"tooltip\"]').tooltip()", true);
     	 
     	$this->jquery->getOnClick("a.list-group-item","","#content",array("attr"=>"data-ajax"));
     	$this->jquery->compile($this->view);
@@ -89,7 +84,6 @@ class IndexController extends ControllerBase
     	->execute();
     
     	$this->view->pick("index/manager");
-    	//$this->jquery->exec("$('[data-toggle=\"tooltip\"]').tooltip()", true);
     
     	$this->jquery->getOnClick("a.list-group-item","","#content",array("attr"=>"data-ajax"));
     	$this->jquery->compile($this->view);

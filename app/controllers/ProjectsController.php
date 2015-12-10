@@ -50,7 +50,6 @@ class ProjectsController extends DefaultController{
 		$this->view->pick("projects/show");
 		$projet=$this->getInstance($id);
 		
-		//$avancement = $this->avancement($id);
 		$ucs=Usecase::find("idProjet=".$id);
 		
 		//recupere le pourcentage de temps écoulé

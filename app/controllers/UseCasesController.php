@@ -26,12 +26,6 @@ class UseCasesController extends DefaultController{
 	}
 	
 	public function getInstance($id=NULL){
-    	if(isset($id)){
-    		$object=call_user_func($this->model."::findfirst","code='".$id."'");
-    	}else{
-    		$className=$this->model;
-    		$object=new $className();
-    	}
-    	return $object;
-    }
+    	return parent::getInstance("code='".$id."'");
+	}
 }
