@@ -18,8 +18,10 @@ class IndexController extends ControllerBase
 					$this->dvlpIndex($msg);
 					break;
 				case 3:
+					$this->clientIndex($msg);
 					break;
 				case 4:
+					$this->managerIndex($msg);
 				break;
     		}
     	}
@@ -39,6 +41,7 @@ class IndexController extends ControllerBase
     	$this->jquery->getOnClick("a.btn","","#content",array("attr"=>"data-ajax"));
 		$this->jquery->compile($this->view); 	
     }
+    
     public function dvlpIndex(){
     	$user=$this->session->get("user");
 
@@ -56,6 +59,33 @@ class IndexController extends ControllerBase
     	$this->jquery->compile($this->view);
 
     	$this->view->setVars(array("projets"=>$projects, "id"=>$id, "user"=>$user));
+    }
+    
+    public function clientIndex(){
+    	$user=$this->session->get("user");
+    	$idUser=$user->getId();
+    	 
+    	$projects = Projet::find("idClient=".$idUser);
+    	 
+    	$this->view->pick("index/client");
+    	//$this->jquery->exec("$('[data-toggle=\"tooltip\"]').tooltip()", true);
+    	 
+    	$this->jquery->getOnClick("a.list-group-item","","#content",array("attr"=>"data-ajax"));
+    	$this->jquery->compile($this->view);
+    	$this->view->setVars(array("projects"=>$projects, "user"=>$user->getIdentite()));
+    }
+    public function managerIndex(){
+    	$user=$this->session->get("user");
+    	$idUser=$user->getId();
+    
+    	$projects = Projet::find("idClient=".$idUser);
+    
+    	$this->view->pick("index/client");
+    	//$this->jquery->exec("$('[data-toggle=\"tooltip\"]').tooltip()", true);
+    
+    	$this->jquery->getOnClick("a.list-group-item","","#content",array("attr"=>"data-ajax"));
+    	$this->jquery->compile($this->view);
+    	$this->view->setVars(array("projects"=>$projects, "user"=>$user->getIdentite()));
     }
 }
 

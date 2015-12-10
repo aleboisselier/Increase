@@ -44,7 +44,12 @@ class Projet extends \Phalcon\Mvc\Model
      * @var integer
      */
     protected $idClient;
-
+	
+    /**
+    * @var integer
+    */
+    protected $idManager;
+    
     /**
      * Method to set the value of field id
      *
@@ -135,6 +140,19 @@ class Projet extends \Phalcon\Mvc\Model
 
         return $this;
     }
+    
+    /**
+     * Method to set the value of field idClient
+     *
+     * @param integer $idManager
+     * @return $this
+     */
+    public function setIdManager($idManager)
+    {
+    	$this->idManager = $idManager;
+    
+    	return $this;
+    }
 
     /**
      * Returns the value of field id
@@ -205,6 +223,16 @@ class Projet extends \Phalcon\Mvc\Model
     {
         return $this->idClient;
     }
+    
+    /**
+     * Returns the value of field idClient
+     *
+     * @return integer
+     */
+    public function getIdManager()
+    {
+    	return $this->idManager;
+    }
 
     /**
      * Initialize method for model.
@@ -214,6 +242,7 @@ class Projet extends \Phalcon\Mvc\Model
         $this->hasMany('id', 'Message', 'idProjet', array('alias' => 'Messages'));
         $this->hasMany('id', 'Usecase', 'idProjet', array('alias' => 'Usecases'));
         $this->belongsTo('idClient', 'User', 'id', array('alias' => 'Client'));
+        $this->belongsTo('idManager', 'User', 'id', array('alias' => 'Manager'));
     }
 
     /**
