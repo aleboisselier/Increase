@@ -51,10 +51,10 @@ class IndexController extends ControllerBase
 		   ->execute();
     	
     	$this->view->pick("index/dvlp");
-    	//$this->jquery->exec("$('[data-toggle=\"tooltip\"]').tooltip()", true);
     	
     	$this->jquery->getOnClick("a.list-group-item","","#content",array("attr"=>"data-ajax"));
     	$this->jquery->compile($this->view);
+
     	$this->view->setVars(array("projets"=>$projects, "id"=>$id, "user"=>$user));
     }
 }
