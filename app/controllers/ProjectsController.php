@@ -45,37 +45,13 @@ class ProjectsController extends DefaultController{
 		}
 	}
 	
-	public function avancement($idProjet){
-		//poid uc
-		$ucs=Usecase::find("idProjet=".$idProjet);
-		$poidTotal=$this->totalPoidsUcs($idProjet);
-		$avancement = 0;
-		foreach ($ucs as $uc){
-			$poidRel=($uc->getPoids()/$poidTotal)*100;
-			$avancement+=$poidRel*($uc->getAvancement()/100);
-			ceil($avancement);
-		}
-		
-		return round($avancement);
-	}
-	
 	public function showAction($id=NULL){
 	    
 		$this->view->pick("projects/show");
 		$projet=$this->getInstance($id);
 		
-		$avancement = $this->avancement($id);
+		//$avancement = $this->avancement($id);
 		$ucs=Usecase::find("idProjet=".$id);
-		
-		//avancement global des taches pour un uc
-		foreach ($ucs as $uc){
-			$taches=Tache::find("codeUseCase='".$uc->getCode()."'");
-			foreach($taches as $tache){
-				if($uc->getCode()==$tache->getCodeUseCase()){
-					$poids += $tache->getAvancement();
-				}
-			}
-		}
 		
 		//recupere le pourcentage de temps écoulé
 		$tmpEcoule=$this->tmpEcoule($id);
@@ -96,7 +72,6 @@ class ProjectsController extends DefaultController{
 					"currUser"=>$this->session->get("user"),
 					"projet"=>$projet,
 					"ucs"=>$ucs,
-					"avancement"=>round($avancement),
 					//"poids"=>$poids,
 					"tmpEcoule"=>$tmpEcoule,
 					"messages"=>$messages,

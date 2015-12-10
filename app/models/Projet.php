@@ -252,5 +252,23 @@ class Projet extends \Phalcon\Mvc\Model
     {
         return 'projet';
     }
+    
+    public function getAvancement(){
+    	$id=$this->getId();
+    	$ucs=Usecase::find("idProjet=".$id);
+    	$ucTotal = 0;
+    	foreach ($ucs as $uc){
+    		$ucTotal+=$uc->getPoids();
+    	}
+    	//poid uc
+    	$avancement = 0;
+    	foreach ($ucs as $uc){
+    		$poidRel=($uc->getPoids()/$ucTotal)*100;
+    		$avancement+=$poidRel*($uc->getAvancement()/100);
+    		ceil($avancement);
+    	}
+    	 
+    	return round($avancement);
+    }
 
 }

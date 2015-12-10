@@ -11,7 +11,7 @@
 			{{projet.getClient()}}
 		</div>
 		<div class="percentage"> 
-			{{avancement}} %
+			{{projet.getAvancement()}} %
 		</div>
 			
 	</div>
@@ -41,14 +41,14 @@
 		<div class="progress">
 			<div class="progress-bar progress-bar-info" 
 				role="progressbar" 
-				aria-valuenow="{{avancement}}" 
+				aria-valuenow="{{projet.getAvancement()}}" 
 				aria-valuemin="0" 
 				aria-valuemax="100" 
-				style="width: {{avancement}}%">
-				{% if avancement==0 %}
-					<b style="color:red">{{avancement}}%</b>
+				style="width: {{projet.getAvancement()}}%">
+				{% if projet.getAvancement()==0 %}
+					<b style="color:red">{{projet.getAvancement()}}%</b>
 				{% else %}
-					<b>{{avancement}}%</b>
+					<b>{{projet.getAvancement()}}%</b>
 				{% endif%}
 			</div>
 		</div>
