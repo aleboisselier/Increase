@@ -56,7 +56,7 @@ class DisplayedMessage {
 	}
 	public function compile($jquery){
 		$alert=$jquery->bootstrap()->htmlAlert("message",$this->content,$this->type);
-		if($this->visible==false){
+		if($this->visible===false){
 			$alert->setProperty("style","display:none;");
 		}
 		$alert->setCloseable($this->dismissable);

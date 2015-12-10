@@ -35,7 +35,7 @@ class IndexController extends ControllerBase
     
     public function adminIndex(){	    	
     	$this->jquery->getOnClick("a.btn","","#content",array("attr"=>"data-ajax"));
-		$this->jquery->compile($this->view); 	
+    	$this->jquery->compile($this->view); 	
     }
     
     public function dvlpIndex(){

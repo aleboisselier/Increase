@@ -1,4 +1,14 @@
-<fieldset style="margin:-2%;margin-bottom:-3%;">
+<style>
+<!--
+.content{
+	padding:0;
+}
+#content{
+	padding:0;
+}
+-->
+</style>
+<fieldset>
 	<div class="col-md-3 col-xs-3 ticket" id="color">
 		<div class="imgProjet row">
 			{% if projet.getImage()==NULL %}
@@ -80,18 +90,14 @@
 				<div class="panel panel-default">
 	  				<div class="panel-heading">
 		  				{{ u }}
-							{% if tachesUcs[u.getCode()]|length > 0 %}							
-		  						<a class="loadTasks" id="{{ u.getCode() }}" data-ajax="Json/listTaches/{{ u.getCode() }}">
-		  							<span class="glyphicon glyphicon-eye-open pull-right" style="color:rgba(0,0,0,0.7); cursor:pointer"></span>
-		  						</a>
-		  						<a class="hideTasks" id="{{ u.getCode() }}" style="display:none;">
-		  							<span class="glyphicon glyphicon-eye-close pull-right" style="color:rgba(0,0,0,0.7); cursor:pointer"></span>
-		  						</a>
-		  					{% elseif (rights['Taches']['update'] is defined) or (rights['Default']['update'] is defined) %}
-		  						<a class="hideTasks" id="{{ u.getCode() }}">
-		  							<span class="glyphicon glyphicon-plus pull-right" style="color:rgba(0,0,0,0.7); cursor:pointer"></span>
-		  						</a>
-		  					{% endif %}
+						{% if tachesUcs[u.getCode()]|length > 0 %}							
+	  						<a class="loadTasks" id="{{ u.getCode() }}" data-ajax="Json/listTaches/{{ u.getCode() }}">
+	  							<span class="glyphicon glyphicon-eye-open pull-right" style="color:rgba(0,0,0,0.7); cursor:pointer"></span>
+	  						</a>
+	  						<a class="hideTasks" id="{{ u.getCode() }}" style="display:none;">
+	  							<span class="glyphicon glyphicon-eye-close pull-right" style="color:rgba(0,0,0,0.7); cursor:pointer"></span>
+	  						</a>
+	  					{% endif %}
 					</div>
 					<div class="viewUc" id="{{ u.getCode() }}">
 		  				<table class="table" id="{{ u.getCode() }}" style="display:none">
