@@ -2,7 +2,7 @@
 	<fieldset>
 	<legend>Ajouter/modifier un Projet</legend>
 		<div class="form-group">
-			<input type="hidden" name="id" id="id" value="{{usecase.getId()}}">
+			<input type="hidden" name="id" id="id" value="{{usecase.getCode()}}">
 		</div>		
 		<div class="form-group">
 			<label for="libelle">Code</label>

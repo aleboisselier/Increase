@@ -26,7 +26,11 @@ class UseCasesController extends DefaultController{
 	}
 	
 	public function getInstance($id=NULL){
-    	return parent::getInstance("code='".$id."'");
+    	if($id != NULL){
+    		return parent::getInstance("code='".$id."'");
+    	}else{
+    		return new Usecase();
+    	}
 	}
 	
 	public function updateFromProjectAction(){

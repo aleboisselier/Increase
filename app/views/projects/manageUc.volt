@@ -6,7 +6,7 @@
 		</div>		
 		<div class="form-group">
 			<label for="libelle">Code</label>
-			<input type="text" name="code" id="code" class="form-control" value="{{usecase.getCode()}}" {% if usecase.getCode() != "" %}disabled{% endif %}/>
+			<input type="text" name="code" id="code" class="form-control" value="{{usecase.getCode()}}" {% if usecase.getCode() != "" %}disabled{% endif %} />
 		</div>
 		<div class="form-group">
 			<label for="libelle">Nom</label>
@@ -37,4 +37,5 @@
 		</div>
 	</fieldset>
 </form>
+
 {{ script_foot }}

@@ -173,16 +173,21 @@ class ProjectsController extends DefaultController{
 			$uc->setAvancement(0);
 		}
 		$users=User::find("idRole <> 3 ORDER BY idRole");
-		$this->jquery->postFormOnClick(".validateUpUc", "Usecases/updateFromProject", "frmObject","");
-
-    	$this->jquery->execOn("click",".cancel","$('.infoUc').hide(); $('.selectUc > option:first').attr('selected', 'selected');");
-
+		
     	$this->jquery->exec("$('input[type=\"range\"]').rangeslider({
   								polyfill: false,
 								onSlide: function(position, value) {
 									$('.avancement').html(value.toString()+'%');
 								},
-							});", true);
+							});
+    						//jQuery('#code').on('input', function() {
+								//$('#id').attr('value', $('#code').val());
+							//});
+    					", true);
+    	
+    	$this->jquery->postFormOnClick(".validateUpUc", "Usecases/updateFromProject", "frmObject","");
+    	$this->jquery->execOn("click",".cancel","$('.infoUc').hide(); $('.selectUc > option:first').attr('selected', 'selected');");
+    	 
     	$this->jquery->compile($this->view);
 		$this->view->setVars(array("usecase"=>$uc, "users"=>$users, "baseHref"=>$this->url->getBaseUri()));
 		
