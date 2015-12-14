@@ -178,6 +178,10 @@ class ProjectsController extends DefaultController{
 		$this->view->setVars(array("usecase"=>$uc,"users"=>$users, "baseHref"=>$this->url->getBaseUri()));
 	}
 	
+	public function addUcAction($id=Null){
+		
+	}
+	
 	public function frmAction($id=null){
 		$projet=$this->getInstance($id);
 		$this->view->setVar("project", $projet);
