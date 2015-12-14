@@ -170,6 +170,7 @@ class ProjectsController extends DefaultController{
 		if(!$uc){
 			$uc= new Usecase();
 			$uc->setIdProjet($idProjet);
+			$uc->setAvancement(0);
 		}
 		$users=User::find("idRole <> 3 ORDER BY idRole");
 		$this->jquery->postFormOnClick(".validateUpUc", "Usecases/updateFromProject", "frmObject","");
