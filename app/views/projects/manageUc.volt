@@ -1,6 +1,6 @@
 {{ form("usecases/updateFromProject", "method": "post", "name":"frmObject", "id":"frmObject") }}
 	<fieldset>
-	<legend>Ajouter/modifier une UseCase</legend>
+	<legend>Ajouter/modifier une UseCase : {{ usecase }}</legend>
 		<div class="form-group">
 			<input type="hidden" name="id" id="id" value="{{usecase.getId()}}">
 		</div>		
