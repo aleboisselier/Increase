@@ -36,5 +36,5 @@
 			<a class="btn btn-default cancel" >Annuler</a>
 		</div>
 	</fieldset>
-</form>-->
+</form>
 {{ script_foot }}

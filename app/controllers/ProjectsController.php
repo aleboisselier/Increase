@@ -165,8 +165,12 @@ class ProjectsController extends DefaultController{
 		
 	}
 	
-	public function manageUcAction($id=Null){
+	public function manageUcAction($id=Null, $idProject=null){
 		$uc=Usecase::findFirst("code='".$id."'");
+		if(!$uc){
+			$uc= new Usecase();
+			$uc->setIdProjet($idProjet);
+		}
 		$users=User::find("idRole <> 3 ORDER BY idRole");
 		$this->jquery->postFormOnClick(".validateUpUc", "Usecases/updateFromProject", "frmObject","");
 
@@ -181,13 +185,6 @@ class ProjectsController extends DefaultController{
     	$this->jquery->compile($this->view);
 		$this->view->setVars(array("usecase"=>$uc, "users"=>$users, "baseHref"=>$this->url->getBaseUri()));
 		
-	}
-	
-	public function addUcAction($id=Null){
-		$projet=$this->getInstance($id);
-		$id=$projet->getId();
-		$users=User::find("idRole <> 3 ORDER BY idRole");
-		$this->view->setVars(array("id"=>$id, "users"=>$users, "baseHref"=>$this->url->getBaseUri()));
 	}
 	
 	public function frmAction($id=null){
