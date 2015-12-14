@@ -169,7 +169,7 @@ class ProjectsController extends DefaultController{
 		$uc=Usecase::findFirst("code='".$id."'");
 		$users=User::find("idRole <> 3 ORDER BY idRole");
 		$this->jquery->postFormOnClick(".validateUpUc", "Usecases/updateFromProject", "frmObject","");
-    	$this->jquery->getOnClick(".cancel","","#content",array("attr"=>"data-ajax"));
+    	$this->jquery->execOn("click",".cancel","$('.infoUc').hide(); $('.selectUc > option:first').attr('selected', 'selected');");
     	$this->jquery->exec("$('input[type=\"range\"]').rangeslider({
   								polyfill: false,
 								onSlide: function(position, value) {

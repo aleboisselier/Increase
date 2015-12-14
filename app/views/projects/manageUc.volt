@@ -1,7 +1,7 @@
 
 {{ form("usecases/updateFromProject", "method": "post", "name":"frmObject", "id":"frmObject") }}
 	<fieldset>
-	<legend>Ajouter/modifier un Projet</legend>
+	<legend>Ajouter/modifier une UseCase</legend>
 		<div class="form-group">
 			<input type="hidden" name="id" id="id" value="{{usecase.getId()}}">
 		</div>		
@@ -34,7 +34,7 @@
 		</div>
 		<div class="form-group">
 			<input type="submit" value="Valider" class="btn btn-default validateUpUc">
-			<a class="btn btn-default cancel" href="{{url.get("usecases")}}" data-ajax="{{ baseHref ~ "/index"}}">Annuler</a>
+			<a class="btn btn-default cancel" >Annuler</a>
 		</div>
 	</fieldset>
 </form>
