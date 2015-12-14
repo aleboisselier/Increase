@@ -158,9 +158,11 @@ class ProjectsController extends DefaultController{
 		$this->view->pick("projects/manage");
 		$projet=$this->getInstance($id);
 		$ucs=Usecase::find("idProjet=".$id);
-		$this->jquery->getOn("click",".optionUc","",".infoUc",
+		$this->jquery->getOn("change",".selectUc","",".infoUc",
 				array("attr"=>"data-ajax", "jsCallback"=>"$('.infoUc').show();"));
 		$this->view->setVars(array("project"=> $projet, "baseHref"=>$this->url->getBaseUri(), "ucs"=>$ucs));
+		$_SESSION['bread']['object'] = Projet::findFirst($id);
+		
 	}
 	
 	public function manageUcAction($id=Null){
@@ -175,7 +177,8 @@ class ProjectsController extends DefaultController{
 								},
 							});", true);
     	$this->jquery->compile($this->view);
-		$this->view->setVars(array("usecase"=>$uc,"users"=>$users, "baseHref"=>$this->url->getBaseUri()));
+		$this->view->setVars(array("usecase"=>$uc, "users"=>$users, "baseHref"=>$this->url->getBaseUri()));
+		
 	}
 	
 	public function addUcAction($id=Null){
