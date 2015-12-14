@@ -169,7 +169,7 @@ class ProjectsController extends DefaultController{
 		$uc=Usecase::findFirst("code='".$id."'");
 		if(!$uc){
 			$uc= new Usecase();
-			$uc->setIdProjet($idProjet);
+			$uc->setIdProjet($idProject);
 			$uc->setAvancement(0);
 		}
 		$users=User::find("idRole <> 3 ORDER BY idRole");
