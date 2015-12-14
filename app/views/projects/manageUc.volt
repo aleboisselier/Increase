@@ -1,4 +1,3 @@
-
 {{ form("usecases/updateFromProject", "method": "post", "name":"frmObject", "id":"frmObject") }}
 	<fieldset>
 	<legend>Ajouter/modifier un Projet</legend>
@@ -37,5 +36,5 @@
 			<a class="btn btn-default cancel" href="{{url.get("usecases")}}" data-ajax="{{ baseHref ~ "/index"}}">Annuler</a>
 		</div>
 	</fieldset>
-</form>
+</form>-->
 {{ script_foot }}
