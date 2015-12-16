@@ -34,7 +34,7 @@ class UseCasesController extends DefaultController{
     		return $uc;
     	}
 	}
-	
+
 	public function updateFromProjectAction(){
 		if($this->request->isPost()){
 			$this->_updateAction(@$_POST);

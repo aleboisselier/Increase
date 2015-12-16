@@ -141,6 +141,7 @@ class DefaultController extends ControllerBase{
     			$msg=new DisplayedMessage("Impossible d'ajouter l'instance de ".$this->model,"danger");
     		}
     	}
+    	return $msg;
     }
     
     public function deleteAction($id){
@@ -172,6 +173,13 @@ class DefaultController extends ControllerBase{
     		$msg=new DisplayedMessage("Impossible de supprimer l'instance de ".$this->model,"danger");
     	}
     	$this->dispatcher->forward(array("controller"=>$this->dispatcher->getControllerName(),"action"=>"index","params"=>array($msg)));
+    }
+    
+    public function updateFromProjectAction(){
+    	if($this->request->isPost()){
+    		$this->_updateAction(@$_POST);
+    		$this->dispatcher->forward(array("controller"=>"Projects","action"=>"manage", "params"=>array("id"=>@$_POST['idProjet'])));
+    	}
     }
 
     /**

@@ -172,6 +172,8 @@ class ProjectsController extends DefaultController{
 			$uc->setIdProjet($idProject);
 			$uc->setAvancement(0);
 		}
+		
+		$tasks = Tache::find("codeUseCase LIKE '".$uc->getCode()."'");
 		$users=User::find("idRole <> 3 ORDER BY idRole");
 		
     	$this->jquery->exec("$('input[type=\"range\"]').rangeslider({
@@ -184,12 +186,42 @@ class ProjectsController extends DefaultController{
 								//$('#id').attr('value', $('#code').val());
 							//});
     					", true);
-    	
-    	$this->jquery->postFormOnClick(".validateUpUc", "Usecases/updateFromProject", "frmObject",".modifUc");
+    	$this->jquery->postFormOnClick(".validateUpUc", "Usecases/updateFromProject", "frmObject",".content");
     	$this->jquery->execOn("click",".cancel","$('.infoUc').hide(); $('.selectUc > option:first').attr('selected', 'selected');");
-
+    	$this->jquery->getOn("change",".selectTasks","",".tasks",
+    			array("attr"=>"data-ajax", "jsCallback"=>"$('.tasks').show();"));
+    	 
     	$this->jquery->compile($this->view);
-		$this->view->setVars(array("usecase"=>$uc, "users"=>$users, "baseHref"=>$this->url->getBaseUri()));
+		$this->view->setVars(array("usecase"=>$uc, "users"=>$users, "baseHref"=>$this->url->getBaseUri(), "tasks"=>$tasks));
+		$_SESSION['bread']['object'] = Projet::findFirst($uc->getIdProjet());
+		
+	}
+	
+	public function manageTasksAction($id=null, $idUc=null){
+		$tache = Tache::findFirst($id);
+		if(!$tache){
+			$tache = new Tache();
+			$tache->setAvancement(0);
+			$tache->setCodeUseCase($idUc);
+		}
+		$users = User::find("idRole<>3");
+		
+		$this->view->setVars(array("tache"=>$tache, "users"=>$users, "baseHref"=>$this->url->getBaseUri()));
+		$_SESSION['bread']['object'] = $tache;
+		
+		$this->jquery->exec("$('input[type=\"range\"]').rangeslider({
+  								polyfill: false,
+								onSlide: function(position, value) {
+									$('.avancementTasks').html(value.toString()+'%');
+								},
+							});", true);
+		$this->view->pick("projects/manageTasks");
+		
+		$this->jquery->postFormOnClick(".validateTasks", "Taches/updateFromProject", "frmTasks",".content");
+		$this->jquery->execOn("click",".cancel","$('.infoUc').hide(); $('.selectUc > option:first').attr('selected', 'selected');");
+		$this->jquery->compile($this->view);
+		$uc = Usecase::findFirst("code='".$tache->getCodeUseCase()."'");
+		$_SESSION['bread']['object'] = Projet::findFirst($uc->getIdProjet());
 		
 	}
 	
