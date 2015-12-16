@@ -1,5 +1,6 @@
 <?php
 
+use Ajax\Jquery;
 class ProjectsController extends DefaultController{
 	public function initialize(){
 		$this->model="Projet";
@@ -138,6 +139,7 @@ class ProjectsController extends DefaultController{
 		
 		$this->jquery->jsonArrayOn("click", ".loadMessages", ".msgTemplate", "", array( "attr"=>"data-ajax", "jsCallback"=>"$('.messages').show();$('.loadMessages').hide();loadResponses();$('.ticket').css('height', $('.projectContent').height());"));
 		$this->jquery->postFormOn('click', ".validate", "Messages/updateProject", 'sendMessage',"#content");
+		$this->jquery->getOnClick(".manageBtn", "", ".content", array("attr"=>"data-ajax"));
 		
 		$this->jquery->exec($event, true);
 		$this->jquery->execOn("click", ".hideMessages", "$('.messages').hide();$('.loadMessages').show();$('.ticket').css('height', $('.projectContent').height());");
