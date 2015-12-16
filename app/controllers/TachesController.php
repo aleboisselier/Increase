@@ -24,13 +24,6 @@ class TachesController extends DefaultController{
 		parent::frmAction($id);
 	}
 	
-	public function updateFromProjectAction(){
-		if($this->request->isPost()){
-			$this->_updateAction(@$_POST);
-			$this->dispatcher->forward(array("controller"=>"Projects","action"=>"manage", "params"=>array("id"=>@$_POST['idProjet'])));
-		}
-	}
-	
 	public function updateAction() {
 		if($this->request->isPost()){
 			$this->_updateAction(@$_POST);

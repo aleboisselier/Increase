@@ -35,10 +35,4 @@ class UseCasesController extends DefaultController{
     	}
 	}
 	
-	public function updateFromProjectAction(){
-		if($this->request->isPost()){
-			$this->_updateAction(@$_POST);
-			$this->dispatcher->forward(array("controller"=>"Projects","action"=>"manage", "params"=>array("id"=>@$_POST['idProjet'])));
-		}
-	}
 }

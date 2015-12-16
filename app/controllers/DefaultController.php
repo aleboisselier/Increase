@@ -173,6 +173,13 @@ class DefaultController extends ControllerBase{
     	}
     	$this->dispatcher->forward(array("controller"=>$this->dispatcher->getControllerName(),"action"=>"index","params"=>array($msg)));
     }
+    
+    public function updateFromProjectAction(){
+    	if($this->request->isPost()){
+    		$this->_updateAction(@$_POST);
+    		$this->dispatcher->forward(array("controller"=>"Projects","action"=>"manage", "params"=>array("id"=>@$_POST['idProjet'])));
+    	}
+    }
 
     /**
      * Affiche un message Alert bootstrap de type success
