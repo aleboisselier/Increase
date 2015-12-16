@@ -1,5 +1,3 @@
-<fieldset class=" modifUc">
-	<legend>Gérer un Projet</legend>
 <fieldset>
 	<legend>Gérer un Projet : <a class="" href="{{ baseHref }}/Projects/show/{{ project.getId() }}">{{ project }}</a></legend>
 	<div class="form-group">
