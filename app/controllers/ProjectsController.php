@@ -194,11 +194,17 @@ class ProjectsController extends DefaultController{
     	 
     	$this->jquery->compile($this->view);
 		$this->view->setVars(array("usecase"=>$uc, "users"=>$users, "baseHref"=>$this->url->getBaseUri(), "tasks"=>$tasks));
+		$_SESSION['bread']['object'] = Projet::findFirst($uc->getIdProjet());
 		
 	}
 	
 	public function manageTasksAction($id=null, $idUc=null){
 		$tache = Tache::findFirst($id);
+		if(!$tache){
+			$tache = new Tache();
+			$tache->setAvancement(0);
+			$tache->setCodeUseCase($idUc);
+		}
 		$users = User::find("idRole<>3");
 		
 		$this->view->setVars(array("tache"=>$tache, "users"=>$users, "baseHref"=>$this->url->getBaseUri()));
@@ -215,6 +221,8 @@ class ProjectsController extends DefaultController{
 		$this->jquery->postFormOnClick(".validateTasks", "Taches/updateFromProject", "frmTasks",".content");
 		$this->jquery->execOn("click",".cancel","$('.infoUc').hide(); $('.selectUc > option:first').attr('selected', 'selected');");
 		$this->jquery->compile($this->view);
+		$uc = Usecase::findFirst("code='".$tache->getCodeUseCase()."'");
+		$_SESSION['bread']['object'] = Projet::findFirst($uc->getIdProjet());
 		
 	}
 	

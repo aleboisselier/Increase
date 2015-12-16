@@ -38,7 +38,7 @@
 		<div class="form-group">
 			<select class="form-control selectTasks" id="selectTasks" onChange="var e = document.getElementById('selectTasks');var str = e.options[e.selectedIndex].value;e.setAttribute('data-ajax',str);" >
 				<option value="Projects/manageTasks">Choisissez une Tâche...</option>
-				<option class="optionUc" value="Projects/manageTasks/null/{{usecase.getIdProjet() }}">Ajouter une nouvelle Tâche</option>
+				<option class="optionUc" value="Projects/manageTasks/null/{{usecase.getCode() }}">Ajouter une nouvelle Tâche</option>
 				{% for task in tasks %}
 					<option class="optionUc" id="{{task.getId()}}" value="Projects/manageTasks/{{ task.getId() }}">
 						{{task.getLibelle()}}
