@@ -1,5 +1,7 @@
 <fieldset class=" modifUc">
 	<legend>Gérer un Projet</legend>
+<fieldset>
+	<legend>Gérer un Projet : <a class="" href="{{ baseHref }}/Projects/show/{{ project.getId() }}">{{ project }}</a></legend>
 	<div class="form-group">
 		<select class="form-control selectUc" id="selectUc" onChange="var e = document.getElementById('selectUc');var str = e.options[e.selectedIndex].value;e.setAttribute('data-ajax',str);" >
 			<option value="Projects/manageUc">Choisissez une action...</option>

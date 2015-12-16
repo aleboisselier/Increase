@@ -53,7 +53,7 @@ class DefaultController extends ControllerBase{
      * si $id est nul, un nouvel objet est retourné<br>
      * sinon l'objet retourné est celui chargé depuis la BDD à partir de l'id $id
      * @param string $id
-     * @return multitype:$className
+     * @return multitype $className
      */
     public function getInstance($id=NULL){
     	if(isset($id)){
@@ -85,7 +85,7 @@ class DefaultController extends ControllerBase{
      * Prévoir une sur-définition de la méthode pour l'affectation des membres de type objet<br>
      * Cette méthode est utilisée update()
      * @see DefaultController::update()
-     * @param multitype:$className $object
+     * @param multitype $className $object
      */
     protected function setValuesToObject(&$object){
     	$object->assign($_POST);

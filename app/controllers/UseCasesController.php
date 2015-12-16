@@ -29,7 +29,9 @@ class UseCasesController extends DefaultController{
     	if($id != NULL){
     		return parent::getInstance("code='".$id."'");
     	}else{
-    		return new Usecase();
+    		$uc = new Usecase();
+    		$uc->setAvancement(0);
+    		return $uc;
     	}
 	}
 	
