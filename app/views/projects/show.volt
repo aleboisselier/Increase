@@ -106,6 +106,10 @@
 				</div>
 			{% endfor %}
 		</div>
+		<a href='{{url.get(baseHref~"/manage/"~projet.getId())}}' 
+		data-ajax="{{ baseHref ~ "/manage/" ~ projet.getId() }}">
+			<div class='btn btn-default btn-block' >Ajouter/Modifier un Use Case</div>
+		</a>
 		
 		<h3>Messages : </h3>
 		

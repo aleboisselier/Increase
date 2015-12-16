@@ -1,4 +1,4 @@
-<fieldset>
+<fieldset class=" modifUc">
 	<legend>Gérer un Projet</legend>
 	<div class="form-group">
 		<select class="form-control selectUc" id="selectUc" onChange="var e = document.getElementById('selectUc');var str = e.options[e.selectedIndex].value;e.setAttribute('data-ajax',str);" >

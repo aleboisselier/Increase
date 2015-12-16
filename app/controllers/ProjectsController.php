@@ -185,9 +185,9 @@ class ProjectsController extends DefaultController{
 							//});
     					", true);
     	
-    	$this->jquery->postFormOnClick(".validateUpUc", "Usecases/updateFromProject", "frmObject","");
+    	$this->jquery->postFormOnClick(".validateUpUc", "Usecases/updateFromProject", "frmObject",".modifUc");
     	$this->jquery->execOn("click",".cancel","$('.infoUc').hide(); $('.selectUc > option:first').attr('selected', 'selected');");
-    	 
+
     	$this->jquery->compile($this->view);
 		$this->view->setVars(array("usecase"=>$uc, "users"=>$users, "baseHref"=>$this->url->getBaseUri()));
 		
