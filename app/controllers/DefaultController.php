@@ -141,6 +141,7 @@ class DefaultController extends ControllerBase{
     			$msg=new DisplayedMessage("Impossible d'ajouter l'instance de ".$this->model,"danger");
     		}
     	}
+    	return $msg;
     }
     
     public function deleteAction($id){

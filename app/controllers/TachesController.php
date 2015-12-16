@@ -63,6 +63,7 @@ class TachesController extends DefaultController{
 		}catch (\Exception $e){
 			$msg=new DisplayedMessage("Impossible de modifier l'avancement de la  UseCase ".$usecase,"danger");
 		}
+		return $msg;
 	}
 }
 
