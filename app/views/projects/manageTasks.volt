@@ -12,7 +12,7 @@
 		</div>
 		<div class="form-group">
 			<label for="libelle">Date Max</label>
-			<input type="datetime" name="date" id="date" class="form-control" value="{{tache.getDate()}}"/>
+			<input type="date" name="date" id="date" class="form-control" value="{{tache.getDate()}}"/>
 		</div>
 		<div class="form-group">
 			<label for="avancement">Avancement</label>

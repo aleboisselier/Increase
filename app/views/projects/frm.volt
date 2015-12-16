@@ -20,6 +20,14 @@
 				{% endfor %}
 			</select>
 		  </div>
+		  <div class="form-group">
+		    <label for="idClient">Chef de Projet</label>
+		    <select class="form-control" name="idManager">
+				{% for manager in managers %}
+					<option value="{{ manager.getId() }}" {% if manager.getId() == project.getIdManager() %}selected{% endif %}>{{ manager.getIdentite() }}</option>
+				{% endfor %}
+			</select>
+		  </div>
 		<div class="form-group col-md-6">
 			<label for="libelle">Date de Lancement</label>
 			<input type="date" name="dateLancement" id="dateLancement" class="form-control" value="{{project.getDateLancement()}}"/>

@@ -228,9 +228,14 @@ class ProjectsController extends DefaultController{
 	public function frmAction($id=null){
 		$projet=$this->getInstance($id);
 		$this->view->setVar("project", $projet);
+		if ($projet->getNom() == ""){
+			$projet->setNom("Nouveau Projet");
+		}
+		
+		$managers = User::find('idRole=4');
 		
 		$clients = User::find("idRole=3");
-		$this->view->setVar("clients", $clients);
+		$this->view->setVars(array("clients" => $clients, "managers"=>$managers));
 		
 		parent::frmAction($id);
 		$_SESSION['bread']['object'] = $projet;
