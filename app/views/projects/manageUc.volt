@@ -29,13 +29,27 @@
 			<label for="avancement">Avancement</label>
 			<input type="range" min="0" max="100" step="1" value="{{ usecase.getAvancement() }}" data-orientation="horizontal" name="avancement" id="avancement" disabled>
 			<div><h1 class="avancement text-center">{{ usecase.getAvancement() }}%</h1></div>
-			
 		</div>
+		
 		<div class="form-group">
 			<input type="submit" value="Valider" class="btn btn-default validateUpUc">
 			<a class="btn btn-default cancel" >Annuler</a>
 		</div>
+		<div class="form-group">
+			<select class="form-control selectTasks" id="selectTasks" onChange="var e = document.getElementById('selectTasks');var str = e.options[e.selectedIndex].value;e.setAttribute('data-ajax',str);" >
+				<option value="Projects/manageTasks">Choisissez une Tâche...</option>
+				<option class="optionUc" value="Projects/manageTasks/null/{{usecase.getIdProjet() }}">Ajouter une nouvelle Tâche</option>
+				{% for task in tasks %}
+					<option class="optionUc" id="{{task.getId()}}" value="Projects/manageTasks/{{ task.getId() }}">
+						{{task.getLibelle()}}
+					</option>
+				{% endfor %}
+			</select>
+		</div>
+		
 	</fieldset>
 </form>
+
+<div class="tasks"></div>
 
 {{ script_foot }}
