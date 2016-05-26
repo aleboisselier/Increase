@@ -18,7 +18,7 @@
 			{% endif %}
 		</div>
 		<div class="client row">
-			{{projet.getClient()}}
+			Client : {{projet.getClient().getIdentite()}}
 		</div>
 		<div class="percentage"> 
 			{{projet.getAvancement()}} %
