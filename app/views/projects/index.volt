@@ -17,7 +17,7 @@
 					<a class='btn btn-primary btn-xs update' 
 					href='{{url.get(baseHref~"/frm/"~object.getId())}}' 
 					data-ajax="{{ baseHref ~ "/frm/" ~ object.getId() }}"
-					data-toggle="tooltip" data-placement="top" title="Modifier Le projet">
+					data-toggle="tooltip" data-placement="top" title="Modifier le projet">
 						<span class='glyphicon glyphicon-edit' aria-hidden='true'></span>
 					</a>
 					</td>
@@ -25,7 +25,7 @@
 					<a class='btn btn-warning btn-xs delete' 
 					href='{{url.get(baseHref~"/delete/"~object.getId())}}' 
 					data-ajax="{{ baseHref ~ "/delete/" ~ object.getId() }}"
-					data-toggle="tooltip" data-placement="top" title="Supprimer le rojet">
+					data-toggle="tooltip" data-placement="top" title="Supprimer le projet">
 						<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>
 					</a>
 				</td>
