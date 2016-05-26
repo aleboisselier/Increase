@@ -104,7 +104,7 @@ class ProjectsController extends DefaultController{
 		$_SESSION['bread']['object'] = $projet;
 		
 		$event = "function loadResponses(){";
-		$event .= $this->jquery->jsonArrayOn("click", ".loadReponses", ".msgTemplate", "", array("immediatly"=>true, "attr"=>"data-ajax", "jsCallback"=>"loadResponses()", "context"=>"$('.responses.'+self.attr('id'))"));
+		$event .= $this->jquery->jsonArrayOn("click", ".loadReponses", ".msgTemplate", "", array("immediatly"=>true, "attr"=>"data-ajax", "jsCallback"=>"loadResponses(); $('.unloadResponses.'+self.attr('id')).show();self.hide();", "context"=>"$('.responses.'+self.attr('id'))"));
 
 		$event.= $this->jquery->execOn("click", ".newMessage", "loadMsgForm($(this), false)", array("immediatly"=>true));
 		$event.= $this->jquery->execOn("click", ".newResponse", "loadMsgForm($(this), true)", array("immediatly"=>true));
@@ -114,6 +114,7 @@ class ProjectsController extends DefaultController{
 				$('.ticket').css('height', $('.projectContent').height());
 				", array("immediatly"=>true));
 		$event .= "}";
+
 		$event.="$('.ticket').css('height', $('.projectContent').height());";
 		
 		$this->jquery->exec("

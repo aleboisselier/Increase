@@ -18,25 +18,24 @@ class MessagesController extends DefaultController{
 	}
 	
 	public function updateProjectAction(){
-		if($this->request->isPost()){
-			$object=$this->getInstance(@$_POST["id"]);
-			$this->setValuesToObject($object);
-			if(@$_POST["id"]){
-				try{
-					$object->save();
-					$msg=new DisplayedMessage($this->model." `{$object}` mis à jour");
-				}catch(\Exception $e){
-					$msg=new DisplayedMessage("Impossible de modifier l'instance de ".$this->model,"danger");
-				}
-			}else{
-				try{
-					$object->save();
-					$msg=new DisplayedMessage("Instance de ".$this->model." `{$object}` ajoutée");
-				}catch(\Exception $e){
-					$msg=new DisplayedMessage("Impossible d'ajouter l'instance de ".$this->model,"danger");
-				}
-			}
-			$this->dispatcher->forward(array("controller"=>"Projects","action"=>"show","params"=>array(@$_POST["idProjet"], $msg)));
-		}
-	}
+    	$object=$this->getInstance(@$_POST["id"]);
+    	$this->setValuesToObject($object);
+    	$object->setDate(date("Y-m-d H:i:s"));
+    	if(@$_POST["id"]){
+    		try{
+    			$object->save();
+    			$msg=new DisplayedMessage($this->model." `{$object}` mis à jour");
+    		}catch(\Exception $e){
+    			$msg=new DisplayedMessage("Impossible de modifier l'instance de ".$this->model,"danger");
+    		}
+    	}else{
+    		try{
+    			$object->save();
+    			$msg=new DisplayedMessage("Instance de ".$this->model." `{$object}` ajoutée");
+    		}catch(\Exception $e){
+    			$msg=new DisplayedMessage("Impossible d'ajouter l'instance de ".$this->model,"danger");
+    		}
+    	}
+    	$this->dispatcher->forward(array("controller"=>"Projects","action"=>"show","params"=>array(@$_POST["idProjet"], $msg)));
+    }
 }

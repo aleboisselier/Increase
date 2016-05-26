@@ -126,7 +126,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<span>[[objet]]
-							<small>Auteur :
+							<small class="pull-right">de 
 								<i style="font-size:12px">[[author]]</i>
 							</small>
 						</span>
@@ -137,7 +137,10 @@
 				  	</div>
 				  	<div class="panel-footer">
 				  		<button class="btn btn-xs btn-default newResponse" id="[[id]]"><span class="glyphicon glyphicon-share-alt"></span></button>
-				  		<small class="pull-right"> <a id="[[id]]" class="loadReponses" data-ajax="Json/loadMessages/{{ projet.getId() }}/[[id]]" >Afficher [[responses]] réponses</a></small>
+				  		<small class="pull-right"> 
+				  			<a style="cursor:pointer" id="[[id]]" class="loadReponses [[id]]" data-ajax="Json/loadMessages/{{ projet.getId() }}/[[id]]" >Afficher [[responses]] réponses</a>
+				  			<a style="cursor:pointer; display:none" class="unloadResponses [[id]]" onclick="$('.responses.[[id]]').empty(); $('.loadReponses.[[id]]').show(); $(this).hide();">Masquer les réponses</a>
+				  		</small>
 				  		<div class="clearfix"></div>
 				  	</div>
 				</div>
