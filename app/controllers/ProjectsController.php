@@ -119,20 +119,21 @@ class ProjectsController extends DefaultController{
 		
 		$this->jquery->exec("
 				function loadMsgForm(elt, response){
-					$('.msgForm:not(.model)').empty();
+					$('.msgForm:not(.model)').remove();
 					$('.newResponse').removeClass('disabled');
 					var newMsg = $('.msgForm').clone(true, true);
 					newMsg.removeClass('model');
 					
 					if(response){
 						newMsg.appendTo($('.responses.'+elt.attr('id')));
+						newMsg.find('#idFil').attr('value', elt.attr('id'));
 					}else{
 						newMsg.appendTo($('.messages'));
+						newMsg.find('#idFil').remove();
 					}
-				
+					
 					elt.addClass('disabled');
 					newMsg.show(true);
-					newMsg.find('#idFil').attr('value', elt.attr('id'));
 					newMsg.attr('id', 'sendMessage');
 					$('.ticket').css('height', $('.projectContent').height());
 				}

@@ -1,13 +1,3 @@
-<style>
-<!--
-.content{
-	padding:0;
-}
-#content{
-	padding:0;
-}
--->
-</style>
 <fieldset>
 	<div class="col-md-3 col-xs-3 ticket" id="color">
 		<div class="imgProjet row">
@@ -18,7 +8,7 @@
 			{% endif %}
 		</div>
 		<div class="client row">
-			{{projet.getClient()}}
+			{{projet.getClient().getIdentite()}}
 		</div>
 		<div class="percentage"> 
 			{{projet.getAvancement()}} %
@@ -152,14 +142,14 @@
 	
 </fieldset>
 
-	<form action="messages/updateProject"  method="post" style="display: none;" class="msgForm model">
+	<form action="Messages/updateProject"  method="post" style="display: none;" class="msgForm model">
 		<div class="col-md-12">
 			<fieldset>
 				<div class="form-group">
 					<input type="hidden" name="id" id="id" value="">
 					<input type="hidden" name="idProjet" value="{{ projet.getId() }}">
 					<input type="hidden" name="idUser" value="{{ currUser.getId() }}">
-					<input type="hidden" name="idFil" id="idFil" value="{{ currUser.getId() }}">
+					<input type="hidden" name="idFil" id="idFil" value="NULL">
 				</div>
 				  <div class="form-group">
 					<label for="libelle">Objet</label>
