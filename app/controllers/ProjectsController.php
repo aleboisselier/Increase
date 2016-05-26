@@ -104,13 +104,14 @@ class ProjectsController extends DefaultController{
 		$_SESSION['bread']['object'] = $projet;
 		
 		$event = "function loadResponses(){";
-		$event .= $this->jquery->jsonArrayOn("click", ".loadReponses", ".msgTemplate", "", array("immediatly"=>true, "attr"=>"data-ajax", "jsCallback"=>"loadResponses(); $('.unloadResponses.'+self.attr('id')).show();self.hide();", "context"=>"$('.responses.'+self.attr('id'))"));
+		$event .= $this->jquery->jsonArrayOn("click", ".loadReponses", ".msgTemplate", "", array("immediatly"=>true, "attr"=>"data-ajax", "jsCallback"=>"loadResponses(); $('.unloadResponses.'+self.attr('id')).show();self.hide(); $('.responses.'+self.attr('id')).slideDown();", "context"=>"$('.responses.'+self.attr('id'))"));
 
 		$event.= $this->jquery->execOn("click", ".newMessage", "loadMsgForm($(this), false)", array("immediatly"=>true));
 		$event.= $this->jquery->execOn("click", ".newResponse", "loadMsgForm($(this), true)", array("immediatly"=>true));
 		$event.= $this->jquery->execOn("click", ".cancel", "
 				$('.msgForm:not(.model)').empty();
 				$('.newResponse').removeClass('disabled');
+				$('.newMessage').removeClass('disabled');
 				$('.ticket').css('height', $('.projectContent').height());
 				", array("immediatly"=>true));
 		$event .= "}";
@@ -133,18 +134,19 @@ class ProjectsController extends DefaultController{
 					}
 					
 					elt.addClass('disabled');
+					$('.newMessage').addClass('disabled');
 					newMsg.show(true);
 					newMsg.attr('id', 'sendMessage');
 					$('.ticket').css('height', $('.projectContent').height());
 				}
 				", true);
 		
-		$this->jquery->jsonArrayOn("click", ".loadMessages", ".msgTemplate", "", array( "attr"=>"data-ajax", "jsCallback"=>"$('.messages').show();$('.loadMessages').hide();loadResponses();$('.ticket').css('height', $('.projectContent').height());"));
+		$this->jquery->jsonArrayOn("click", ".loadMessages", ".msgTemplate", "", array( "attr"=>"data-ajax", "jsCallback"=>"$('.messages').slideDown();$('.loadMessages').hide();loadResponses();$('.ticket').css('height', $('.projectContent').height());"));
 		$this->jquery->postFormOn('click', ".validate", "Messages/updateProject", 'sendMessage',"#content");
 		$this->jquery->getOnClick(".manageBtn", "", ".content", array("attr"=>"data-ajax"));
 		
 		$this->jquery->exec($event, true);
-		$this->jquery->execOn("click", ".hideMessages", "$('.messages').hide();$('.loadMessages').show();$('.ticket').css('height', $('.projectContent').height());");
+		$this->jquery->execOn("click", ".hideMessages", "$('.messages').slideUp();$('.loadMessages').show();$('.ticket').css('height', $('.projectContent').height());");
 		$this->jquery->compile($this->view);
 	}
 	public function listAction($id=Null){

@@ -113,7 +113,7 @@
 		<a class="btn btn-primary newMessage btn-block"  style="margin-bottom: 25px;">Nouveau Message</a>
 		<div class="msgTemplate">
 			<div class="col-md-11 pull-right" style="padding:0">
-				<div class="panel panel-default">
+				<div class="panel panel-danger">
 					<div class="panel-heading">
 						<span>[[objet]]
 							<small class="pull-right">de 
@@ -129,7 +129,7 @@
 				  		<button class="btn btn-xs btn-default newResponse" id="[[id]]"><span class="glyphicon glyphicon-share-alt"></span></button>
 				  		<small class="pull-right"> 
 				  			<a style="cursor:pointer" id="[[id]]" class="loadReponses [[id]]" data-ajax="Json/loadMessages/{{ projet.getId() }}/[[id]]" >Afficher [[responses]] réponses</a>
-				  			<a style="cursor:pointer; display:none" class="unloadResponses [[id]]" onclick="$('.responses.[[id]]').empty(); $('.loadReponses.[[id]]').show(); $(this).hide();">Masquer les réponses</a>
+				  			<a style="cursor:pointer; display:none" class="unloadResponses [[id]]" onclick="$('.responses.[[id]]').slideUp(); $('.loadReponses.[[id]]').show(); $(this).hide();">Masquer les réponses</a>
 				  		</small>
 				  		<div class="clearfix"></div>
 				  	</div>
