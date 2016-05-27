@@ -111,30 +111,33 @@
 	<div class="messages" style="display:none">
 		<a class="btn btn-primary load btn-block hideMessages">Masquer les Messages</a>
 		<a class="btn btn-primary newMessage btn-block"  style="margin-bottom: 25px;">Nouveau Message</a>
-		<div class="msgTemplate">
-			<div class="col-md-11 pull-right" style="padding:0">
-				<div class="panel panel-danger">
-					<div class="panel-heading">
-						<span>[[objet]]
-							<small class="pull-right">de 
-								<i style="font-size:12px">[[author]]</i>
-							</small>
-						</span>
+
+		<div class="messages-list">
+			<div class="msgTemplate">
+				<div class="col-md-11 pull-right" style="padding:0">
+					<div class="panel panel-danger">
+						<div class="panel-heading">
+							<span>[[objet]]
+								<small class="pull-right">de 
+									<i style="font-size:12px">[[author]]</i>
+								</small>
+							</span>
+						</div>
+					  	<div class="panel-body" id="[[id]]">
+					  		<i>[[content]]</i>
+					  		<small class="pull-right">Il y a [[date]]</small>
+					  	</div>
+					  	<div class="panel-footer">
+					  		<button class="btn btn-xs btn-default newResponse" id="[[id]]"><span class="glyphicon glyphicon-share-alt"></span></button>
+					  		<small class="pull-right"> 
+					  			<a style="cursor:pointer" id="[[id]]" class="loadReponses [[id]]" data-ajax="Json/loadMessages/{{ projet.getId() }}/[[id]]" >Afficher [[responses]] réponses</a>
+					  			<a style="cursor:pointer; display:none" class="unloadResponses [[id]]" onclick="$('.responses.[[id]]').slideUp(); $('.loadReponses.[[id]]').show(); $(this).hide();">Masquer les réponses</a>
+					  		</small>
+					  		<div class="clearfix"></div>
+					  	</div>
 					</div>
-				  	<div class="panel-body" id="[[id]]">
-				  		<i>[[content]]</i>
-				  		<small class="pull-right">Il y a [[date]]</small>
-				  	</div>
-				  	<div class="panel-footer">
-				  		<button class="btn btn-xs btn-default newResponse" id="[[id]]"><span class="glyphicon glyphicon-share-alt"></span></button>
-				  		<small class="pull-right"> 
-				  			<a style="cursor:pointer" id="[[id]]" class="loadReponses [[id]]" data-ajax="Json/loadMessages/{{ projet.getId() }}/[[id]]" >Afficher [[responses]] réponses</a>
-				  			<a style="cursor:pointer; display:none" class="unloadResponses [[id]]" onclick="$('.responses.[[id]]').slideUp(); $('.loadReponses.[[id]]').show(); $(this).hide();">Masquer les réponses</a>
-				  		</small>
-				  		<div class="clearfix"></div>
-				  	</div>
+					<div class="responses [[id]]"></div>
 				</div>
-				<div class="responses [[id]]"></div>
 			</div>
 		</div>
 	</div>
@@ -160,7 +163,7 @@
 					<textarea name="content" id="content" class="form-control"></textarea>
 				</div>
 				<div class="form-group">
-					<input type="submit" value="Envoyer" class="btn btn-default validate">
+					<input type="submit" value="Envoyer" class="btn btn-default validate" data-target=".messages-list">
 					<button class="btn btn-default cancel">Annuler</button>
 				</div>
 			</fieldset>

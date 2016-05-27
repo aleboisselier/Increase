@@ -36,6 +36,27 @@ class MessagesController extends DefaultController{
     			$msg=new DisplayedMessage("Impossible d'ajouter l'instance de ".$this->model,"danger");
     		}
     	}
-    	$this->dispatcher->forward(array("controller"=>"Projects","action"=>"show","params"=>array(@$_POST["idProjet"], $msg)));
+    	$this->loadMessagesAction($object->getIdProjet(), $object->getIdFil());
+  
+		
     }
+
+    public function loadMessagesAction($idProjet, $idFil=NULL){
+		$sql = "idProjet=".$idProjet;
+		
+		if($idFil == null){
+			$sql .= " AND idFil IS NULL";
+		}else{
+			$sql .= " AND idFil=".$idFil;
+		}
+	
+		$messages = Message::find($sql);
+
+		foreach ($messages as $msg) {
+			$reponses[$msg->getId()] = $responses = count(Message::find("idFil=".$msg->getId()));
+		}
+		
+		$this->view->setVars(array("messages"=>$messages, "responses" => $responses));
+    	$this->view->pick("messages/main");
+	}
 }

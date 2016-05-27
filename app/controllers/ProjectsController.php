@@ -128,9 +128,12 @@ class ProjectsController extends DefaultController{
 					if(response){
 						newMsg.appendTo($('.responses.'+elt.attr('id')));
 						newMsg.find('#idFil').attr('value', elt.attr('id'));
+						newMsg.find('.validate').attr('data-target', '.responses.'+elt.attr('id'));
+						newMsg.find('.validate').attr('id', elt.attr('id'));
 					}else{
-						newMsg.appendTo($('.messages'));
+						newMsg.appendTo($('.messages-list'));
 						newMsg.find('#idFil').remove();
+						newMsg.find('.validate').attr('id', '0');
 					}
 					
 					elt.addClass('disabled');
@@ -142,7 +145,7 @@ class ProjectsController extends DefaultController{
 				", true);
 		
 		$this->jquery->jsonArrayOn("click", ".loadMessages", ".msgTemplate", "", array( "attr"=>"data-ajax", "jsCallback"=>"$('.messages').slideDown();$('.loadMessages').hide();loadResponses();$('.ticket').css('height', $('.projectContent').height());"));
-		$this->jquery->postFormOn('click', ".validate", "Messages/updateProject", 'sendMessage',"#content");
+		$this->jquery->postFormOn('click', ".validate", "Messages/updateProject", 'sendMessage',"self.getAttribute('data-target')");
 		$this->jquery->getOnClick(".manageBtn", "", ".content", array("attr"=>"data-ajax"));
 		
 		$this->jquery->exec($event, true);
