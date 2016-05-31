@@ -1,4 +1,4 @@
-![Increase logo](http://open-beer.kobject.net/img/Increase.png "Increase logo")
+![Increase logo](http://angular.kobject.net/git/phalconist/Increase.png "Increase logo")
 
 # Increase
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/aleboisselier/Increase/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/aleboisselier/Increase/?branch=master)
