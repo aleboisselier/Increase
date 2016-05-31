@@ -165,12 +165,14 @@ class ProjectsController extends DefaultController{
 	
 	public function manageAction($id=Null){
 		$this->jquery->exec("$('[data-toggle=\"tooltip\"]').tooltip()", true);
-		$this->jquery->compile($this->view);
 		$this->view->pick("projects/manage");
 		$projet=$this->getInstance($id);
 		$ucs=Usecase::find("idProjet=".$id);
-		/*$this->jquery->getOn("change",".selectUc","",".infoUc",
-				array("attr"=>"data-ajax", "jsCallback"=>"$('.infoUc').show();"));*/
+		
+		$this->jquery->getOnClick(".updateUC", "projects/manageUc", ".viewUC",
+				array("jsCallback"=>"$('.viewUC').css('visibility','visible')"));
+		$this->jquery->compile($this->view);
+		
 		$this->view->setVars(array("project"=> $projet, "baseHref"=>$this->url->getBaseUri(), "ucs"=>$ucs));
 		$_SESSION['bread']['object'] = Projet::findFirst($id);
 		
@@ -198,7 +200,7 @@ class ProjectsController extends DefaultController{
 							//});
     					", true);
     	$this->jquery->postFormOnClick(".validateUpUc", "Usecases/updateFromProject", "frmObject",".content");
-    	$this->jquery->execOn("click",".cancel","$('.infoUc').hide(); $('.selectUc > option:first').attr('selected', 'selected');");
+    	$this->jquery->click(".cancelUC","$('.viewUC').css('visibility','hidden')");
     	$this->jquery->getOn("change",".selectTasks","",".tasks",
     			array("attr"=>"data-ajax", "jsCallback"=>"$('.tasks').show();"));
     	 

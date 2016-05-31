@@ -33,7 +33,7 @@
 		
 		<div class="form-group">
 			<input type="submit" value="Valider" class="btn btn-default validateUpUc">
-			<a class="btn btn-default cancel" >Annuler</a>
+			<a class="btn btn-default cancelUC" >Annuler</a>
 		</div>
 		<div class="form-group">
 			<select class="form-control selectTasks" id="selectTasks" onChange="var e = document.getElementById('selectTasks');var str = e.options[e.selectedIndex].value;e.setAttribute('data-ajax',str);" >
