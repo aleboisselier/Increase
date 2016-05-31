@@ -15,11 +15,11 @@ class ControllerBase extends Controller
     		$this->jquery->compile($this->view);
 	 	}else{
 	 		//$this->view->disable();
-	 		$allow = false;
+	 		$allow = true;
 	 		$user = $this->session->get('user');
-	 		if($this->dispatcher->getControllerName() == "Index" || $this->dispatcher->getControllerName() == "Auth") $allow = true;
 
-	 		if(!$allow){
+	 		if(!($this->dispatcher->getControllerName() == "Index" || $this->dispatcher->getControllerName() == "Auth")){
+	 			$allow = false;
 			 	foreach ($user->getRole()->getAcl() as $acl) {
 			 		if( ($acl->getController() == $this->dispatcher->getControllerName() || $acl->getController() == "Default") && $acl->getAction() == $this->dispatcher->getActionName()){
 			 			$allow = true;
