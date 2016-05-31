@@ -127,4 +127,12 @@ class Role extends \Phalcon\Mvc\Model
         return 'role';
     }
 
+     /**
+     * Initialize method for model.
+     */
+    public function initialize()
+    {
+        $this->hasMany('id', 'Acl', 'idRole', array('alias' => 'Acl'));
+    }
+
 }

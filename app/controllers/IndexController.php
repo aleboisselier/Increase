@@ -5,8 +5,14 @@ use Phalcon\Mvc\View;
 class IndexController extends ControllerBase
 {
 
-    public function indexAction($msg=""){
-    	$this->view->setVar("msg", $msg);
+    public function indexAction($msg=null){
+        if($msg != null){
+            $msg = $msg->compile($this->jquery);
+            $this->view->setVar("msg", $msg);
+        }else{
+            $this->view->setVar("msg", "");
+        }
+        
     	$this->session->__unset("bread");
     	if (AuthController::isAuth()){
     		$user = $this->session->get('user');

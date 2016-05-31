@@ -6,6 +6,7 @@ use AuthController as Auth;
 class ControllerBase extends Controller
 {
 	 public function afterExecuteRoute(){
+
 	 	$this->view->setVar("siteUrl", $this->url->getBaseUri());
 	 	
 	 	if(!Auth::isAuth()){
@@ -13,11 +14,32 @@ class ControllerBase extends Controller
 	 		$this->jquery->exec('$(".breadcrumb").hide();$(".menuItem").hide();$(".nomUser").hide()', true);
     		$this->jquery->compile($this->view);
 	 	}else{
+	 		//$this->view->disable();
+	 		$allow = false;
+	 		$user = $this->session->get('user');
+	 		if($this->dispatcher->getControllerName() == "Index" || $this->dispatcher->getControllerName() == "Auth") $allow = true;
+
+	 		if(!$allow){
+			 	foreach ($user->getRole()->getAcl() as $acl) {
+			 		if( ($acl->getController() == $this->dispatcher->getControllerName() || $acl->getController() == "Default") && $acl->getAction() == $this->dispatcher->getActionName()){
+			 			$allow = true;
+			 			break;
+			 		}
+			 	}
+			 }
+
+		 	if(!$allow){
+		 		$this->dispatcher->forward(array("controller" => "Index", "action" => "index", "params" => array(new DisplayedMessage("Vous n'avez pas accès à cette partie de l'application.","danger"))));
+		 		return;
+		 	}
+
 	 		$this->breadCrumbsAction();
 	 		$this->menuAction();
 	 		$this->userAction();
 	 	}
+
 	 	
+
 	 }
 	 
 	 public function menuAction(){
