@@ -29,7 +29,8 @@ class RolesController extends DefaultController{
 				"Projects" => array(
 					"name" => "Projets",
 					"actions" => array(
-						"manage" => "Ajouter/Modifier UseCases")
+						"manage" => "Ajouter/Modifier UseCases",
+						"manageUc" => "Ajouter/Modifier Tâches")
 				), 
 				"Roles" => array(
 					"name" => "Rôles",

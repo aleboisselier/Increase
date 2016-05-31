@@ -169,7 +169,7 @@ class ProjectsController extends DefaultController{
 		$projet=$this->getInstance($id);
 		$ucs=Usecase::find("idProjet=".$id);
 		
-		$this->jquery->getOnClick(".updateUC", "projects/manageUc", ".viewUC",
+		$this->jquery->getOnClick(".updateUC", "Projects/manageUc", ".viewUC",
 				array("jsCallback"=>"$('.viewUC').css('visibility','visible')"));
 		$this->jquery->compile($this->view);
 		
