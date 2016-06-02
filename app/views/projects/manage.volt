@@ -7,27 +7,27 @@
 </div>
 
 <table class='table table-striped'>
-		<tbody>
-		{% for uc in ucs %}
-			<tr>
-				<td>{{uc.getNom()}}</td>
-				<td class='td-center'>
-					<a class='btn btn-primary btn-xs updateUC' id="{{ uc.getId() }}"
-						data-toggle="tooltip" data-placement="top" title="Modifier l'UC">
-						<span class='glyphicon glyphicon-edit' aria-hidden='true'></span>
-					</a>
-					</td>
-				<td class='td-center'>
-					<a class='btn btn-warning btn-xs deleteUC' id="Projects/manageUc/{{ uc.getId() }}"
-					data-toggle="tooltip" data-placement="top" title="Supprimer l'UC">
-						<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>
-					</a>
+	<tbody>
+	{% for uc in ucs %}
+		<tr>
+			<td>{{uc.getNom()}}</td>
+			<td class='td-center'>
+				<div class='btn btn-primary btn-xs updateUC' id="{{ uc.getId() }}"
+					data-toggle="tooltip" data-placement="top" title="Modifier l'UC">
+					<span class='glyphicon glyphicon-edit' aria-hidden='true'></span>
+				</div>
 				</td>
-			</tr>
-		{% endfor %}
-		</tbody>
+			<td class='td-center'>
+				<div class='btn btn-warning btn-xs deleteUC' id="{{ uc.getId() }}"
+				data-toggle="tooltip" data-placement="top" title="Supprimer l'UC">
+					<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>
+				</div>
+			</td>
+		</tr>
+	{% endfor %}
+	</tbody>
 </table>
-<a class='btn btn-primary add'>Ajouter...</a>
+<div class='btn btn-primary addUC'>Ajouter...</a>
 {% if script_foot is defined %}
     {{ script_foot }}
 {% endif %}

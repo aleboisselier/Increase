@@ -171,11 +171,12 @@ class ProjectsController extends DefaultController{
 		
 		$this->jquery->getOnClick(".updateUC", "Projects/manageUc", ".viewUC",
 				array("jsCallback"=>"$('.viewUC').css('visibility','visible')"));
+		$this->jquery->getOnClick(".addUC", "Projects/manageUc", ".viewUC",
+				array("jsCallback"=>"$('.viewUC').css('visibility','visible')"));
 		$this->jquery->compile($this->view);
 		
 		$this->view->setVars(array("project"=> $projet, "baseHref"=>$this->url->getBaseUri(), "ucs"=>$ucs));
-		$_SESSION['bread']['object'] = Projet::findFirst($id);
-		
+		$_SESSION['bread']['object'] = Projet::findFirst($id);	
 	}
 	
 	public function manageUcAction($id=Null, $idProject=null){
@@ -189,6 +190,7 @@ class ProjectsController extends DefaultController{
 		$tasks = Tache::find("codeUseCase LIKE '".$uc->getCode()."'");
 		$users=User::find("idRole <> 3 ORDER BY idRole");
 		
+		$this->jquery->exec("$('[data-toggle=\"tooltip\"]').tooltip()", true);
     	$this->jquery->exec("$('input[type=\"range\"]').rangeslider({
   								polyfill: false,
 								onSlide: function(position, value) {
@@ -201,8 +203,8 @@ class ProjectsController extends DefaultController{
     					", true);
     	$this->jquery->postFormOnClick(".validateUpUc", "Usecases/updateFromProject", "frmObject",".content");
     	$this->jquery->click(".cancelUC","$('.viewUC').css('visibility','hidden')");
-    	$this->jquery->getOn("change",".selectTasks","",".tasks",
-    			array("attr"=>"data-ajax", "jsCallback"=>"$('.tasks').show();"));
+    	$this->jquery->getOnClick(".updateTask","Projects/manageTasks",".tasks",
+    			array("jsCallback"=>"$('.tasks').show();$('.tasks').css('background-color','rgba(0, 0, 0, 0.09)')"));
     	 
     	$this->jquery->compile($this->view);
 		$this->view->setVars(array("usecase"=>$uc, "users"=>$users, "baseHref"=>$this->url->getBaseUri(), "tasks"=>$tasks));
@@ -231,7 +233,7 @@ class ProjectsController extends DefaultController{
 		$this->view->pick("projects/manageTasks");
 		
 		$this->jquery->postFormOnClick(".validateTasks", "Taches/updateFromProject", "frmTasks",".content");
-		$this->jquery->execOn("click",".cancel","$('.infoUc').hide(); $('.selectUc > option:first').attr('selected', 'selected');");
+		$this->jquery->click(".cancelTask","$('.tasks').hide();");
 		$this->jquery->compile($this->view);
 		$uc = Usecase::findFirst("code='".$tache->getCodeUseCase()."'");
 		$_SESSION['bread']['object'] = Projet::findFirst($uc->getIdProjet());

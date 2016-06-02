@@ -1,4 +1,7 @@
 {{ form("usecases/updateFromProject", "method": "post", "name":"frmObject", "id":"frmObject") }}
+<div class="cancelUC btn btn-default" style="position:absolute; right:5%; top:1.5%">
+	<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>
+</div>
 	<fieldset>
 	<legend>Ajouter/modifier une UseCase : </legend>
 		<div class="form-group">
@@ -32,24 +35,39 @@
 		</div>
 		
 		<div class="form-group">
-			<input type="submit" value="Valider" class="btn btn-default validateUpUc">
-			<a class="btn btn-default cancelUC" >Annuler</a>
-		</div>
-		<div class="form-group">
-			<select class="form-control selectTasks" id="selectTasks" onChange="var e = document.getElementById('selectTasks');var str = e.options[e.selectedIndex].value;e.setAttribute('data-ajax',str);" >
-				<option value="Projects/manageTasks">Choisissez une Tâche...</option>
-				<option class="optionUc" value="Projects/manageTasks/null/{{usecase.getCode() }}">Ajouter une nouvelle Tâche</option>
-				{% for task in tasks %}
-					<option class="optionUc" id="{{task.getId()}}" value="Projects/manageTasks/{{ task.getId() }}">
-						{{task.getLibelle()}}
-					</option>
-				{% endfor %}
-			</select>
+			<table class='table table-striped'>
+				<tbody>
+					{% for task in tasks %}
+					<tr>
+						<td>{{task.getLibelle()}}</td>
+						<td class='td-center'>
+							<div class='btn btn-primary btn-xs updateTask' id="{{ task.getId() }}"
+							data-toggle="tooltip" data-placement="top" title="Modifier la tâche">
+								<span class='glyphicon glyphicon-edit' aria-hidden='true'></span>
+							</div>
+						</td>
+						<td class='td-center'>
+							<div class='btn btn-warning btn-xs deleteTask' id="{{ task.getId() }}"
+							data-toggle="tooltip" data-placement="top" title="Supprimer la tâche">
+								<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>
+							</div>
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<a class='btn btn-primary addTask'>Ajouter...</a>
 		</div>
 		
 	</fieldset>
 </form>
 
+<div class="form-group">
+	<input type="submit" value="Valider" class="btn btn-default validateUpUc">
+	<div class="btn btn-default cancelUC" >Annuler</a>
+</div>
+
+</div>
 <div class="tasks"></div>
 
 {{ script_foot }}

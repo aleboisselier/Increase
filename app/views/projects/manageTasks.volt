@@ -22,7 +22,7 @@
 		
 		<div class="form-group">
 			<input type="submit" value="Valider" class="btn btn-default validateTasks">
-			<a class="btn btn-default cancel" href="{{url.get("taches")}}" data-ajax="{{ baseHref ~ "/index"}}">Annuler</a>
+			<div class="btn btn-default cancelTask" href="{{url.get("taches")}}" data-ajax="{{ baseHref ~ "/index"}}">Annuler</a>
 		</div>
 		
 	</fieldset>
