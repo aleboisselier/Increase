@@ -202,10 +202,14 @@ class ProjectsController extends DefaultController{
 							//});
     					", true);
     	$this->jquery->postFormOnClick(".validateUpUc", "Usecases/updateFromProject", "frmObject",".content");
+    	
     	$this->jquery->click(".cancelUC","$('.viewUC').css('visibility','hidden')");
     	$this->jquery->getOnClick(".updateTask","Projects/manageTasks",".tasks",
     			array("jsCallback"=>"$('.tasks').show();$('.tasks').css('background-color','rgba(0, 0, 0, 0.09)')"));
-    	 
+    	
+    	$this->jquery->getOnClick(".addTask","Projects/manageTasks",".tasks",
+    			array("jsCallback"=>"$('.tasks').show();$('.tasks').css('background-color','rgba(0, 0, 0, 0.09)')"));
+
     	$this->jquery->compile($this->view);
 		$this->view->setVars(array("usecase"=>$uc, "users"=>$users, "baseHref"=>$this->url->getBaseUri(), "tasks"=>$tasks));
 		$_SESSION['bread']['object'] = Projet::findFirst($uc->getIdProjet());

@@ -39,6 +39,7 @@ class UseCasesController extends DefaultController{
 		if($this->request->isPost()){
 			$this->_updateAction(@$_POST);
 		}
+		
 		$msg=new DisplayedMessage("L'Use Case a bien été modifié.");
 		$this->dispatcher->forward(
 				array("controller"=>"Projects",

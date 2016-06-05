@@ -18,16 +18,17 @@
 				</div>
 				</td>
 			<td class='td-center'>
-				<div class='btn btn-warning btn-xs deleteUC' id="{{ uc.getId() }}"
+				<a class='btn btn-warning btn-xs delete'
+				href='{{url.get("Usecases/delete/"~uc.getId())}}'
 				data-toggle="tooltip" data-placement="top" title="Supprimer l'UC">
 					<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>
-				</div>
+				</a>
 			</td>
 		</tr>
 	{% endfor %}
 	</tbody>
 </table>
-<div class='btn btn-primary addUC'>Ajouter...</a>
+<div class='btn btn-primary addUC' id="{{project.getId()}}">Ajouter...</a>
 {% if script_foot is defined %}
     {{ script_foot }}
 {% endif %}

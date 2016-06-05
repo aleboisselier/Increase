@@ -4,10 +4,14 @@
 <table class='table table-striped'>
 	<thead><tr><th colspan="2"><span class="glyphicon glyphicon-{{ controllerIcon }}" aria-hidden="true"></span>&nbsp;{{title}}</th></tr></thead>
 	<tbody>
-		{% for  object in objects %}	
+		{% for  object in objects %}
 			<tr>
 				<td>{{object}} </td>
-				<td class='td-center'><a class='btn btn-primary btn-xs pull-right editBtn' id="{{ object.getId() }}" href='' data-toggle="tooltip" data-placement="top" title="Afficher les Détails"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span></a></td>
+				<td class='td-center'>
+					<a class='btn btn-primary btn-xs pull-right editBtn' id="{{ object.getId() }}" href='' data-toggle="tooltip" data-placement="top" title="Afficher les Détails">
+						<span class='glyphicon glyphicon-edit' aria-hidden='true'></span>
+					</a>
+				</td>
 			</tr>
 		{% endfor %}
 	</tbody>

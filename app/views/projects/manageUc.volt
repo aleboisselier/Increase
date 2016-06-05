@@ -47,16 +47,18 @@
 							</div>
 						</td>
 						<td class='td-center'>
-							<div class='btn btn-warning btn-xs deleteTask' id="{{ task.getId() }}"
+							<a class='btn btn-warning btn-xs delete'
+							href='{{url.get("Taches/delete/"~task.getId())}}'
+							data-ajax="Taches/delete/{{task.getId()}}"
 							data-toggle="tooltip" data-placement="top" title="Supprimer la tâche">
 								<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>
-							</div>
+							</a>
 						</td>
 					</tr>
 					{% endfor %}
 				</tbody>
 			</table>
-			<a class='btn btn-primary addTask'>Ajouter...</a>
+			<div class='btn btn-primary addTask' id="NULL/{{usecase.getId()}}">Ajouter une tâche...</div>
 		</div>
 		
 	</fieldset>
